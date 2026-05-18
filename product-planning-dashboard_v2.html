@@ -324,6 +324,7 @@ td:nth-child(3) { text-align: left; font-family: 'DM Sans', sans-serif; }
   font-size: 11px; color: var(--teal-dark); margin-top: 4px;
   display: flex; align-items: center; gap: 5px;
 }
+.kpi-note { font-size: 10px; color: var(--text-faint); margin-top: 3px; font-style: italic; line-height: 1.3; }
 
 @media (max-width: 900px) {
   .kpi-grid { grid-template-columns: repeat(3, 1fr); }
@@ -409,19 +410,23 @@ td:nth-child(3) { text-align: left; font-family: 'DM Sans', sans-serif; }
       <div class="chart-card">
         <div class="chart-header">
           <span class="chart-title">Profitability ranking</span>
-          <div style="display:flex;align-items:center;gap:6px;">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
             <div class="chart-toggles">
-              <button class="toggle-btn active" id="tog-sort-gp" onclick="setProfitSort('gp')">Sort GP%</button>
-              <button class="toggle-btn" id="tog-sort-np" onclick="setProfitSort('np')">Sort NP%</button>
+              <button class="toggle-btn active" id="tog-profit-pct" onclick="setProfitView('pct')">%</button>
+              <button class="toggle-btn" id="tog-profit-value" onclick="setProfitView('value')">£k</button>
+            </div>
+            <div class="chart-toggles">
+              <button class="toggle-btn active" id="tog-sort-gp" onclick="setProfitSort('gp')">Sort GP</button>
+              <button class="toggle-btn" id="tog-sort-np" onclick="setProfitSort('np')">Sort NP</button>
             </div>
             <button class="icon-btn" onclick="exportProfitCSV()" title="Download as CSV">⬇ CSV</button>
             <button class="icon-btn" onclick="downloadChart(chartProfit,'profitability-ranking')" title="Download chart as PNG">⬇ PNG</button>
           </div>
         </div>
         <div style="display:flex;gap:12px;margin-bottom:10px;align-items:center;">
-          <span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted);">
+          <span id="profit-legend" style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted);">
             <span style="display:inline-block;width:24px;height:10px;border-radius:2px;background:linear-gradient(to right,#1D4ED8 55%,#93C5FD 55%);"></span>
-            Full bar = GP% &nbsp;·&nbsp; Dark = NP%
+            <span id="profit-legend-text">Full bar = GP% &nbsp;·&nbsp; Dark = NP%</span>
           </span>
         </div>
         <div id="profit-chart-scroll" style="overflow-y:auto;max-height:320px;">
@@ -535,6 +540,7 @@ let selBrands    = ['__all__'];
 let selYears     = ['__all__'];
 let salesMetric  = 'salesValue';
 let profitSort   = 'gp';
+let profitView   = 'pct';
 let trendMetric  = 'salesValue';
 let sortCol      = 'salesValue';
 let sortDir      = -1;
@@ -1069,6 +1075,13 @@ function setProfitSort(m) {
   updateProfitChart();
 }
 
+function setProfitView(v) {
+  profitView = v;
+  document.getElementById('tog-profit-pct').classList.toggle('active', v === 'pct');
+  document.getElementById('tog-profit-value').classList.toggle('active', v === 'value');
+  updateProfitChart();
+}
+
 function setTrendMetric(m) {
   trendMetric = m;
   document.getElementById('tog-trend-sales').classList.toggle('active', m === 'salesValue');
@@ -1153,17 +1166,18 @@ function renderKPIs() {
     ${kpiCard('Sales units', fmtInt(getDisplayValue(su)) + 'k', yearLabel)}
     ${kpiCard('Gross profit', CURRENCY + fmtInt(getDisplayValue(gp)) + 'k', yearLabel)}
     ${kpiCard('GP%', gpPct.toFixed(1) + '%', yearLabel, gpPct >= 70 ? 'up' : gpPct >= 50 ? '' : 'down')}
-    ${kpiCard('Net profit', CURRENCY + fmtInt(getDisplayValue(np)) + 'k', yearLabel)}
-    ${kpiCard('NP%', npPct.toFixed(1) + '%', yearLabel, npPct >= 50 ? 'up' : npPct >= 30 ? '' : 'down')}
+    ${kpiCard('Net profit', CURRENCY + fmtInt(getDisplayValue(np)) + 'k', yearLabel, npPct >= 50 ? 'up' : npPct >= 30 ? '' : 'down', 'Exc. cost allocations')}
+    ${kpiCard('NP%', npPct.toFixed(1) + '%', yearLabel, npPct >= 50 ? 'up' : npPct >= 30 ? '' : 'down', 'Exc. cost allocations')}
   `;
 }
 
-function kpiCard(label, value, sub, trend) {
+function kpiCard(label, value, sub, trend, note) {
   const cls = trend === 'up' ? 'kpi-up' : trend === 'down' ? 'kpi-down' : '';
   return `<div class="kpi-card">
     <div class="kpi-label">${label}</div>
     <div class="kpi-value ${cls}">${value}</div>
     <div class="kpi-sub">${sub}</div>
+    ${note ? `<div class="kpi-note">${note}</div>` : ''}
   </div>`;
 }
 
@@ -1215,47 +1229,124 @@ function updateSalesChart() {
 function updateProfitChart() {
   const brands = getFilteredBrands();
   const yIdxs  = getActiveYearIndices();
+  const isPct  = profitView === 'pct';
 
   const rows = brands.map(b => {
     const sv = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'salesValue',  yi), 0);
     const gp = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'grossProfit', yi), 0);
     const np = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'netProfit',   yi), 0);
-    return { name: b.name, gpPct: pct(gp, sv), npPct: pct(np, sv), sector: b.sector };
-  }).sort((a, b) => profitSort === 'gp' ? b.gpPct - a.gpPct : b.npPct - a.npPct);
+    return { name: b.name, gpPct: pct(gp, sv), npPct: pct(np, sv), sector: b.sector, gpVal: gp, npVal: np };
+  }).sort((a, b) => {
+    if (isPct) return profitSort === 'gp' ? b.gpPct - a.gpPct : b.npPct - a.npPct;
+    return profitSort === 'gp' ? b.gpVal - a.gpVal : b.npVal - a.npVal;
+  });
 
   const labels = rows.map(r => r.name);
 
-  // One bar per brand — tighter row height
   const barH = Math.max(260, rows.length * 22 + 60);
   document.getElementById('profit-chart-container').style.height = barH + 'px';
+
+  // Update legend
+  const legendEl = document.getElementById('profit-legend-text');
+  if (legendEl) legendEl.innerHTML = isPct
+    ? 'Full bar = GP% &nbsp;&middot;&nbsp; Dark = NP%'
+    : 'Full bar = GP £k &nbsp;&middot;&nbsp; Dark = NP £k';
+
+  // Plugin: sector dots on y-axis labels + value labels in £k mode
+  const profitChartPlugin = {
+    id: 'profitChartExtras',
+    afterDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      const yScale = scales.y;
+
+      // Sector-coloured dot before each label
+      rows.forEach((row, i) => {
+        const color = getSectorColor(row.sector).chart;
+        const y = yScale.getPixelForTick(i);
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(yScale.left + 8, y, 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.restore();
+      });
+
+      // Value labels inside/beside bars (£k mode only)
+      if (!isPct) {
+        const xScale = scales.x;
+        ctx.save();
+        ctx.font = '500 9px "DM Mono", monospace';
+        ctx.textBaseline = 'middle';
+        const zeroX = xScale.getPixelForValue(0);
+
+        rows.forEach((row, i) => {
+          const y = yScale.getPixelForTick(i);
+          const npX = xScale.getPixelForValue(getDisplayValue(row.npVal));
+          const gpX = xScale.getPixelForValue(getDisplayValue(row.gpVal));
+
+          // NP value in white inside dark segment (only if segment is wide enough)
+          if (npX - zeroX > 40) {
+            ctx.fillStyle = 'rgba(255,255,255,0.92)';
+            ctx.textAlign = 'right';
+            ctx.fillText(CURRENCY + fmtInt(getDisplayValue(row.npVal)) + 'k', npX - 5, y);
+          }
+
+          // GP total value in dark blue just outside the bar
+          ctx.fillStyle = '#1E3A8A';
+          ctx.textAlign = 'left';
+          ctx.fillText(CURRENCY + fmtInt(getDisplayValue(row.gpVal)) + 'k', gpX + 5, y);
+        });
+
+        ctx.restore();
+      }
+    }
+  };
+
+  const datasets = isPct ? [
+    {
+      label: 'NP%',
+      data: rows.map(r => r.npPct),
+      backgroundColor: '#1D4ED8',
+      borderColor: '#1D4ED8',
+      borderWidth: 0,
+      borderRadius: { topLeft: 0, bottomLeft: 0, topRight: 0, bottomRight: 0 },
+      stack: 'profit',
+    },
+    {
+      label: 'GP% remainder',
+      data: rows.map(r => Math.max(0, r.gpPct - r.npPct)),
+      backgroundColor: '#93C5FD',
+      borderColor: '#3B82F6',
+      borderWidth: 0,
+      borderRadius: { topLeft: 0, bottomLeft: 0, topRight: 3, bottomRight: 3 },
+      stack: 'profit',
+    }
+  ] : [
+    {
+      label: 'NP £k',
+      data: rows.map(r => getDisplayValue(r.npVal)),
+      backgroundColor: '#1D4ED8',
+      borderColor: '#1D4ED8',
+      borderWidth: 0,
+      borderRadius: { topLeft: 0, bottomLeft: 0, topRight: 0, bottomRight: 0 },
+      stack: 'profit',
+    },
+    {
+      label: 'GP £k remainder',
+      data: rows.map(r => Math.max(0, getDisplayValue(r.gpVal - r.npVal))),
+      backgroundColor: '#93C5FD',
+      borderColor: '#3B82F6',
+      borderWidth: 0,
+      borderRadius: { topLeft: 0, bottomLeft: 0, topRight: 3, bottomRight: 3 },
+      stack: 'profit',
+    }
+  ];
 
   if (chartProfit) { chartProfit.destroy(); }
   const ctx = document.getElementById('chart-profit').getContext('2d');
   chartProfit = new Chart(ctx, {
     type: 'bar',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: 'NP%',
-          data: rows.map(r => r.npPct),
-          backgroundColor: '#1D4ED8',
-          borderColor: '#1D4ED8',
-          borderWidth: 0,
-          borderRadius: { topLeft: 0, bottomLeft: 0, topRight: 0, bottomRight: 0 },
-          stack: 'profit',
-        },
-        {
-          label: 'GP% remainder',
-          data: rows.map(r => Math.max(0, r.gpPct - r.npPct)),
-          backgroundColor: '#93C5FD',
-          borderColor: '#3B82F6',
-          borderWidth: 0,
-          borderRadius: { topLeft: 0, bottomLeft: 0, topRight: 3, bottomRight: 3 },
-          stack: 'profit',
-        }
-      ]
-    },
+    data: { labels, datasets },
     options: {
       indexAxis: 'y',
       responsive: true,
@@ -1264,15 +1355,18 @@ function updateProfitChart() {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            // Show both GP and NP on hover regardless of which segment is hovered
             title: items => items[0].label,
             label: item => {
               const idx = item.dataIndex;
-              const gp = rows[idx].gpPct.toFixed(1);
-              const np = rows[idx].npPct.toFixed(1);
-              return item.datasetIndex === 0
-                ? `NP%: ${np}%`
-                : `GP%: ${gp}%`;
+              if (isPct) {
+                return item.datasetIndex === 0
+                  ? `NP%: ${rows[idx].npPct.toFixed(1)}%`
+                  : `GP%: ${rows[idx].gpPct.toFixed(1)}%`;
+              } else {
+                return item.datasetIndex === 0
+                  ? `NP: ${CURRENCY}${fmtInt(getDisplayValue(rows[idx].npVal))}k`
+                  : `GP: ${CURRENCY}${fmtInt(getDisplayValue(rows[idx].gpVal))}k`;
+              }
             }
           }
         }
@@ -1280,17 +1374,19 @@ function updateProfitChart() {
       scales: {
         x: {
           stacked: true,
-          ticks: { font: { size: 10, family: 'DM Mono' }, callback: v => v + '%' },
+          ticks: { font: { size: 10, family: 'DM Mono' }, callback: v => isPct ? v + '%' : CURRENCY + v + 'k' },
           grid: { color: '#F0F0F0' },
-          max: 105
+          max: isPct ? 105 : undefined
         },
         y: {
           stacked: true,
-          ticks: { font: { size: 10, family: 'DM Sans' } },
+          afterFit(scale) { scale.width += 16; },
+          ticks: { font: { size: 10, family: 'DM Sans' }, padding: 4 },
           grid: { display: false }
         }
       }
-    }
+    },
+    plugins: [profitChartPlugin]
   });
 }
 
@@ -1298,20 +1394,25 @@ function exportProfitCSV() {
   const brands = getFilteredBrands();
   const yIdxs  = getActiveYearIndices();
   const yearLabel = (selYears.includes('__all__') || selYears.length === YEARS.length) ? 'All years' : selYears.join('+');
+  const isPct = profitView === 'pct';
 
   const rows = brands.map(b => {
     const sv = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'salesValue',  yi), 0);
     const gp = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'grossProfit', yi), 0);
     const np = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'netProfit',   yi), 0);
-    return [b.name, cap(b.sector), pct(gp, sv).toFixed(1), pct(np, sv).toFixed(1)];
+    return isPct
+      ? [b.name, cap(b.sector), pct(gp, sv).toFixed(1), pct(np, sv).toFixed(1)]
+      : [b.name, cap(b.sector), getDisplayValue(gp).toFixed(1), getDisplayValue(np).toFixed(1)];
   }).sort((a, b) => parseFloat(b[2]) - parseFloat(a[2]));
 
-  const headers = ['Brand', 'Sector', `GP% (${yearLabel})`, `NP% (${yearLabel})`];
+  const headers = isPct
+    ? ['Brand', 'Sector', `GP% (${yearLabel})`, `NP% (${yearLabel})`]
+    : ['Brand', 'Sector', `GP ${CURRENCY}k (${yearLabel})`, `NP ${CURRENCY}k (${yearLabel})`];
   const csv = [headers, ...rows].map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
   const blob = new Blob([csv], { type: 'text/csv' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `profitability-${yearLabel.replace(/\s+/g,'-')}.csv`;
+  a.download = `profitability-${isPct ? 'pct' : 'value'}-${yearLabel.replace(/\s+/g,'-')}.csv`;
   a.click();
   URL.revokeObjectURL(a.href);
 }
