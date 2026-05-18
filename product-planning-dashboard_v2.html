@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Planning Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #00A99D;
+  --teal-dark: #007D74;
+  --teal-light: #E0F5F3;
+  --purple: #6B3FA0;
+  --purple-dark: #4A2B72;
+  --purple-light: #EDE7F6;
+  --adult: #D96B2D;
+  --adult-dark: #A84E1C;
+  --adult-light: #FAEEE5;
+  --primary-sec: #6B3FA0;
+  --primary-sec-light: #EDE7F6;
+  --secondary-sec: #00A99D;
+  --secondary-sec-light: #E0F5F3;
+  --bg: #F5F6F8;
+  --surface: #FFFFFF;
+  --border: #E2E5EA;
+  --text: #1A1D23;
+  --text-muted: #6B7280;
+  --text-faint: #A0A8B4;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; }
+a { color: var(--teal); }
+
+/* ---- HEADER ---- */
+.app-header {
+  background: var(--purple-dark);
+  color: #fff;
+  padding: 0 24px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.app-header .logo { display: flex; align-items: center; gap: 10px; }
+.app-header .logo-mark {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600; color: #fff;
+}
+.app-header .logo-text { font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
+.app-header .logo-sub { font-size: 11px; opacity: 0.6; margin-left: 4px; }
+.btn-manage {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-manage:hover { background: rgba(255,255,255,0.2); }
+
+/* ---- UPLOAD VIEW ---- */
+#view-upload {
+  max-width: 760px;
+  margin: 48px auto;
+  padding: 0 24px;
+}
+.upload-heading { font-size: 22px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.02em; }
+.upload-sub { color: var(--text-muted); margin-bottom: 32px; font-size: 14px; }
+.upload-sectors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.upload-card {
+  background: var(--surface);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.upload-card.stub { opacity: 0.5; pointer-events: none; }
+.upload-card.has-file { border-style: solid; border-color: var(--teal); }
+.upload-card.dragover { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-light); }
+.upload-card .sector-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px; margin-bottom: 14px;
+}
+.badge-adult { background: var(--adult-light); color: var(--adult-dark); }
+.badge-primary { background: var(--primary-sec-light); color: var(--purple-dark); }
+.badge-secondary { background: var(--secondary-sec-light); color: var(--teal-dark); }
+.stub-label {
+  font-size: 11px; color: var(--text-faint); font-style: italic;
+  margin-top: 4px; display: block;
+}
+.upload-zone {
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 18px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  margin-top: 4px;
+}
+.upload-zone:hover { border-color: var(--teal); background: var(--teal-light); }
+.upload-zone .upload-icon { font-size: 22px; margin-bottom: 6px; }
+.upload-zone p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+.upload-zone p strong { color: var(--teal); font-weight: 500; }
+.upload-zone input[type=file] { display: none; }
+.file-info {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 10px; padding: 8px 10px;
+  background: var(--teal-light); border-radius: var(--radius);
+  font-size: 12px; color: var(--teal-dark);
+}
+.file-info .file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-remove {
+  background: none; border: none; color: var(--teal-dark);
+  cursor: pointer; font-size: 14px; padding: 0 2px; line-height: 1;
+}
+.upload-error { font-size: 11px; color: #C0392B; margin-top: 6px; padding: 6px 8px; background: #FEF0EE; border-radius: 4px; }
+.btn-launch {
+  display: block; width: 100%;
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  padding: 13px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: -0.01em;
+}
+.btn-launch:hover:not(:disabled) { background: var(--teal-dark); }
+.btn-launch:disabled { opacity: 0.4; cursor: default; }
+
+/* ---- DASHBOARD VIEW ---- */
+#view-dashboard { display: none; }
+#view-dashboard.active { display: block; }
+.controls-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  position: sticky;
+  top: 52px;
+  z-index: 90;
+}
+.controls-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.controls-row + .controls-row { margin-top: 10px; }
+.controls-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-faint);
+  min-width: 52px;
+}
+.pills { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+  white-space: nowrap;
+}
+.pill:hover { border-color: var(--text-muted); color: var(--text); }
+.pill.active.sector-adult { background: var(--adult-light); border-color: var(--adult); color: var(--adult-dark); font-weight: 500; }
+.pill.active.sector-primary { background: var(--primary-sec-light); border-color: var(--primary-sec); color: var(--purple-dark); font-weight: 500; }
+.pill.active.sector-secondary { background: var(--secondary-sec-light); border-color: var(--secondary-sec); color: var(--teal-dark); font-weight: 500; }
+.pill.active.sector-all { background: #F1F3F7; border-color: #9CA3AF; color: var(--text); font-weight: 500; }
+.pill.active.year-pill { background: var(--purple-light); border-color: var(--purple); color: var(--purple-dark); font-weight: 500; }
+.pill.stub { opacity: 0.4; cursor: default; pointer-events: none; }
+.pill .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.dot-adult { background: var(--adult); }
+.dot-primary { background: var(--primary-sec); }
+.dot-secondary { background: var(--secondary-sec); }
+
+/* ---- MAIN CONTENT ---- */
+.dash-content { padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
+.note-bar {
+  font-size: 11px; color: var(--text-faint);
+  padding: 6px 12px; background: var(--surface);
+  border-radius: var(--radius); border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+/* ---- KPI CARDS ---- */
+.kpi-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 20px; }
+.kpi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+}
+.kpi-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; font-weight: 500; }
+.kpi-value { font-size: 20px; font-weight: 600; font-family: 'DM Mono', monospace; letter-spacing: -0.03em; color: var(--text); }
+.kpi-sub { font-size: 11px; color: var(--text-faint); margin-top: 2px; font-family: 'DM Mono', monospace; }
+.kpi-up { color: #16A34A; }
+.kpi-down { color: #DC2626; }
+
+/* ---- CHART SECTION ---- */
+.charts-row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; margin-bottom: 20px; }
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+.chart-card .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.chart-card .chart-title { font-size: 13px; font-weight: 600; color: var(--text); }
+.chart-toggles { display: flex; gap: 4px; }
+.toggle-btn {
+  padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-muted);
+  cursor: pointer; font-family: inherit; transition: all 0.15s;
+}
+.toggle-btn.active { background: var(--purple-light); border-color: var(--purple); color: var(--purple-dark); }
+.chart-container { position: relative; }
+.chart-container canvas { max-width: 100%; }
+
+/* ---- TREND CHART ---- */
+.trend-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+.trend-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+
+/* ---- TABLE ---- */
+.table-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.table-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.table-title { font-size: 13px; font-weight: 600; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead tr { border-bottom: 1.5px solid var(--border); background: #FAFBFC; }
+th {
+  padding: 10px 14px; text-align: right;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--text-muted); cursor: pointer; white-space: nowrap; user-select: none;
+}
+th:first-child, th:nth-child(2) { text-align: left; }
+th:hover { color: var(--text); }
+th .sort-icon { opacity: 0.4; margin-left: 3px; }
+th.sorted .sort-icon { opacity: 1; color: var(--purple); }
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+tbody tr:hover { background: #FAFBFC; }
+tbody tr.total-row { background: #F5F6F8; font-weight: 500; }
+tbody tr.total-row:hover { background: #EDEEF0; }
+td {
+  padding: 10px 14px; text-align: right;
+  font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text);
+}
+td:first-child { text-align: left; font-family: 'DM Sans', sans-serif; width: 22px; }
+td:nth-child(2) { text-align: left; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; }
+td:nth-child(3) { text-align: left; font-family: 'DM Sans', sans-serif; }
+.sector-badge-sm {
+  display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px;
+  border-radius: 20px; letter-spacing: 0.04em;
+}
+.badge-sm-adult { background: var(--adult-light); color: var(--adult-dark); }
+.badge-sm-primary { background: var(--primary-sec-light); color: var(--purple-dark); }
+.badge-sm-secondary { background: var(--secondary-sec-light); color: var(--teal-dark); }
+.pct-good { color: #16A34A; }
+.pct-warn { color: #D97706; }
+.pct-bad { color: #DC2626; }
+.empty-state { padding: 48px; text-align: center; color: var(--text-muted); }
+
+/* ---- LOADING ---- */
+#loading-overlay {
+  position: fixed; inset: 0;
+  background: rgba(255,255,255,0.85);
+  display: none; align-items: center; justify-content: center;
+  flex-direction: column; gap: 12px; z-index: 999;
+}
+#loading-overlay.active { display: flex; }
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 14px; color: var(--text-muted); }
+
+/* ---- ICON BUTTONS (chart download, table export) ---- */
+.icon-btn {
+  background: none; border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--text-faint); font-size: 12px; padding: 3px 8px;
+  cursor: pointer; font-family: inherit; transition: all 0.15s;
+  display: inline-flex; align-items: center; gap: 4px;
+  white-space: nowrap;
+}
+.icon-btn:hover { border-color: var(--text-muted); color: var(--text); background: var(--bg); }
+.parse-summary {
+  font-size: 11px; color: var(--teal-dark); margin-top: 4px;
+  display: flex; align-items: center; gap: 5px;
+}
+
+@media (max-width: 900px) {
+  .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+  .charts-row { grid-template-columns: 1fr; }
+  .upload-sectors { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="logo">
+    <div class="logo-mark">PP</div>
+    <span class="logo-text">Product Planning</span>
+    <span class="logo-sub">Dashboard</span>
+  </div>
+  <button class="btn-manage" id="btn-manage-files">Manage files</button>
+</header>
+
+<!-- UPLOAD VIEW -->
+<div id="view-upload">
+  <div style="max-width:760px;margin:48px auto;padding:0 24px;">
+    <h1 class="upload-heading">Upload your planning files</h1>
+    <p class="upload-sub">Upload an Excel (.xlsx) product planning file for each sector. At least one file is required to launch the dashboard.</p>
+    <div class="upload-sectors" id="upload-sectors-container"></div>
+    <button class="btn-launch" id="btn-launch" disabled onclick="launchDashboard()">Upload a file to launch dashboard</button>
+    <div style="margin-top:20px;text-align:center;">
+      <button id="btn-clear-data" onclick="clearAllData()" style="background:none;border:none;color:#9CA3AF;font-size:12px;font-family:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px;" title="Removes all cached files from this browser">Clear cached data</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD VIEW -->
+<div id="view-dashboard">
+  <!-- Controls -->
+  <div class="controls-bar">
+    <div class="controls-row">
+      <span class="controls-label">Sector</span>
+      <div class="pills" id="sector-pills"></div>
+      <div style="margin-left:auto; display:flex; gap:8px; align-items:center;">
+        <span style="font-size:11px;color:var(--text-faint);">FY24–FY25 actuals · FY26–FY29 forecast</span>
+      </div>
+    </div>
+    <div class="controls-row" id="brand-row-header" onclick="toggleBrandRow()" style="cursor:pointer;user-select:none;">
+      <span class="controls-label">Brand</span>
+      <span id="brand-collapse-icon" style="font-size:10px;color:var(--text-faint);margin-right:6px;">▾</span>
+      <div class="pills" id="brand-pills-summary" style="pointer-events:none;flex:1;overflow:hidden;flex-wrap:nowrap;"></div>
+    </div>
+    <div id="brand-row-expanded" style="display:none;">
+      <div class="controls-row">
+        <span class="controls-label"></span>
+        <div class="pills" id="brand-pills"></div>
+      </div>
+    </div>
+    <div class="controls-row">
+      <span class="controls-label">Year</span>
+      <div class="pills" id="year-pills"></div>
+    </div>
+    <div id="sources-row" style="padding-top:6px;border-top:1px solid var(--border);margin-top:4px;font-size:10px;color:var(--text-faint);letter-spacing:0.01em;display:none;"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="dash-content">
+    <!-- KPIs -->
+    <div class="kpi-grid" id="kpi-grid"></div>
+
+    <!-- Charts row -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Sales by brand</span>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <button class="icon-btn" onclick="downloadChart(chartSales,'sales-by-brand')" title="Download chart as PNG">⬇ PNG</button>
+            <div class="chart-toggles">
+              <button class="toggle-btn active" id="tog-sales-value" onclick="setSalesMetric('salesValue')">Sales £k</button>
+            <button class="toggle-btn" id="tog-sales-units" onclick="setSalesMetric('salesUnits')">Units k</button>
+          </div></div>
+        </div>
+        <div class="chart-container" style="height:260px;">
+          <canvas id="chart-sales"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Profitability ranking</span>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div class="chart-toggles">
+              <button class="toggle-btn active" id="tog-sort-gp" onclick="setProfitSort('gp')">Sort GP%</button>
+              <button class="toggle-btn" id="tog-sort-np" onclick="setProfitSort('np')">Sort NP%</button>
+            </div>
+            <button class="icon-btn" onclick="exportProfitCSV()" title="Download as CSV">⬇ CSV</button>
+            <button class="icon-btn" onclick="downloadChart(chartProfit,'profitability-ranking')" title="Download chart as PNG">⬇ PNG</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;margin-bottom:10px;align-items:center;">
+          <span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted);">
+            <span style="display:inline-block;width:24px;height:10px;border-radius:2px;background:linear-gradient(to right,#1D4ED8 55%,#93C5FD 55%);"></span>
+            Full bar = GP% &nbsp;·&nbsp; Dark = NP%
+          </span>
+        </div>
+        <div id="profit-chart-scroll" style="overflow-y:auto;max-height:320px;">
+          <div class="chart-container" id="profit-chart-container" style="height:260px;">
+            <canvas id="chart-profit"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trend -->
+    <div class="trend-card">
+      <div class="trend-header">
+        <span class="chart-title" id="trend-title">Trend — FY24 to FY29</span>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+          <button class="icon-btn" onclick="downloadChart(chartTrend,'trend-chart')" title="Download chart as PNG">⬇ PNG</button>
+          <div class="chart-toggles">
+            <button class="toggle-btn active" id="tog-trend-sales" onclick="setTrendMetric('salesValue')">Sales £k</button>
+            <button class="toggle-btn" id="tog-trend-gp" onclick="setTrendMetric('grossProfit')">GP £k</button>
+            <button class="toggle-btn" id="tog-trend-np" onclick="setTrendMetric('netProfit')">NP £k</button>
+          </div>
+        </div>
+      </div>
+      <div class="chart-container" style="height:220px;">
+        <canvas id="chart-trend"></canvas>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-card">
+      <div class="table-header">
+        <span class="table-title" id="table-title">All brands</span>
+        <button class="icon-btn" onclick="exportTableCSV()" title="Download table as CSV">⬇ CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table id="main-table">
+          <thead>
+            <tr>
+              <th style="width:28px;cursor:default;"></th>
+              <th onclick="sortTable('name')" style="text-align:left;">Brand <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('sector')" style="text-align:left;">Sector <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('salesValue')">Sales £k <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('salesUnits')">Units k <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('grossProfit')">GP £k <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('gpPct')">GP% <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('netProfit')">NP £k <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('npPct')">NP% <span class="sort-icon">↕</span></th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading -->
+<div id="loading-overlay">
+  <div class="spinner"></div>
+  <span class="loading-text" id="loading-text">Parsing file…</span>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+'use strict';
+
+/* =========================================================
+   CONFIG
+   ========================================================= */
+// Dynamic — set from parsed file data in initDashboard()
+let YEARS = ['FY24','FY25','FY26','FY27','FY28','FY29'];
+let ACTUALS_YEARS = ['FY24','FY25'];
+
+const CURRENCY = '£';
+
+// Add/rename sectors here — everything else derives from this list
+const SECTOR_CONFIG = [
+  { id: 'adult',     label: 'Adult',     badgeClass: 'badge-adult',     dotClass: 'dot-adult',     required: false },
+  { id: 'primary',   label: 'Primary',   badgeClass: 'badge-primary',   dotClass: 'dot-primary',   required: false },
+  { id: 'secondary', label: 'Secondary', badgeClass: 'badge-secondary', dotClass: 'dot-secondary', required: false },
+];
+
+// Palette for any sectors beyond the built-in three
+const EXTRA_PALETTE = ['#2563EB','#16A34A','#DB2777','#9333EA','#0891B2'];
+
+const SECTOR_COLORS = {
+  adult:     { bg: '#FAEEE5', border: '#D96B2D', dot: '#D96B2D', text: '#A84E1C', chart: '#D96B2D' },
+  primary:   { bg: '#EDE7F6', border: '#6B3FA0', dot: '#6B3FA0', text: '#4A2B72', chart: '#6B3FA0' },
+  secondary: { bg: '#E0F5F3', border: '#00A99D', dot: '#00A99D', text: '#007D74', chart: '#00A99D' }
+};
+
+function getSectorColor(sector) {
+  if (SECTOR_COLORS[sector]) return SECTOR_COLORS[sector];
+  // Generate a color for unknown sectors from the palette
+  const idx = SECTOR_CONFIG.findIndex(s => s.id === sector);
+  const hex = EXTRA_PALETTE[(idx - 3) % EXTRA_PALETTE.length] || '#888';
+  return { bg: hex + '22', border: hex, dot: hex, text: hex, chart: hex };
+}
+
+function getAllSectorIds() { return SECTOR_CONFIG.map(s => s.id); }
+function getRequiredSectorId() { return (SECTOR_CONFIG.find(s => s.required) || SECTOR_CONFIG[0]).id; }
+
+/* =========================================================
+   STATE
+   ========================================================= */
+let sectorData   = {};
+let pendingFiles = {};
+let selSectors   = ['adult'];
+let selBrands    = ['__all__'];
+let selYears     = ['__all__'];
+let salesMetric  = 'salesValue';
+let profitSort   = 'gp';
+let trendMetric  = 'salesValue';
+let sortCol      = 'salesValue';
+let sortDir      = -1;
+let chartSales, chartProfit, chartTrend;
+
+/* =========================================================
+   INDEXEDDB
+   ========================================================= */
+const DB_NAME = 'ppt-dashboard', DB_VER = 1, STORE = 'sectors';
+let db;
+
+function openDB() {
+  return new Promise((res, rej) => {
+    const req = indexedDB.open(DB_NAME, DB_VER);
+    req.onupgradeneeded = e => e.target.result.createObjectStore(STORE, { keyPath: 'id' });
+    req.onsuccess = e => { db = e.target.result; res(db); };
+    req.onerror = () => rej(req.error);
+  });
+}
+function dbGet(id) {
+  return new Promise((res, rej) => {
+    const tx = db.transaction(STORE, 'readonly');
+    const req = tx.objectStore(STORE).get(id);
+    req.onsuccess = () => res(req.result);
+    req.onerror = () => rej(req.error);
+  });
+}
+function dbPut(record) {
+  return new Promise((res, rej) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    const req = tx.objectStore(STORE).put(record);
+    req.onsuccess = () => res();
+    req.onerror = () => rej(req.error);
+  });
+}
+function dbDelete(id) {
+  return new Promise((res, rej) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    const req = tx.objectStore(STORE).delete(id);
+    req.onsuccess = () => res();
+    req.onerror = () => rej(req.error);
+  });
+}
+async function dbGetAll() {
+  return new Promise((res, rej) => {
+    const tx = db.transaction(STORE, 'readonly');
+    const req = tx.objectStore(STORE).getAll();
+    req.onsuccess = () => res(req.result || []);
+    req.onerror = () => rej(req.error);
+  });
+}
+
+/* =========================================================
+   XLSX PARSING
+   ========================================================= */
+function camelToWords(str) {
+  return str.replace(/([A-Z]+)/g, ' $1').replace(/^ /, '').trim();
+}
+
+function buildCategoryMap(sheetNames) {
+  const map = {};
+  for (let i = 0; i < sheetNames.length; i++) {
+    const name = sheetNames[i];
+    if (name.endsWith(' >') && !name.includes('>>>')) {
+      const catName = name.replace(/ >$/, '').trim();
+      for (let j = Math.max(0, i - 4); j <= Math.min(sheetNames.length - 1, i + 4); j++) {
+        if (sheetNames[j].startsWith('_Start_')) {
+          map[sheetNames[j]] = catName;
+        }
+      }
+    }
+  }
+  return map;
+}
+
+function parseBrandSheet(ws, sheetName) {
+  if (!ws) return null;
+  const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null, raw: true });
+
+  /* ----- FUZZY METRIC MATCHING (fix: handles label variations & extra text) ----- */
+  const METRIC_PATTERNS = [
+    { key: 'Sales Value',   match: /^sales\s*value/i },
+    { key: 'Sales Units',   match: /^sales\s*units?/i },
+    { key: 'Gross Profit',  match: /^gross\s*profit/i },
+    { key: 'Net Profit (exc. Cost Allocations)', match: /^net\s*profit/i },
+  ];
+
+  const result = {};
+  for (const p of METRIC_PATTERNS) result[p.key] = null;
+
+  let brandName = sheetName;
+  let detectedYears = [...YEARS];
+
+  // Find brand name
+  for (let i = 0; i < Math.min(rows.length, 15); i++) {
+    const r = rows[i];
+    if (!r) continue;
+    if (r[2] === 'Product Family:' && rows[i+1] && rows[i+1][2]) {
+      brandName = String(rows[i+1][2]).trim();
+      break;
+    }
+  }
+
+  // Find year headers — scan up to row 25 to handle taller header sections
+  for (let i = 0; i < Math.min(rows.length, 25); i++) {
+    const r = rows[i];
+    if (!r) continue;
+    const potYears = [r[4], r[5], r[6], r[7], r[8], r[9]];
+    if (potYears.filter(v => v && String(v).match(/^FY\d{2}$/)).length >= 4) {
+      detectedYears = potYears.map(v => v ? String(v).trim() : '');
+      break;
+    }
+  }
+
+  // Find each metric — take LAST row matching label with numeric data
+  for (let i = 0; i < Math.min(rows.length, 120); i++) {
+    const r = rows[i];
+    if (!r || r[2] === null || r[2] === undefined) continue;
+    const label = String(r[2]).trim();
+    const matched = METRIC_PATTERNS.find(p => p.match.test(label));
+    if (!matched) continue;
+    const vals = [r[4], r[5], r[6], r[7], r[8], r[9]].map(v => {
+      if (v === null || v === undefined || v === '') return 0;
+      const n = typeof v === 'number' ? v : parseFloat(String(v).replace(/,/g, ''));
+      return isNaN(n) ? 0 : n;
+    });
+    if (vals.some(v => v !== 0)) result[matched.key] = vals;
+  }
+
+  // Check we got at least Sales Value
+  if (!result['Sales Value']) return null;
+
+  return {
+    name: brandName,
+    sheetName,
+    years: detectedYears,
+    salesValue:  result['Sales Value']  || Array(6).fill(0),
+    salesUnits:  result['Sales Units']  || Array(6).fill(0),
+    grossProfit: result['Gross Profit'] || Array(6).fill(0),
+    netProfit:   result['Net Profit (exc. Cost Allocations)'] || Array(6).fill(0),
+  };
+}
+
+function parseWorkbook(wb) {
+  const names = wb.SheetNames;
+  const catMap = buildCategoryMap(names);
+  const SKIP_SHEETS = new Set([
+    'Config', 'Navigation', 'Glossary', '_Start', 'End_',
+    'SUMMARIES >>>', 'PRE-PRESS INPUT >>>', 'PROJECT DETAIL >>>'
+  ]);
+
+  const categories = [];
+  let inSection = false;
+  let currentCat = 'Uncategorised', currentBrands = [];
+
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i];
+
+    if (SKIP_SHEETS.has(name) || name.endsWith(' Summary')) continue;
+
+    if (name.endsWith('_End_') || name === 'End_') {
+      if (inSection && currentBrands.length > 0) {
+        categories.push({ name: currentCat, brands: [...currentBrands] });
+      }
+      inSection = false; currentBrands = [];
+      continue;
+    }
+
+    if (name.startsWith('_Start_')) {
+      inSection = true; currentBrands = [];
+      currentCat = catMap[name] || camelToWords(name.replace('_Start_',''));
+      continue;
+    }
+
+    if (name.endsWith(' >') || name.includes('>>>')) {
+      if (inSection) currentCat = name.replace(/ >$/, '').trim();
+      continue;
+    }
+
+    if (inSection) {
+      const brand = parseBrandSheet(wb.Sheets[name], name);
+      if (brand) currentBrands.push(brand);
+    }
+  }
+
+  return categories;
+}
+
+function validateAndParse(buffer, fileName) {
+  let wb;
+  try {
+    wb = XLSX.read(new Uint8Array(buffer), { type: 'array', cellFormula: false });
+  } catch(e) {
+    throw new Error('Cannot read file — please make sure it is a valid .xlsx file.');
+  }
+
+  const names = wb.SheetNames;
+  const hasStart = names.some(n => n.startsWith('_Start_'));
+  const hasEnd   = names.some(n => n.endsWith('_End_'));
+  if (!hasStart || !hasEnd) {
+    throw new Error('This does not look like a Product Planning Tool file. Expected sheet structure not found.');
+  }
+
+  const categories = parseWorkbook(wb);
+  if (!categories.length) throw new Error('No brand data found in file. Check that the file uses the standard template.');
+
+  const totalBrands = categories.reduce((s, c) => s + c.brands.length, 0);
+  if (!totalBrands) throw new Error('No valid brand sheets found. The file may be empty or incorrectly structured.');
+
+  return { fileName, categories };
+}
+
+/* =========================================================
+   UPLOAD CARD RENDERING
+   ========================================================= */
+function renderUploadCards() {
+  const container = document.getElementById('upload-sectors-container');
+  container.innerHTML = SECTOR_CONFIG.map(s => `
+    <div class="upload-card" id="card-${s.id}">
+      <span class="sector-badge ${s.badgeClass}">${s.label}</span>
+      ${!s.required ? '<span class="stub-label">Optional</span>' : ''}
+      <div class="upload-zone" onclick="triggerUpload('${s.id}')">
+        <div class="upload-icon">📂</div>
+        <p><strong>Click to upload</strong><br>or drag & drop<br>.xlsx file</p>
+        <input type="file" id="file-${s.id}" accept=".xlsx" onchange="handleFileSelect(event,'${s.id}')">
+      </div>
+      <div id="file-info-${s.id}" class="file-info" style="display:none"></div>
+      <div id="error-${s.id}" class="upload-error" style="display:none"></div>
+    </div>
+  `).join('');
+
+  // Attach drag-and-drop listeners after rendering
+  SECTOR_CONFIG.forEach(s => {
+    const card = document.getElementById('card-' + s.id);
+    card.addEventListener('dragover', e => { e.preventDefault(); card.classList.add('dragover'); });
+    card.addEventListener('dragleave', () => card.classList.remove('dragover'));
+    card.addEventListener('drop', e => {
+      e.preventDefault(); card.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) processFile(file, s.id);
+    });
+  });
+}
+
+/* =========================================================
+   UPLOAD HANDLERS
+   ========================================================= */
+function triggerUpload(sector) {
+  document.getElementById('file-' + sector).click();
+}
+
+function handleFileSelect(event, sector) {
+  const file = event.target.files[0];
+  if (!file) return;
+  processFile(file, sector);
+  event.target.value = '';
+}
+
+function processFile(file, sector) {
+  showError(sector, '');
+  const reader = new FileReader();
+  reader.onload = async e => {
+    showLoading('Parsing ' + file.name + '…');
+    try {
+      const buffer = e.target.result;
+      const parsed = validateAndParse(buffer, file.name);
+      const totalBrands = parsed.categories.reduce((s, c) => s + c.brands.length, 0);
+      const summary = `${totalBrands} brand${totalBrands !== 1 ? 's' : ''} across ${parsed.categories.length} categor${parsed.categories.length !== 1 ? 'ies' : 'y'}`;
+      pendingFiles[sector] = { name: file.name, buffer, parsed };
+      showFileInfo(sector, file.name, summary);
+      updateLaunchButton();
+    } catch(err) {
+      showError(sector, err.message);
+    } finally {
+      hideLoading();
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function showFileInfo(sector, fileName, summary, uploadedAt) {
+  const el = document.getElementById('file-info-' + sector);
+  el.style.display = 'flex';
+  const tsLabel = uploadedAt
+    ? `<span style="font-size:10px;color:var(--text-faint);margin-left:6px;white-space:nowrap;">loaded ${fmtTimestamp(uploadedAt)}</span>`
+    : '';
+  el.innerHTML = `<span class="file-name">✓ ${fileName}</span>${tsLabel}
+    <button class="file-remove" onclick="removeFile('${sector}')" title="Remove">✕</button>`;
+  // Show parse summary below file info
+  const existing = document.getElementById('summary-' + sector);
+  if (existing) existing.remove();
+  if (summary) {
+    const s = document.createElement('div');
+    s.id = 'summary-' + sector;
+    s.className = 'parse-summary';
+    s.innerHTML = `<span style="color:var(--teal)">✦</span> ${summary}`;
+    el.parentNode.insertBefore(s, el.nextSibling);
+  }
+  document.getElementById('card-' + sector).classList.add('has-file');
+}
+
+function removeFile(sector) {
+  delete pendingFiles[sector];
+  document.getElementById('file-info-' + sector).style.display = 'none';
+  document.getElementById('card-' + sector).classList.remove('has-file');
+  const summary = document.getElementById('summary-' + sector);
+  if (summary) summary.remove();
+  updateLaunchButton();
+}
+
+function showError(sector, msg) {
+  const el = document.getElementById('error-' + sector);
+  el.textContent = msg;
+  el.style.display = msg ? 'block' : 'none';
+}
+
+function updateLaunchButton() {
+  const btn = document.getElementById('btn-launch');
+  const hasAny = SECTOR_CONFIG.some(s => !!pendingFiles[s.id]);
+  btn.disabled = !hasAny;
+  btn.textContent = hasAny ? 'Launch dashboard →' : 'Upload a file to launch dashboard';
+}
+
+async function launchDashboard() {
+  showLoading('Saving files…');
+  try {
+    for (const s of SECTOR_CONFIG) {
+      if (pendingFiles[s.id]) {
+        await dbPut({ id: s.id, fileName: pendingFiles[s.id].name,
+          buffer: pendingFiles[s.id].buffer, uploadedAt: new Date().toISOString() });
+        sectorData[s.id] = { name: s.label, fileName: pendingFiles[s.id].name,
+          categories: pendingFiles[s.id].parsed.categories, uploadedAt: new Date().toISOString() };
+      }
+    }
+    pendingFiles = {};
+    initDashboard();
+  } catch(e) {
+    alert('Error saving files: ' + e.message);
+  } finally {
+    hideLoading();
+  }
+}
+
+/* =========================================================
+   MANAGE FILES
+   ========================================================= */
+document.getElementById('btn-manage-files').onclick = () => {
+  document.getElementById('view-dashboard').style.display = 'none';
+  document.getElementById('view-upload').style.display = 'block';
+  for (const s of SECTOR_CONFIG) {
+    if (sectorData[s.id]) showFileInfo(s.id, sectorData[s.id].fileName, null, sectorData[s.id].uploadedAt);
+  }
+  updateLaunchButton();
+};
+
+/* drag-and-drop listeners are set up in renderUploadCards() */
+
+/* =========================================================
+   DASHBOARD INIT
+   ========================================================= */
+function initDashboard() {
+  // Derive YEARS dynamically from all loaded brand data
+  const yearSet = new Set();
+  for (const sd of Object.values(sectorData)) {
+    for (const cat of sd.categories) {
+      for (const brand of cat.brands) {
+        if (brand.years) brand.years.forEach(y => { if (y && /^FY\d{2}$/.test(y)) yearSet.add(y); });
+      }
+    }
+  }
+  if (yearSet.size >= 2) {
+    YEARS = [...yearSet].sort((a, b) => parseInt(a.slice(2)) - parseInt(b.slice(2)));
+    // Infer actuals: FY years whose fiscal year end is before current calendar year
+    const currentFY = new Date().getFullYear() - 2000;
+    ACTUALS_YEARS = YEARS.filter(y => parseInt(y.slice(2)) < currentFY);
+  }
+
+  // Update trend chart title dynamically
+  if (YEARS.length >= 2) {
+    const el = document.getElementById('trend-title');
+    if (el) el.textContent = `Trend — ${YEARS[0]} to ${YEARS[YEARS.length - 1]}`;
+  }
+
+  document.getElementById('view-upload').style.display = 'none';
+  document.getElementById('view-dashboard').style.display = 'block';
+  const availableSectors = Object.keys(sectorData);
+  selSectors = [...availableSectors];
+  selBrands  = ['__all__'];
+  selYears   = ['__all__'];
+  renderControls();
+  renderSourcesRow();
+  renderDashboard();
+}
+
+/* =========================================================
+   CONTROLS RENDERING
+   ========================================================= */
+function renderControls() {
+  renderSectorPills();
+  renderBrandPills();
+  renderYearPills();
+}
+
+function renderSectorPills() {
+  const el = document.getElementById('sector-pills');
+  const loadedSectors = SECTOR_CONFIG.map(s => s.id).filter(id => sectorData[id]);
+  const allActive = loadedSectors.every(id => selSectors.includes(id));
+
+  let html = `<span class="pill sector-all ${allActive?'active':''}" onclick="toggleAll()">${allActive?'✓ ':''} All sectors</span>`;
+  for (const s of SECTOR_CONFIG) {
+    const loaded = !!sectorData[s.id];
+    const active = selSectors.includes(s.id);
+    const stub = !loaded ? ' stub' : '';
+    html += `<span class="pill sector-${s.id}${active&&loaded?' active':''}${stub}" 
+      onclick="${loaded?`toggleSector('${s.id}')`:''}" 
+      title="${!loaded?'Upload '+s.label+' file to enable':''}">
+      <span class="dot dot-${s.id}"></span>${s.label}${active&&loaded?' ✕':''}
+      ${!loaded?'<span style="font-size:10px;opacity:0.6;margin-left:2px;">(not loaded)</span>':''}
+    </span>`;
+  }
+  el.innerHTML = html;
+}
+
+function renderBrandPills() {
+  const el = document.getElementById('brand-pills');
+  const summary = document.getElementById('brand-pills-summary');
+  const brands = getBrandsForSectors(selSectors);
+  const allActive = selBrands.includes('__all__') || selBrands.length === brands.length;
+
+  let html = `<span class="pill sector-all ${allActive?'active':''}" onclick="toggleAllBrands()">All brands</span>`;
+  for (const b of brands) {
+    const active = selBrands.includes(b.key) && !allActive ? ' active sector-' + b.sector : '';
+    html += `<span class="pill${active}" onclick="toggleBrand('${b.key}')">
+      <span class="dot dot-${b.sector}"></span>${b.name}
+    </span>`;
+  }
+  el.innerHTML = html;
+
+  // Summary row: show active selection count or "All brands"
+  if (allActive) {
+    summary.innerHTML = `<span class="pill active sector-all" style="pointer-events:none;">All brands</span>`;
+  } else {
+    const count = selBrands.length;
+    summary.innerHTML = `<span class="pill active sector-all" style="pointer-events:none;">${count} brand${count!==1?'s':''} selected</span>`;
+  }
+}
+
+function renderYearPills() {
+  const el = document.getElementById('year-pills');
+  const allActive = selYears.includes('__all__') || selYears.length === YEARS.length;
+  let html = `<span class="pill year-pill ${allActive?'active':''}" onclick="toggleAllYears()">All years</span>`;
+  for (const yr of YEARS) {
+    const isActual = ACTUALS_YEARS.includes(yr);
+    const active = !allActive && selYears.includes(yr) ? ' active' : '';
+    html += `<span class="pill year-pill${active}" onclick="toggleYear('${yr}')">
+      ${yr}<span style="font-size:9px;color:var(--text-faint);margin-left:2px;">${isActual?'A':'F'}</span>
+    </span>`;
+  }
+  el.innerHTML = html;
+}
+
+/* =========================================================
+   TOGGLE HANDLERS
+   ========================================================= */
+function toggleAll() {
+  selSectors = SECTOR_CONFIG.map(s => s.id).filter(id => sectorData[id]);
+  selBrands = ['__all__'];
+  renderControls(); renderDashboard();
+}
+
+function toggleSector(sector) {
+  if (selSectors.includes(sector)) {
+    if (selSectors.length === 1) return;
+    selSectors = selSectors.filter(s => s !== sector);
+  } else {
+    selSectors.push(sector);
+  }
+  selBrands = ['__all__'];
+  renderControls(); renderDashboard();
+}
+
+function toggleAllBrands() {
+  selBrands = ['__all__'];
+  renderBrandPills(); renderDashboard();
+}
+
+let brandRowOpen = false;
+function toggleBrandRow() {
+  brandRowOpen = !brandRowOpen;
+  document.getElementById('brand-row-expanded').style.display = brandRowOpen ? 'block' : 'none';
+  document.getElementById('brand-collapse-icon').textContent = brandRowOpen ? '▴' : '▾';
+}
+
+function toggleBrand(key) {
+  if (selBrands.includes('__all__')) selBrands = [];
+  if (selBrands.includes(key)) {
+    selBrands = selBrands.filter(b => b !== key);
+    if (!selBrands.length) selBrands = ['__all__'];
+  } else {
+    selBrands.push(key);
+  }
+  renderBrandPills(); renderDashboard();
+}
+
+function toggleAllYears() {
+  selYears = ['__all__'];
+  renderYearPills(); renderDashboard();
+}
+
+function toggleYear(yr) {
+  if (selYears.includes('__all__')) selYears = [];
+  if (selYears.includes(yr)) {
+    selYears = selYears.filter(y => y !== yr);
+    if (!selYears.length) selYears = ['__all__'];
+  } else {
+    selYears.push(yr);
+  }
+  renderYearPills(); renderDashboard();
+}
+
+function setSalesMetric(m) {
+  salesMetric = m;
+  document.getElementById('tog-sales-value').classList.toggle('active', m === 'salesValue');
+  document.getElementById('tog-sales-units').classList.toggle('active', m === 'salesUnits');
+  updateSalesChart();
+}
+
+function setProfitSort(m) {
+  profitSort = m;
+  document.getElementById('tog-sort-gp').classList.toggle('active', m === 'gp');
+  document.getElementById('tog-sort-np').classList.toggle('active', m === 'np');
+  updateProfitChart();
+}
+
+function setTrendMetric(m) {
+  trendMetric = m;
+  document.getElementById('tog-trend-sales').classList.toggle('active', m === 'salesValue');
+  document.getElementById('tog-trend-gp').classList.toggle('active', m === 'grossProfit');
+  document.getElementById('tog-trend-np').classList.toggle('active', m === 'netProfit');
+  updateTrendChart();
+}
+
+/* =========================================================
+   DATA HELPERS
+   ========================================================= */
+function getBrandsForSectors(sectors) {
+  const out = [];
+  for (const sector of sectors) {
+    if (!sectorData[sector]) continue;
+    for (const cat of sectorData[sector].categories) {
+      for (const brand of cat.brands) {
+        out.push({ key: sector + '__' + brand.sheetName, name: brand.name, sector, cat: cat.name, brand });
+      }
+    }
+  }
+  return out;
+}
+
+function getFilteredBrands() {
+  const all = getBrandsForSectors(selSectors);
+  if (selBrands.includes('__all__')) return all;
+  return all.filter(b => selBrands.includes(b.key));
+}
+
+function getYearIndex(yr) { return YEARS.indexOf(yr); }
+function getActiveYearIndices() {
+  if (selYears.includes('__all__')) return YEARS.map((_, i) => i);
+  return selYears.map(yr => YEARS.indexOf(yr)).filter(i => i !== -1);
+}
+
+function getBrandValue(brand, metric, yearIdx) {
+  const data = brand[metric];
+  if (!data) return 0;
+  if (yearIdx === -1) return data.reduce((s,v) => s + v, 0);
+  return data[yearIdx] || 0;
+}
+
+function getDisplayValue(v) { return Math.round(v / 1000 * 10) / 10; }
+
+function pct(a, b) { return b > 0 ? Math.round(a / b * 1000) / 10 : 0; }
+
+/* =========================================================
+   MAIN RENDER
+   ========================================================= */
+function renderDashboard() {
+  renderKPIs();
+  updateSalesChart();
+  updateProfitChart();
+  updateTrendChart();
+  renderTable();
+}
+
+/* =========================================================
+   KPIs
+   ========================================================= */
+function renderKPIs() {
+  const brands = getFilteredBrands();
+  const yIdxs = getActiveYearIndices();
+
+  let sv = 0, su = 0, gp = 0, np = 0;
+  for (const b of brands) {
+    for (const yi of yIdxs) {
+      sv += getBrandValue(b.brand, 'salesValue',  yi);
+      su += getBrandValue(b.brand, 'salesUnits',  yi);
+      gp += getBrandValue(b.brand, 'grossProfit', yi);
+      np += getBrandValue(b.brand, 'netProfit',   yi);
+    }
+  }
+
+  const gpPct = pct(gp, sv), npPct = pct(np, sv);
+  const allYrs = selYears.includes('__all__') || selYears.length === YEARS.length;
+  const yearLabel = allYrs ? `${YEARS[0]}–${YEARS[YEARS.length-1]} Total` : selYears.join(', ');
+
+  document.getElementById('kpi-grid').innerHTML = `
+    ${kpiCard('Sales value', CURRENCY + fmtInt(getDisplayValue(sv)) + 'k', yearLabel)}
+    ${kpiCard('Sales units', fmtInt(getDisplayValue(su)) + 'k', yearLabel)}
+    ${kpiCard('Gross profit', CURRENCY + fmtInt(getDisplayValue(gp)) + 'k', yearLabel)}
+    ${kpiCard('GP%', gpPct.toFixed(1) + '%', yearLabel, gpPct >= 70 ? 'up' : gpPct >= 50 ? '' : 'down')}
+    ${kpiCard('Net profit', CURRENCY + fmtInt(getDisplayValue(np)) + 'k', yearLabel)}
+    ${kpiCard('NP%', npPct.toFixed(1) + '%', yearLabel, npPct >= 50 ? 'up' : npPct >= 30 ? '' : 'down')}
+  `;
+}
+
+function kpiCard(label, value, sub, trend) {
+  const cls = trend === 'up' ? 'kpi-up' : trend === 'down' ? 'kpi-down' : '';
+  return `<div class="kpi-card">
+    <div class="kpi-label">${label}</div>
+    <div class="kpi-value ${cls}">${value}</div>
+    <div class="kpi-sub">${sub}</div>
+  </div>`;
+}
+
+function fmt(n) {
+  return n.toLocaleString('en-GB', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
+function fmtInt(n) {
+  return Math.round(n).toLocaleString('en-GB');
+}
+
+/* =========================================================
+   SALES BAR CHART
+   ========================================================= */
+function updateSalesChart() {
+  const brands = getFilteredBrands();
+  const yIdxs  = getActiveYearIndices();
+  const labels = brands.map(b => b.name);
+  const metric = salesMetric === 'salesValue' ? 'salesValue' : 'salesUnits';
+
+  const values = brands.map(b => getDisplayValue(
+    yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, metric, yi), 0)
+  ));
+  const colors = brands.map(b => getSectorColor(b.sector).chart);
+  const alphas = brands.map(b => getSectorColor(b.sector).chart + 'CC');
+
+  const data = { labels, datasets: [{ data: values, backgroundColor: alphas, borderColor: colors, borderWidth: 1.5, borderRadius: 4 }] };
+
+  if (chartSales) { chartSales.destroy(); }
+  const ctx = document.getElementById('chart-sales').getContext('2d');
+  chartSales = new Chart(ctx, {
+    type: 'bar',
+    data,
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: { label: ctx => (salesMetric==='salesValue'?CURRENCY:'') + ctx.raw.toFixed(1) + 'k' }
+      }},
+      scales: {
+        x: { ticks: { font: { size: 10, family: 'DM Sans' }, maxRotation: 45 }, grid: { display: false } },
+        y: { ticks: { font: { size: 10, family: 'DM Mono' }, callback: v => (salesMetric==='salesValue'?CURRENCY:'')+v+'k' }, grid: { color: '#F0F0F0' } }
+      }
+    }
+  });
+}
+
+/* =========================================================
+   PROFITABILITY CHART
+   ========================================================= */
+function updateProfitChart() {
+  const brands = getFilteredBrands();
+  const yIdxs  = getActiveYearIndices();
+
+  const rows = brands.map(b => {
+    const sv = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'salesValue',  yi), 0);
+    const gp = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'grossProfit', yi), 0);
+    const np = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'netProfit',   yi), 0);
+    return { name: b.name, gpPct: pct(gp, sv), npPct: pct(np, sv), sector: b.sector };
+  }).sort((a, b) => profitSort === 'gp' ? b.gpPct - a.gpPct : b.npPct - a.npPct);
+
+  const labels = rows.map(r => r.name);
+
+  // One bar per brand — tighter row height
+  const barH = Math.max(260, rows.length * 22 + 60);
+  document.getElementById('profit-chart-container').style.height = barH + 'px';
+
+  if (chartProfit) { chartProfit.destroy(); }
+  const ctx = document.getElementById('chart-profit').getContext('2d');
+  chartProfit = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'NP%',
+          data: rows.map(r => r.npPct),
+          backgroundColor: '#1D4ED8',
+          borderColor: '#1D4ED8',
+          borderWidth: 0,
+          borderRadius: { topLeft: 0, bottomLeft: 0, topRight: 0, bottomRight: 0 },
+          stack: 'profit',
+        },
+        {
+          label: 'GP% remainder',
+          data: rows.map(r => Math.max(0, r.gpPct - r.npPct)),
+          backgroundColor: '#93C5FD',
+          borderColor: '#3B82F6',
+          borderWidth: 0,
+          borderRadius: { topLeft: 0, bottomLeft: 0, topRight: 3, bottomRight: 3 },
+          stack: 'profit',
+        }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            // Show both GP and NP on hover regardless of which segment is hovered
+            title: items => items[0].label,
+            label: item => {
+              const idx = item.dataIndex;
+              const gp = rows[idx].gpPct.toFixed(1);
+              const np = rows[idx].npPct.toFixed(1);
+              return item.datasetIndex === 0
+                ? `NP%: ${np}%`
+                : `GP%: ${gp}%`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          ticks: { font: { size: 10, family: 'DM Mono' }, callback: v => v + '%' },
+          grid: { color: '#F0F0F0' },
+          max: 105
+        },
+        y: {
+          stacked: true,
+          ticks: { font: { size: 10, family: 'DM Sans' } },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+}
+
+function exportProfitCSV() {
+  const brands = getFilteredBrands();
+  const yIdxs  = getActiveYearIndices();
+  const yearLabel = (selYears.includes('__all__') || selYears.length === YEARS.length) ? 'All years' : selYears.join('+');
+
+  const rows = brands.map(b => {
+    const sv = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'salesValue',  yi), 0);
+    const gp = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'grossProfit', yi), 0);
+    const np = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'netProfit',   yi), 0);
+    return [b.name, cap(b.sector), pct(gp, sv).toFixed(1), pct(np, sv).toFixed(1)];
+  }).sort((a, b) => parseFloat(b[2]) - parseFloat(a[2]));
+
+  const headers = ['Brand', 'Sector', `GP% (${yearLabel})`, `NP% (${yearLabel})`];
+  const csv = [headers, ...rows].map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `profitability-${yearLabel.replace(/\s+/g,'-')}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+/* =========================================================
+   TREND CHART
+   ========================================================= */
+function updateTrendChart() {
+  const brands = getFilteredBrands();
+  const metricKey = trendMetric;
+
+  const byBrand = !selBrands.includes('__all__') && brands.length <= 6;
+
+  let datasets = [];
+  if (byBrand) {
+    datasets = brands.map(b => ({
+      label: b.name,
+      data: YEARS.map((_,i) => getDisplayValue(b.brand[metricKey]?.[i] || 0)),
+      borderColor: getSectorColor(b.sector).chart,
+      backgroundColor: getSectorColor(b.sector).chart + '22',
+      borderWidth: 2, pointRadius: 3, tension: 0.3, fill: false
+    }));
+  } else {
+    for (const sector of selSectors) {
+      const sb = brands.filter(b => b.sector === sector);
+      if (!sb.length) continue;
+      const data = YEARS.map((_,i) => getDisplayValue(
+        sb.reduce((s, b) => s + (b.brand[metricKey]?.[i] || 0), 0)
+      ));
+      datasets.push({
+        label: cap(sector), data,
+        borderColor: getSectorColor(sector).chart,
+        backgroundColor: getSectorColor(sector).chart + '22',
+        borderWidth: 2, pointRadius: 3, tension: 0.3, fill: false
+      });
+    }
+  }
+
+  const forecastPlugin = {
+    id: 'forecastLine',
+    afterDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      const x = scales.x.getPixelForValue(2);
+      ctx.save();
+      ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = '#C0C8D4';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x, chartArea.top); ctx.lineTo(x, chartArea.bottom); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#A0A8B4';
+      ctx.font = '10px DM Sans';
+      ctx.fillText('Forecast →', x + 6, chartArea.top + 14);
+      ctx.restore();
+    }
+  };
+
+  if (chartTrend) { chartTrend.destroy(); }
+  const ctx = document.getElementById('chart-trend').getContext('2d');
+  chartTrend = new Chart(ctx, {
+    type: 'line', data: { labels: YEARS, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top', labels: { font: { size: 11, family: 'DM Sans' }, boxWidth: 12, padding: 12 } },
+        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + CURRENCY + ctx.raw.toFixed(1) + 'k' } }
+      },
+      scales: {
+        x: { ticks: { font: { size: 11, family: 'DM Sans' } }, grid: { color: '#F0F0F0' } },
+        y: { ticks: { font: { size: 10, family: 'DM Mono' }, callback: v => CURRENCY + v + 'k' }, grid: { color: '#F0F0F0' } }
+      }
+    },
+    plugins: [forecastPlugin]
+  });
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+function sortTable(col) {
+  if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = -1; }
+  renderTable();
+}
+
+function renderTable() {
+  const brands = getFilteredBrands();
+  const yIdxs  = getActiveYearIndices();
+
+  let rows = brands.map(b => {
+    const sv = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'salesValue',  yi), 0);
+    const su = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'salesUnits',  yi), 0);
+    const gp = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'grossProfit', yi), 0);
+    const np = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'netProfit',   yi), 0);
+    return { name: b.name, sector: b.sector, salesValue: sv, salesUnits: su,
+      grossProfit: gp, netProfit: np, gpPct: pct(gp,sv), npPct: pct(np,sv) };
+  });
+
+  rows.sort((a, b) => {
+    const av = sortCol === 'name' ? a.name.toLowerCase() : (sortCol === 'sector' ? a.sector : a[sortCol]);
+    const bv = sortCol === 'name' ? b.name.toLowerCase() : (sortCol === 'sector' ? b.sector : b[sortCol]);
+    return (av < bv ? -1 : av > bv ? 1 : 0) * sortDir;
+  });
+
+  const totSV = rows.reduce((s,r) => s+r.salesValue, 0);
+  const totSU = rows.reduce((s,r) => s+r.salesUnits, 0);
+  const totGP = rows.reduce((s,r) => s+r.grossProfit, 0);
+  const totNP = rows.reduce((s,r) => s+r.netProfit, 0);
+  const totGPP = pct(totGP, totSV), totNPP = pct(totNP, totSV);
+
+  const yearLabel = (selYears.includes('__all__') || selYears.length === YEARS.length) ? 'All years' : selYears.join(', ');
+  document.getElementById('table-title').textContent = `All brands — ${yearLabel}`;
+
+  let html = `<tr class="total-row">
+    <td></td>
+    <td>Total</td>
+    <td><span style="font-size:11px;color:var(--text-faint);">all selected</span></td>
+    <td>${CURRENCY}${fmt(getDisplayValue(totSV))}</td>
+    <td>${fmt(getDisplayValue(totSU))}</td>
+    <td>${CURRENCY}${fmt(getDisplayValue(totGP))}</td>
+    <td class="${pctClass(totGPP)}">${totGPP.toFixed(1)}%</td>
+    <td>${CURRENCY}${fmt(getDisplayValue(totNP))}</td>
+    <td class="${pctClass(totNPP)}">${totNPP.toFixed(1)}%</td>
+  </tr>`;
+
+  for (const r of rows) {
+    const sc = getSectorColor(r.sector);
+    html += `<tr>
+      <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${sc.dot};"></span></td>
+      <td>${r.name}</td>
+      <td><span class="sector-badge-sm badge-sm-${r.sector}">${cap(r.sector)}</span></td>
+      <td>${CURRENCY}${fmt(getDisplayValue(r.salesValue))}</td>
+      <td>${fmt(getDisplayValue(r.salesUnits))}</td>
+      <td>${CURRENCY}${fmt(getDisplayValue(r.grossProfit))}</td>
+      <td class="${pctClass(r.gpPct)}">${r.gpPct.toFixed(1)}%</td>
+      <td>${CURRENCY}${fmt(getDisplayValue(r.netProfit))}</td>
+      <td class="${pctClass(r.npPct)}">${r.npPct.toFixed(1)}%</td>
+    </tr>`;
+  }
+
+  document.getElementById('table-body').innerHTML = html;
+
+  document.querySelectorAll('th').forEach(th => th.classList.remove('sorted'));
+  const ths = document.querySelectorAll('#main-table th');
+  const colMap = { '': 0, 'name': 1, 'sector': 2, 'salesValue': 3, 'salesUnits': 4, 'grossProfit': 5, 'gpPct': 6, 'netProfit': 7, 'npPct': 8 };
+  const idx = colMap[sortCol];
+  if (idx !== undefined && ths[idx]) {
+    ths[idx].classList.add('sorted');
+    const icon = ths[idx].querySelector('.sort-icon');
+    if (icon) icon.textContent = sortDir === -1 ? '↓' : '↑';
+  }
+}
+
+function pctClass(p) { return p >= 60 ? 'pct-good' : p >= 35 ? 'pct-warn' : 'pct-bad'; }
+
+/* =========================================================
+   EXPORT FUNCTIONS
+   ========================================================= */
+function exportTableCSV() {
+  const brands = getFilteredBrands();
+  const yIdxs  = getActiveYearIndices();
+  const yearLabel = (selYears.includes('__all__') || selYears.length === YEARS.length) ? 'All years' : selYears.join('+');
+
+  const rows = brands.map(b => {
+    const sv = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'salesValue',  yi), 0);
+    const su = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'salesUnits',  yi), 0);
+    const gp = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'grossProfit', yi), 0);
+    const np = yIdxs.reduce((s, yi) => s + getBrandValue(b.brand, 'netProfit',   yi), 0);
+    return [b.name, cap(b.sector), b.cat,
+      getDisplayValue(sv), getDisplayValue(su),
+      getDisplayValue(gp), pct(gp,sv).toFixed(1),
+      getDisplayValue(np), pct(np,sv).toFixed(1)];
+  });
+
+  const headers = ['Brand','Sector','Category',`Sales ${CURRENCY}k (${yearLabel})`,`Units k (${yearLabel})`,`GP ${CURRENCY}k`,`GP%`,`NP ${CURRENCY}k`,`NP%`];
+  const csv = [headers, ...rows].map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `product-planning-${yearLabel.replace(/\s+/g,'-')}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function downloadChart(chartInstance, filename) {
+  if (!chartInstance) return;
+  const a = document.createElement('a');
+  a.href = chartInstance.toBase64Image('image/png', 1);
+  a.download = filename + '.png';
+  a.click();
+}
+
+/* =========================================================
+   UTILS
+   ========================================================= */
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+function fmtTimestamp(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+    + ' ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+}
+
+function renderSourcesRow() {
+  const el = document.getElementById('sources-row');
+  if (!el) return;
+  const entries = SECTOR_CONFIG
+    .filter(s => sectorData[s.id])
+    .map(s => {
+      const sd = sectorData[s.id];
+      const ts = sd.uploadedAt ? ` · ${fmtTimestamp(sd.uploadedAt)}` : '';
+      return `<span style="margin-right:16px;"><span style="font-weight:500;color:var(--text-muted);">${sd.name}:</span> ${sd.fileName}${ts}</span>`;
+    });
+  if (entries.length) {
+    el.innerHTML = `<span style="margin-right:8px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Sources</span>${entries.join('')}`;
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+async function clearAllData() {
+  if (!confirm('Remove all cached files from this browser? You\'ll need to re-upload to use the dashboard.')) return;
+  showLoading('Clearing data…');
+  try {
+    const records = await dbGetAll();
+    for (const rec of records) await dbDelete(rec.id);
+    sectorData = {};
+    pendingFiles = {};
+    hideLoading();
+    document.getElementById('view-dashboard').style.display = 'none';
+    document.getElementById('view-upload').style.display = 'block';
+    renderUploadCards();
+    updateLaunchButton();
+  } catch(e) {
+    hideLoading();
+    alert('Error clearing data: ' + e.message);
+  }
+}
+function showLoading(msg) { document.getElementById('loading-text').textContent = msg; document.getElementById('loading-overlay').classList.add('active'); }
+function hideLoading() { document.getElementById('loading-overlay').classList.remove('active'); }
+
+/* =========================================================
+   INIT
+   ========================================================= */
+async function init() {
+  renderUploadCards();
+  await openDB();
+  const records = await dbGetAll();
+  if (records.length) {
+    showLoading('Loading saved files…');
+    try {
+      let hasAny = false;
+      for (const rec of records) {
+        try {
+          const parsed = validateAndParse(rec.buffer, rec.fileName);
+          const sConf = SECTOR_CONFIG.find(s => s.id === rec.id);
+          sectorData[rec.id] = { name: sConf ? sConf.label : cap(rec.id), fileName: rec.fileName, categories: parsed.categories, uploadedAt: rec.uploadedAt };
+          hasAny = true;
+        } catch(e) {
+          await dbDelete(rec.id);
+        }
+      }
+      if (hasAny) { hideLoading(); initDashboard(); return; }
+    } catch(e) { /* fall through to upload */ }
+    hideLoading();
+  }
+}
+
+document.getElementById('btn-launch').addEventListener('click', () => {});
+
+init();
+</script>
+</body>
+</html>
