@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horizon B1–B2 · Unit 5 · The Happiness Paradox — Meridian Press</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0D2B45;
+      --gold:       #C9A84C;
+      --gold-light: #FFF8E1;
+      --warm-white: #FAFAF7;
+      --mid-grey:   #556B7A;
+      --light-grey: #E8EDF0;
+      --body-text:  #2a2a2a;
+    }
+
+    html, body {
+      background: #2c2c2c;
+      font-family: 'Source Sans Pro', sans-serif;
+      color: var(--body-text);
+      line-height: 1.6;
+    }
+
+    /* ─── Outer wrapper ─────────────────────────────────────────────── */
+    .book-wrapper {
+      max-width: 1160px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ─── Series header ─────────────────────────────────────────────── */
+    .series-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .series-header .series-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 28px;
+      color: var(--gold);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+    }
+    .series-header .series-sub {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 12px;
+      color: #888;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ─── Spread container ──────────────────────────────────────────── */
+    .spread {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      margin-bottom: 36px;
+      min-height: 800px;
+    }
+
+    /* ─── Generic page ──────────────────────────────────────────────── */
+    .page {
+      background: var(--warm-white);
+      position: relative;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      min-height: 800px;
+    }
+
+    /* Spine shadow between pages */
+    .spread .page:first-child {
+      border-right: 1px solid #ccc;
+    }
+
+    /* ─── Page numbers ──────────────────────────────────────────────── */
+    .page-number {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 11px;
+      color: var(--mid-grey);
+      text-align: center;
+      margin-top: auto;
+      padding-top: 16px;
+    }
+    .page-number--white {
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ─── Section labels ────────────────────────────────────────────── */
+    .section-label {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    /* ─── Gold rule ─────────────────────────────────────────────────── */
+    .gold-rule {
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--gold);
+      margin: 14px 0;
+      border: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       SPREAD 1 — LEFT PAGE (p.40): Photo Opener
+    ══════════════════════════════════════════════════════════════════ */
+    .page--photo {
+      padding: 0;
+      background-color: var(--navy);
+      background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Dark overlay */
+    .page--photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 43, 69, 0.55);
+      z-index: 0;
+    }
+
+    .photo-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 36px;
+      z-index: 1;
+    }
+
+    .photo-unit-label {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .photo-lesson-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 34px;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    .photo-questions {
+      list-style: none;
+      margin-top: 4px;
+    }
+    .photo-questions li {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .photo-note {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      font-style: italic;
+      margin-top: 10px;
+    }
+
+    .page-number--photo {
+      position: absolute;
+      bottom: 16px;
+      left: 36px;
+      z-index: 1;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       SPREAD 1 — RIGHT PAGE (p.41): Reading
+    ══════════════════════════════════════════════════════════════════ */
+    .page--reading {
+      border-top: 4px solid var(--gold);
+      padding-top: 28px;
+    }
+
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+
+    .article-byline {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--mid-grey);
+      margin-bottom: 10px;
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .article-body {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 400;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--body-text);
+      column-count: 2;
+      column-gap: 24px;
+      column-rule: 1px solid var(--light-grey);
+      flex: 1;
+    }
+
+    .article-body p {
+      margin-bottom: 0.9em;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 4px solid var(--gold);
+      padding: 8px 0 8px 16px;
+      margin-top: 16px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--gold);
+      line-height: 1.45;
+      /* break out of columns */
+      column-span: all;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       SPREAD 2 — LEFT PAGE (p.42): Vocabulary + Grammar
+    ══════════════════════════════════════════════════════════════════ */
+
+    /* Vocabulary grid */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .vocab-card {
+      background: #ffffff;
+      border-left: 4px solid var(--navy);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+    }
+    .vocab-card .phrase {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+    .vocab-card .definition {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--mid-grey);
+      line-height: 1.4;
+    }
+
+    /* Vocab intro */
+    .section-intro {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 14px;
+      color: var(--body-text);
+      margin-bottom: 8px;
+    }
+
+    /* Grammar box */
+    .grammar-box {
+      background: var(--light-grey);
+      border-left: 5px solid var(--navy);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+
+    .grammar-box-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    /* Comparison table */
+    .grammar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 12.5px;
+      margin-bottom: 14px;
+    }
+    .grammar-table th {
+      background: var(--gold);
+      color: #ffffff;
+      font-weight: 700;
+      padding: 6px 10px;
+      text-align: left;
+    }
+    .grammar-table td {
+      padding: 5px 10px;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .grammar-table tr:nth-child(even) td {
+      background: rgba(201,168,76,0.08);
+    }
+    .grammar-table tr:nth-child(odd) td {
+      background: rgba(255,255,255,0.6);
+    }
+    .grammar-table strong {
+      color: var(--navy);
+    }
+
+    /* Timeline */
+    .timeline-container {
+      margin: 10px 0 6px;
+    }
+    .timeline-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--mid-grey);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .timeline-track {
+      position: relative;
+      height: 24px;
+    }
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--mid-grey);
+      transform: translateY(-50%);
+    }
+    .timeline-dot {
+      position: absolute;
+      top: 50%;
+      left: 35%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      background: var(--navy);
+      border-radius: 50%;
+      border: 2px solid #fff;
+    }
+    .timeline-dot-label {
+      position: absolute;
+      top: calc(50% + 8px);
+      left: 35%;
+      transform: translateX(-50%);
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 9px;
+      color: var(--navy);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+    .timeline-arrow {
+      position: absolute;
+      top: 50%;
+      left: 35%;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: translateY(-50%);
+    }
+    .timeline-arrow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -5px;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 9px solid var(--gold);
+    }
+    .timeline-arrow-label {
+      position: absolute;
+      top: calc(50% - 18px);
+      left: calc(35% + 12px);
+      right: 10px;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 9px;
+      color: var(--gold);
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* Practice sentences */
+    .practice-list {
+      list-style: none;
+      counter-reset: practice-counter;
+    }
+    .practice-list li {
+      counter-increment: practice-counter;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 13.5px;
+      color: var(--body-text);
+      padding: 5px 0 5px 22px;
+      position: relative;
+      border-bottom: 1px dashed #d0d8de;
+      line-height: 1.55;
+    }
+    .practice-list li:last-child { border-bottom: none; }
+    .practice-list li::before {
+      content: counter(practice-counter) ".";
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .blank {
+      display: inline-block;
+      min-width: 80px;
+      border-bottom: 2px solid var(--navy);
+      margin: 0 2px;
+    }
+    .answer-hint {
+      font-style: italic;
+      color: var(--mid-grey);
+      font-size: 12px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       SPREAD 2 — RIGHT PAGE (p.43): Critical Thinking + Speaking
+    ══════════════════════════════════════════════════════════════════ */
+
+    /* Ranking cards */
+    .ranking-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin: 10px 0 14px;
+    }
+    .ranking-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1.5px solid var(--navy);
+      background: #ffffff;
+      border-radius: 5px;
+      padding: 9px 14px;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 13.5px;
+      color: var(--body-text);
+      line-height: 1.4;
+    }
+    .rank-box {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--navy);
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    .pair-prompt {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--mid-grey);
+      margin-bottom: 20px;
+      padding-left: 4px;
+      border-left: 3px solid var(--light-grey);
+      padding-left: 10px;
+    }
+
+    /* My World box */
+    .my-world-box {
+      background: var(--gold-light);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+    }
+    .my-world-label {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .my-world-prompt {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 13.5px;
+      color: var(--body-text);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .sub-prompts {
+      list-style: none;
+      margin-bottom: 10px;
+    }
+    .sub-prompts li {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 13px;
+      color: var(--body-text);
+      padding: 3px 0 3px 20px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .sub-prompts li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .my-world-note {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--mid-grey);
+    }
+
+    /* Extend / Writing */
+    .extend-section {
+      background: #f0f4f7;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+    }
+    .extend-section .extend-label {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .extend-section p {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 13px;
+      color: var(--body-text);
+      line-height: 1.55;
+    }
+
+    /* ─── Footer strip ──────────────────────────────────────────────── */
+    .page-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--light-grey);
+    }
+    .page-footer .footer-left {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 10px;
+      color: var(--mid-grey);
+      letter-spacing: 0.5px;
+    }
+    .page-footer .footer-right {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 10px;
+      color: var(--mid-grey);
+    }
+
+    /* ─── Utility ───────────────────────────────────────────────────── */
+    .section-spacer {
+      margin-bottom: 18px;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .spread {
+        grid-template-columns: 1fr;
+      }
+      .spread .page:first-child {
+        border-right: none;
+        border-bottom: 2px solid var(--gold);
+      }
+      .article-body {
+        column-count: 1;
+      }
+      .vocab-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .photo-lesson-title { font-size: 26px; }
+      .page { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="book-wrapper">
+
+  <!-- Series identifier -->
+  <div class="series-header">
+    <div class="series-name">Horizon</div>
+    <div class="series-sub">Meridian Press · B1–B2 Coursebook</div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       SPREAD 1
+  ════════════════════════════════════════════════════════════════ -->
+  <div class="spread">
+
+    <!-- LEFT PAGE p.40 — Photo opener -->
+    <div class="page page--photo" role="img" aria-label="People laughing and sharing a happy moment together">
+
+      <div class="photo-content">
+        <div class="photo-unit-label">Unit 5 &nbsp;·&nbsp; Lesson A</div>
+        <h1 class="photo-lesson-title">The Happiness<br>Paradox</h1>
+        <span class="gold-rule"></span>
+        <ul class="photo-questions">
+          <li>🤔 What makes people happy in your culture?</li>
+          <li>🤔 Do you think money leads to happiness? Why?</li>
+        </ul>
+        <p class="photo-note">Discuss with a partner before you read.</p>
+      </div>
+
+      <div class="page-number--photo">40</div>
+    </div>
+
+    <!-- RIGHT PAGE p.41 — Reading -->
+    <div class="page page--reading">
+
+      <div class="section-label">Reading</div>
+
+      <h2 class="article-title">What Really Makes Us Happy?</h2>
+      <p class="article-byline">By the Horizon Editorial Team &nbsp;·&nbsp; Level B1–B2</p>
+      <hr class="article-divider" />
+
+      <div class="article-body">
+        <p>For generations, people have pursued happiness as if it were a destination — a place to arrive at once they secure the right job, earn enough money, or buy the perfect home. Yet research in positive psychology tells a surprisingly different story.</p>
+
+        <p>Psychologist Sonja Lyubomirsky has spent decades studying what makes people genuinely content. Her findings suggest that the circumstances of our lives — where we live, how much we earn, even our relationship status — account for only around ten percent of our long-term satisfaction. Genetics explains roughly fifty percent. The remaining forty percent comes down to our own thoughts and deliberate behaviours.</p>
+
+        <p>So what behaviours actually boost your mood and lead to lasting well-being? The evidence points strongly in one direction: other people. Study after study confirms that maintaining meaningful relationships is the single most important factor in human happiness. A landmark 75-year study by Harvard University followed hundreds of people from adolescence into old age and reached a striking conclusion: the quality of our relationships — not wealth, fame, or professional achievement — is the greatest predictor of a happy life.</p>
+
+        <p>Experiences also appear to matter more than possessions. People who spend money on doing things — travelling, attending concerts, learning new skills — consistently report higher levels of satisfaction than those who spend the same amount on material goods. One reason, researchers suggest, is that experiences become part of our identity and our personal story in a way that objects never can.</p>
+
+        <p>Perhaps most interesting of all is what happens when people pursue happiness as a direct goal. Paradoxically, those who treat happiness as something to be actively chased often end up feeling less of it. Happiness, it seems, is more of a by-product than a destination — something that tends to emerge when we live with a genuine sense of purpose: working towards something that matters, contributing to others, and remaining curious about the world around us.</p>
+
+        <p>The lesson from the science of well-being is clear: resist the pull of instant gratification. Invest instead in your connections, your experiences, and your curiosity — and happiness will quietly follow.</p>
+
+        <blockquote class="pull-quote">
+          "Happiness is not a destination. It is a by-product of a life well lived."
+        </blockquote>
+      </div>
+
+      <div class="page-footer">
+        <span class="footer-left">Meridian Press · Horizon B1–B2 · Unit 5</span>
+        <span class="footer-right">41</span>
+      </div>
+    </div>
+
+  </div><!-- /spread 1 -->
+
+
+  <!-- ════════════════════════════════════════════════════════════════
+       SPREAD 2
+  ════════════════════════════════════════════════════════════════ -->
+  <div class="spread">
+
+    <!-- LEFT PAGE p.42 — Vocabulary + Grammar -->
+    <div class="page">
+
+      <!-- VOCABULARY -->
+      <div class="section-spacer">
+        <div class="section-label">Vocabulary</div>
+        <p class="section-intro">Find these phrases in the article. Match each one to its meaning.</p>
+
+        <div class="vocab-grid">
+          <div class="vocab-card">
+            <div class="phrase">pursue happiness</div>
+            <div class="definition">to actively try to find or achieve happiness</div>
+          </div>
+          <div class="vocab-card">
+            <div class="phrase">boost your mood</div>
+            <div class="definition">to make yourself feel more positive or cheerful</div>
+          </div>
+          <div class="vocab-card">
+            <div class="phrase">long-term satisfaction</div>
+            <div class="definition">a lasting feeling that your life is going well</div>
+          </div>
+          <div class="vocab-card">
+            <div class="phrase">meaningful relationships</div>
+            <div class="definition">close connections with people who matter to you</div>
+          </div>
+          <div class="vocab-card">
+            <div class="phrase">instant gratification</div>
+            <div class="definition">pleasure or reward that comes immediately</div>
+          </div>
+          <div class="vocab-card">
+            <div class="phrase">sense of purpose</div>
+            <div class="definition">the feeling that what you do has real meaning</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRAMMAR FOCUS -->
+      <div class="section-spacer">
+        <div class="section-label">Grammar</div>
+
+        <div class="grammar-box">
+          <div class="grammar-box-title">Present Perfect vs. Simple Past</div>
+
+          <table class="grammar-table" aria-label="Present Perfect vs Simple Past comparison">
+            <thead>
+              <tr>
+                <th>Present Perfect</th>
+                <th>Simple Past</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>have/has + past participle</td>
+                <td>verb + -ed (or irregular)</td>
+              </tr>
+              <tr>
+                <td>Scientists <strong>have discovered</strong> new findings.</td>
+                <td>She <strong>studied</strong> happiness last year.</td>
+              </tr>
+              <tr>
+                <td><em>Use:</em> past with present relevance</td>
+                <td><em>Use:</em> finished action at specific past time</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Timeline -->
+          <div class="timeline-container" aria-label="Grammar timeline diagram">
+            <div class="timeline-labels">
+              <span>Past</span>
+              <span>Now</span>
+            </div>
+            <div class="timeline-track">
+              <div class="timeline-line"></div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-dot-label">simple past</div>
+              <div class="timeline-arrow"></div>
+              <div class="timeline-arrow-label">present perfect</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practice -->
+        <p class="section-intro" style="margin-bottom:6px; font-size:13px; font-weight:600; color:var(--navy);">Complete the sentences with the correct form of the verb.</p>
+        <ol class="practice-list">
+          <li>Researchers <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (study) well-being for many years. <span class="answer-hint">[have studied]</span></li>
+          <li>She <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (travel) to Japan last summer. <span class="answer-hint">[travelled]</span></li>
+          <li>He <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (never / feel) so content in his life. <span class="answer-hint">[has never felt]</span></li>
+          <li>They <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (publish) their findings in 2019. <span class="answer-hint">[published]</span></li>
+        </ol>
+      </div>
+
+      <div class="page-footer">
+        <span class="footer-left">Meridian Press · Horizon B1–B2 · Unit 5</span>
+        <span class="footer-right">42</span>
+      </div>
+    </div>
+
+    <!-- RIGHT PAGE p.43 — Critical Thinking + Speaking -->
+    <div class="page">
+
+      <!-- CRITICAL THINKING -->
+      <div class="section-spacer">
+        <div class="section-label">Critical Thinking 💡</div>
+        <p class="section-intro">Rank these activities from <strong>1</strong> (most likely to bring lasting happiness) to <strong>5</strong> (least likely). Then compare your ranking with a partner and explain your choices.</p>
+
+        <ul class="ranking-list" aria-label="Happiness ranking activity">
+          <li class="ranking-item">
+            <div class="rank-box" aria-label="Ranking box, empty"></div>
+            Buying something new and expensive
+          </li>
+          <li class="ranking-item">
+            <div class="rank-box" aria-label="Ranking box, empty"></div>
+            Spending an afternoon with close friends or family
+          </li>
+          <li class="ranking-item">
+            <div class="rank-box" aria-label="Ranking box, empty"></div>
+            Learning a new skill over several months
+          </li>
+          <li class="ranking-item">
+            <div class="rank-box" aria-label="Ranking box, empty"></div>
+            Watching your favourite TV series all evening
+          </li>
+          <li class="ranking-item">
+            <div class="rank-box" aria-label="Ranking box, empty"></div>
+            Doing something kind for a stranger, anonymously
+          </li>
+        </ul>
+
+        <p class="pair-prompt">Which activity did you rank first? Did your partner agree?</p>
+      </div>
+
+      <!-- MY WORLD — Speaking -->
+      <div class="my-world-box">
+        <div class="my-world-label">My World 🗣️</div>
+        <p class="my-world-prompt">Think about a time when you felt genuinely happy. Tell your partner:</p>
+        <ul class="sub-prompts">
+          <li>Where were you and who were you with?</li>
+          <li>What were you doing?</li>
+          <li>How long did that feeling last?</li>
+        </ul>
+        <p class="my-world-note">Try to use the present perfect and simple past in your answer.</p>
+      </div>
+
+      <!-- EXTEND — Writing -->
+      <div class="extend-section">
+        <div class="extend-label">Extend — Writing</div>
+        <p>In your notebook, write 3–4 sentences explaining what you think is the most important factor for happiness. Use evidence from the article to support your view.</p>
+      </div>
+
+      <div class="page-footer">
+        <span class="footer-left">Meridian Press · Horizon B1–B2 · Unit 5</span>
+        <span class="footer-right">43</span>
+      </div>
+    </div>
+
+  </div><!-- /spread 2 -->
+
+</div><!-- /book-wrapper -->
+
+</body>
+</html>
