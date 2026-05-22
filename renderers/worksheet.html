@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELT Worksheet Generator</title>
+<style>
+/* ─── GOOGLE FONTS PLACEHOLDER ── overwritten by theme JS ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ─── CSS CUSTOM PROPERTIES ─────────────────────────────── */
+:root {
+  --primary: #2C3E50;
+  --accent:  #E67E22;
+  --heading-font: 'Inter', sans-serif;
+  --body-font:    'Inter', sans-serif;
+  --page-width: 794px;
+  --border-radius: 4px;
+}
+
+/* ─── RESET & BASE ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 14px; }
+
+body {
+  font-family: var(--body-font);
+  background: #e8e8e8;
+  color: #111;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ─── CONTROLS BAR ───────────────────────────────────────── */
+.controls-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a1a2e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+
+.controls-bar .brand {
+  font-size: 13px;
+  font-weight: 600;
+  color: #aaa;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-family: var(--body-font);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  white-space: nowrap;
+}
+.ctrl-btn:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.5); }
+.ctrl-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ctrl-btn.print-btn {
+  background: var(--primary);
+  border-color: var(--primary);
+  margin-left: auto;
+}
+.ctrl-btn.print-btn:hover { opacity: .85; }
+
+.controls-spacer { flex: 1; }
+
+/* ─── PAGE WRAPPER ───────────────────────────────────────── */
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px 60px;
+}
+
+/* ─── DROP ZONE ──────────────────────────────────────────── */
+.drop-zone-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 16px;
+  min-height: 70vh;
+}
+
+.drop-zone {
+  max-width: 480px;
+  width: 100%;
+  border: 2.5px dashed #bbb;
+  border-radius: 14px;
+  padding: 56px 40px 48px;
+  text-align: center;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.drop-zone:hover, .drop-zone.dragover {
+  border-color: var(--accent);
+  background: #fdf6ee;
+}
+.drop-zone input[type="file"] { display: none; }
+.drop-zone .dz-icon { font-size: 52px; margin-bottom: 18px; display: block; }
+.drop-zone .dz-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+.drop-zone .dz-sub {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.6;
+}
+.drop-zone .dz-formats {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.dz-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #f0f0f0;
+  font-size: 11px;
+  color: #555;
+  font-weight: 500;
+}
+
+/* ─── WORKSHEET CONTAINER ────────────────────────────────── */
+.worksheet-container {
+  max-width: var(--page-width);
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,.15);
+}
+
+/* ─── COURSE HEADER BAND ─────────────────────────────────── */
+.course-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 18px 32px 16px;
+}
+
+.course-header-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.course-header-left {}
+
+.course-series {
+  font-family: var(--heading-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: .75;
+  margin-bottom: 4px;
+}
+
+.course-lesson-title {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+
+.course-unit-label {
+  font-size: 12px;
+  opacity: .8;
+  margin-bottom: 0;
+}
+
+.course-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.cefr-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border: 2px solid rgba(255,255,255,.5);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  background: rgba(255,255,255,.15);
+}
+
+.age-group-label {
+  font-size: 11px;
+  opacity: .7;
+  letter-spacing: .5px;
+}
+
+.total-score-box {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: .85;
+  border: 1.5px solid rgba(255,255,255,.4);
+  border-radius: 4px;
+  padding: 2px 8px;
+  letter-spacing: .3px;
+}
+
+/* ─── STUDENT INFO FIELDS ────────────────────────────────── */
+.student-info {
+  padding: 14px 32px 12px;
+  border-bottom: 1.5px solid #e0e0e0;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 10px 24px;
+}
+
+.info-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #555;
+}
+
+.info-field label {
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.info-field .underline {
+  flex: 1;
+  border-bottom: 1.5px solid #999;
+  min-width: 60px;
+  height: 16px;
+}
+
+/* ─── WORKSHEET BODY ─────────────────────────────────────── */
+.worksheet-body {
+  padding: 24px 32px 32px;
+}
+
+/* ─── SECTION LABEL ──────────────────────────────────────── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  margin-top: 28px;
+}
+
+.section-label:first-child { margin-top: 0; }
+
+.section-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--heading-font);
+  flex-shrink: 0;
+}
+
+.section-title-text {
+  font-family: var(--heading-font);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.section-rule {
+  border: none;
+  border-top: 1.5px solid #ddd;
+  margin: 6px 0 16px;
+}
+
+/* ─── ACTIVITY BLOCK ─────────────────────────────────────── */
+.activity-block {
+  margin-bottom: 22px;
+}
+
+.activity-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.activity-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.activity-instruction {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.activity-score-box {
+  font-size: 10px;
+  color: #777;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  padding: 2px 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── WORD BANK ──────────────────────────────────────────── */
+.word-bank {
+  border: 1.5px solid #ccc;
+  border-radius: var(--border-radius);
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  align-items: center;
+}
+
+.word-bank-label {
+  font-weight: 600;
+  color: #555;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.word-bank-item {
+  display: inline-block;
+  margin: 2px 6px 2px 0;
+  padding: 2px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #f8f8f8;
+  color: #333;
+}
+
+/* ─── FILL BLANK ─────────────────────────────────────────── */
+.fill-blank-list { list-style: none; }
+
+.fill-blank-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 9px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.item-number {
+  font-weight: 600;
+  min-width: 18px;
+  color: #444;
+  flex-shrink: 0;
+}
+
+.fill-blank-text { flex: 1; }
+
+.blank-slot {
+  display: inline-block;
+  border-bottom: 1.5px solid #555;
+  min-width: 90px;
+  margin: 0 3px;
+  vertical-align: bottom;
+}
+
+.display-prefix {
+  margin-right: 5px;
+}
+
+/* ─── MULTIPLE CHOICE ────────────────────────────────────── */
+.mc-list { list-style: none; }
+
+.mc-item {
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.mc-question {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: flex;
+  gap: 6px;
+}
+
+.mc-options {
+  display: grid;
+  gap: 3px;
+  padding-left: 24px;
+}
+
+.mc-options.col-2 { grid-template-columns: 1fr 1fr; }
+.mc-options.col-1 { grid-template-columns: 1fr; }
+
+.mc-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: #333;
+}
+
+.mc-circle {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.5px solid #666;
+  flex-shrink: 0;
+}
+
+/* ─── TRUE / FALSE ───────────────────────────────────────── */
+.tf-list { list-style: none; }
+
+.tf-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 9px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tf-circles {
+  display: inline-flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.tf-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid #888;
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+  flex-shrink: 0;
+}
+
+/* ─── MATCHING COLUMNS ───────────────────────────────────── */
+.matching-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 32px;
+  margin-top: 4px;
+}
+
+.matching-col-header {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: #888;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.matching-left-list,
+.matching-right-list {
+  list-style: none;
+}
+
+.matching-left-item,
+.matching-right-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.match-key {
+  font-weight: 700;
+  color: #444;
+  min-width: 18px;
+  flex-shrink: 0;
+}
+
+.match-text { flex: 1; color: #222; }
+
+/* ─── OPEN ENDED ─────────────────────────────────────────── */
+.open-ended-list { list-style: none; }
+
+.open-ended-item {
+  margin-bottom: 16px;
+}
+
+.open-ended-question {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: flex;
+  gap: 6px;
+  line-height: 1.45;
+}
+
+.write-lines {
+  margin-top: 4px;
+}
+
+.write-line {
+  height: 24px;
+  border-bottom: 1px solid #bbb;
+  margin-bottom: 4px;
+}
+
+/* ─── RANKING ITEMS ──────────────────────────────────────── */
+.ranking-list { list-style: none; }
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.rank-box {
+  width: 26px;
+  height: 22px;
+  border: 1.5px solid #bbb;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ─── PHONICS ITEMS ──────────────────────────────────────── */
+.phonics-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.phonics-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.phonics-word {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 1px;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 14px;
+}
+
+.phonics-phoneme {
+  font-size: 10px;
+  color: #888;
+}
+
+/* ─── GRAMMAR PRESENTATION ───────────────────────────────── */
+.grammar-box {
+  background: rgba(0,0,0,.03);
+  border: 1.5px solid #e0e0e0;
+  border-left: 3px solid var(--primary);
+  border-radius: var(--border-radius);
+  padding: 12px 16px;
+  margin-top: 4px;
+}
+
+.grammar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.grammar-table th {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 10px;
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.grammar-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #e8e8e8;
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+
+.grammar-highlight {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* ─── VOCABULARY ITEMS ───────────────────────────────────── */
+.vocab-list { list-style: none; }
+
+.vocab-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+}
+
+.vocab-item:last-child { border-bottom: none; }
+
+.vocab-emoji { flex-shrink: 0; font-size: 15px; }
+
+.vocab-number {
+  font-weight: 600;
+  color: #888;
+  font-size: 11px;
+  min-width: 16px;
+  flex-shrink: 0;
+}
+
+.vocab-word {
+  font-weight: 700;
+  color: #111;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.vocab-dash { color: #aaa; flex-shrink: 0; }
+
+.vocab-definition { color: #444; flex: 1; }
+
+.vocab-example {
+  font-style: italic;
+  color: #777;
+  font-size: 11.5px;
+  margin-top: 2px;
+  margin-left: 24px;
+}
+
+/* ─── IMAGE GRID ─────────────────────────────────────────── */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* ─── DIALOGUE BOX ───────────────────────────────────────── */
+.dialogue-box {
+  border: 1.5px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: 14px;
+  font-size: 12.5px;
+}
+
+.dialogue-box-title {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+}
+
+.dialogue-line {
+  display: flex;
+  gap: 12px;
+  padding: 5px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: baseline;
+}
+.dialogue-line:last-child { border-bottom: none; }
+
+.dialogue-speaker {
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 100px;
+  flex-shrink: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding-top: 1px;
+}
+
+.dialogue-text { color: #333; flex: 1; line-height: 1.5; }
+
+/* ─── PRESCRIPTION LABEL ─────────────────────────────────── */
+.prescription-label {
+  border: 2px solid #555;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: 14px;
+  font-size: 12px;
+}
+
+.rx-header {
+  background: #333;
+  color: #fff;
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .3px;
+}
+
+.rx-body { padding: 10px 14px; }
+
+.rx-field {
+  display: flex;
+  gap: 8px;
+  padding: 3px 0;
+  border-bottom: 1px dotted #ddd;
+  align-items: baseline;
+}
+.rx-field:last-child { border-bottom: none; }
+
+.rx-label {
+  font-weight: 700;
+  color: #555;
+  min-width: 130px;
+  flex-shrink: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+
+.rx-value { color: #222; flex: 1; line-height: 1.45; }
+
+.rx-value.student-fill {
+  border-bottom: 1.5px solid #888;
+  min-width: 120px;
+  display: inline-block;
+}
+
+.rx-warning {
+  background: #fff3cd;
+  border-top: 1.5px solid #f0c000;
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #7a5a00;
+}
+
+/* ─── LISTENING TABLE ────────────────────────────────────── */
+.listening-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  margin-top: 4px;
+}
+
+.listening-table th {
+  background: var(--primary);
+  color: #fff;
+  padding: 7px 10px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+.listening-table td {
+  padding: 10px 10px;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.listening-table td:first-child {
+  font-weight: 700;
+  background: #f9f9f9;
+  white-space: nowrap;
+  width: 80px;
+}
+
+.listening-table tr:nth-child(even) td { background: #fdfdfd; }
+.listening-table tr:nth-child(even) td:first-child { background: #f5f5f5; }
+
+/* ─── DRAWING BOX ────────────────────────────────────────── */
+.drawing-box {
+  border: 1.5px dashed #bbb;
+  border-radius: var(--border-radius);
+  height: 140px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* ─── SPEAKING PROMPT ────────────────────────────────────── */
+.speaking-box {
+  background: #f8f8f8;
+  border: 1.5px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  padding: 12px 16px;
+  font-size: 13px;
+}
+
+.speaking-prompts { margin-bottom: 8px; }
+
+.speaking-prompt-item {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 5px;
+  line-height: 1.45;
+}
+
+.useful-lang-header {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #888;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.useful-lang-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.useful-lang-chip {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 11.5px;
+  color: #444;
+  background: #fff;
+}
+
+/* ─── MODEL DIALOGUE ─────────────────────────────────────── */
+.model-dialogue {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  padding: 8px 12px;
+  margin-top: 8px;
+}
+
+.model-dialogue-header {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+
+.model-line {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.model-speaker { font-weight: 700; color: var(--primary); min-width: 75px; flex-shrink: 0; }
+
+/* ─── PAGE BREAK HINT ────────────────────────────────────── */
+.page-break-hint {
+  margin: 28px 0 20px;
+  border: none;
+  border-top: 2px dashed #ccc;
+  position: relative;
+  text-align: center;
+}
+
+.page-break-hint::after {
+  content: 'page break';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 0 10px;
+  font-size: 10px;
+  color: #bbb;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ─── ANSWER KEY ─────────────────────────────────────────── */
+.answer-key {
+  margin-top: 32px;
+  border-top: 3px solid #333;
+  padding-top: 20px;
+}
+
+.answer-key.hidden { display: none; }
+
+.answer-key-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.answer-key-rule {
+  flex: 1;
+  height: 2px;
+  background: #333;
+}
+
+.answer-key-title {
+  font-family: var(--heading-font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.ak-activity {
+  margin-bottom: 16px;
+}
+
+.ak-activity-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 6px;
+}
+
+.ak-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  font-size: 12.5px;
+  color: #222;
+}
+
+.ak-item {
+  white-space: nowrap;
+}
+
+.ak-table-answers {
+  font-size: 12px;
+  color: #333;
+}
+
+.ak-table-row {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+/* ─── EDITABLE FIELDS ────────────────────────────────────── */
+.editable-field {
+  border-bottom: 1.5px dashed #bbb;
+  outline: none;
+  min-width: 40px;
+  display: inline-block;
+  background: transparent;
+  transition: background .1s;
+}
+
+.edit-mode .editable-field:focus {
+  background: #fffde7;
+  border-bottom-color: var(--accent);
+  border-radius: 2px;
+}
+
+/* ─── UTILITY ────────────────────────────────────────────── */
+.italic { font-style: italic; }
+.bold   { font-weight: 700; }
+.muted  { color: #888; }
+
+/* ─── PRINT STYLES ───────────────────────────────────────── */
+@media print {
+  body { background: white; }
+
+  .controls-bar { display: none !important; }
+
+  .page-wrapper {
+    display: block;
+    padding: 0;
+  }
+
+  .worksheet-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .answer-key {
+    page-break-before: always;
+  }
+
+  .answer-key.hidden {
+    display: none !important;
+  }
+
+  .page-break-hint {
+    page-break-after: always;
+    border: none;
+  }
+
+  .page-break-hint::after { display: none; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .editable-field { border-bottom: 1.5px solid #999 !important; }
+
+  .drop-zone-wrap { display: none; }
+
+  .grammar-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .course-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section-letter { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .activity-number { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rx-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rx-warning { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .word-bank-item { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .listening-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .listening-table td:first-child { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .dialogue-box-title { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .dialogue-speaker { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- CONTROLS BAR -->
+<div class="controls-bar" id="controlsBar">
+  <span class="brand">ELT Worksheet</span>
+
+  <button class="ctrl-btn" id="loadBtn" onclick="document.getElementById('fileInput').click()">
+    <span>📂</span> Load lesson
+  </button>
+  <input type="file" id="fileInput" accept=".json,application/json">
+
+  <button class="ctrl-btn" id="editBtn" onclick="toggleEditMode()">
+    <span>✏️</span> Edit mode: <span id="editLabel">OFF</span>
+  </button>
+
+  <button class="ctrl-btn" id="keyBtn" onclick="toggleAnswerKey()">
+    <span>👁</span> Answer key: <span id="keyLabel">Hidden</span>
+  </button>
+
+  <span class="controls-spacer"></span>
+
+  <button class="ctrl-btn print-btn" onclick="window.print()">
+    <span>🖨</span> Print
+  </button>
+</div>
+
+<!-- DROP ZONE (shown before any lesson is loaded) -->
+<div class="drop-zone-wrap" id="dropZoneWrap">
+  <label class="drop-zone" id="dropZone" for="fileInput">
+    <span class="dz-icon">📂</span>
+    <div class="dz-title">Drop lesson JSON here or click to browse</div>
+    <div class="dz-sub">
+      Generates a print-ready worksheet for any<br>
+      Spark / Horizon / Real Life English lesson.
+    </div>
+    <div class="dz-formats">
+      <span class="dz-badge">Fill in the blank</span>
+      <span class="dz-badge">Multiple choice</span>
+      <span class="dz-badge">True / False</span>
+      <span class="dz-badge">Matching</span>
+      <span class="dz-badge">Open ended</span>
+      <span class="dz-badge">Listening table</span>
+    </div>
+  </label>
+</div>
+
+<!-- WORKSHEET (hidden until JSON loaded) -->
+<div class="page-wrapper" id="pageWrapper" style="display:none;">
+  <div class="worksheet-container" id="worksheetContainer">
+    <!-- populated by JS -->
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   THEME SYSTEM
+═══════════════════════════════════════════════════════════ */
+const THEMES = {
+  'Spark': {
+    primary: '#00BFA5', accent: '#FF6D00',
+    headingFont: 'Nunito', bodyFont: 'Nunito',
+    fontsUrl: 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap'
+  },
+  'Horizon': {
+    primary: '#0D2B45', accent: '#C9A84C',
+    headingFont: 'Playfair Display', bodyFont: 'Source Sans Pro',
+    fontsUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap'
+  },
+  'Real Life English': {
+    primary: '#1565C0', accent: '#388E3C',
+    headingFont: 'Roboto Condensed', bodyFont: 'Roboto',
+    fontsUrl: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@600;700&display=swap'
+  },
+  '_default': {
+    primary: '#2C3E50', accent: '#E67E22',
+    headingFont: 'Inter', bodyFont: 'Inter',
+    fontsUrl: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
+  }
+};
+
+function detectTheme(lesson) {
+  const series = (lesson.course && lesson.course.series) || '';
+  for (const key of Object.keys(THEMES)) {
+    if (key === '_default') continue;
+    if (series.toLowerCase().includes(key.toLowerCase())) return THEMES[key];
+  }
+  return THEMES['_default'];
+}
+
+function applyTheme(theme) {
+  const root = document.documentElement;
+  root.style.setProperty('--primary', theme.primary);
+  root.style.setProperty('--accent', theme.accent);
+  root.style.setProperty('--heading-font', `'${theme.headingFont}', sans-serif`);
+  root.style.setProperty('--body-font', `'${theme.bodyFont}', sans-serif`);
+
+  // Load font
+  const existingLink = document.getElementById('themeFont');
+  const link = existingLink || document.createElement('link');
+  link.id = 'themeFont';
+  link.rel = 'stylesheet';
+  link.href = theme.fontsUrl;
+  if (!existingLink) document.head.appendChild(link);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════ */
+let currentLesson = null;
+let editMode = false;
+let answerKeyVisible = false;
+
+/* ═══════════════════════════════════════════════════════════
+   FILE LOADING
+═══════════════════════════════════════════════════════════ */
+document.getElementById('fileInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  loadFile(file);
+  e.target.value = ''; // reset so same file can be re-loaded
+});
+
+// Drag and drop on the drop zone
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file) loadFile(file);
+});
+
+// Also allow drag onto entire page
+document.addEventListener('dragover', (e) => e.preventDefault());
+document.addEventListener('drop', (e) => {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  if (file) loadFile(file);
+});
+
+function loadFile(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const lesson = JSON.parse(e.target.result);
+      loadLesson(lesson);
+    } catch (err) {
+      alert('Error parsing JSON: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function loadLesson(lesson) {
+  currentLesson = lesson;
+  editMode = false;
+  answerKeyVisible = false;
+  document.getElementById('editLabel').textContent = 'OFF';
+  document.getElementById('keyLabel').textContent = 'Hidden';
+  document.getElementById('editBtn').classList.remove('active');
+  document.getElementById('keyBtn').classList.remove('active');
+
+  const theme = detectTheme(lesson);
+  applyTheme(theme);
+  renderWorksheet(lesson);
+
+  document.getElementById('dropZoneWrap').style.display = 'none';
+  document.getElementById('pageWrapper').style.display = 'flex';
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOGGLE CONTROLS
+═══════════════════════════════════════════════════════════ */
+function toggleEditMode() {
+  editMode = !editMode;
+  document.getElementById('editLabel').textContent = editMode ? 'ON' : 'OFF';
+  document.getElementById('editBtn').classList.toggle('active', editMode);
+
+  const container = document.getElementById('worksheetContainer');
+  container.classList.toggle('edit-mode', editMode);
+
+  const fields = container.querySelectorAll('.editable-field');
+  fields.forEach(f => {
+    if (editMode) {
+      f.setAttribute('contenteditable', 'true');
+    } else {
+      f.removeAttribute('contenteditable');
+    }
+  });
+}
+
+function toggleAnswerKey() {
+  answerKeyVisible = !answerKeyVisible;
+  document.getElementById('keyLabel').textContent = answerKeyVisible ? 'Visible' : 'Hidden';
+  document.getElementById('keyBtn').classList.toggle('active', answerKeyVisible);
+
+  const key = document.getElementById('answerKey');
+  if (key) key.classList.toggle('hidden', !answerKeyVisible);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════════════ */
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function resolveImage(ref) {
+  if (!ref) return '../images/placeholder.svg';
+  return ref.local_path || ref.url || '../images/placeholder.svg';
+}
+
+function formatAgeGroup(ag) {
+  const map = {
+    very_young_learners: 'Very Young Learners',
+    young_learners: 'Young Learners',
+    teens: 'Teens',
+    young_adults: 'Young Adults',
+    adults: 'Adults'
+  };
+  return map[ag] || ag || '';
+}
+
+function sectionLetterFromLabel(label) {
+  if (!label) return '';
+  const m = label.match(/^([A-Z])\s/);
+  return m ? m[1] : '';
+}
+
+function sectionTitleFromLabel(label) {
+  if (!label) return label || '';
+  return label.replace(/^[A-Z]\s/, '').trim();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TEMPLATE RENDERING — blanks
+═══════════════════════════════════════════════════════════ */
+function renderTemplate(template, blanks, editable) {
+  // Replace {{N}} with blank slots
+  let result = esc(template);
+  const blankReplaced = result.replace(/\{\{(\d+)\}\}/g, (match, idx) => {
+    const blank = blanks && blanks[parseInt(idx)];
+    const answer = blank ? blank.display_answer : '';
+    const w = Math.max(80, (answer ? answer.length * 8 : 80));
+    if (editable) {
+      return `<span class="blank-slot editable-field" style="min-width:${w}px" data-answer="${esc(answer)}">&nbsp;</span>`;
+    }
+    return `<span class="blank-slot" style="min-width:${w}px">&nbsp;</span>`;
+  });
+  return blankReplaced;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ACTIVITY FORMAT RENDERERS
+═══════════════════════════════════════════════════════════ */
+
+function renderFillBlank(activity) {
+  const items = activity.items;
+  const wsConfig = activity.worksheet || {};
+  const editable = wsConfig.editable !== false;
+
+  // Collect all word bank entries (deduplicate across items)
+  const allWordBankTerms = [];
+  const seen = new Set();
+  for (const item of items) {
+    if (item.word_bank) {
+      for (const w of item.word_bank) {
+        if (!seen.has(w)) { seen.add(w); allWordBankTerms.push(w); }
+      }
+    }
+  }
+
+  let html = '';
+
+  if (allWordBankTerms.length > 0) {
+    html += `<div class="word-bank">
+      <span class="word-bank-label">Word bank:</span>
+      ${allWordBankTerms.map(w => `<span class="word-bank-item">${esc(w)}</span>`).join('')}
+    </div>`;
+  }
+
+  html += `<ol class="fill-blank-list">`;
+  for (const item of items) {
+    if (item.type !== 'fill_blank') continue;
+    const prefix = item.display_prefix ? `<span class="display-prefix">${esc(item.display_prefix)}</span>` : '';
+    const templateHtml = renderTemplate(item.template, item.blanks, editable && (activity.worksheet && activity.worksheet.editable !== false));
+    html += `<li class="fill-blank-item">
+      <span class="item-number">${esc(String(item.number || ''))}</span>
+      <span class="fill-blank-text">${prefix}${templateHtml}</span>
+    </li>`;
+  }
+  html += `</ol>`;
+  return html;
+}
+
+function renderMultipleChoice(activity) {
+  const items = activity.items;
+  const editable = activity.worksheet && activity.worksheet.editable !== false;
+  let html = `<ol class="mc-list">`;
+
+  for (const item of items) {
+    if (item.type !== 'multiple_choice') continue;
+    const opts = item.options || [];
+    const colClass = opts.length === 4 ? 'col-2' : 'col-1';
+    const letters = ['a', 'b', 'c', 'd'];
+
+    const questionContent = editable
+      ? `<span class="editable-field" data-original="${esc(item.question)}">${esc(item.question)}</span>`
+      : esc(item.question);
+
+    html += `<li class="mc-item">
+      <div class="mc-question">
+        <span class="item-number">${esc(String(item.number || ''))}</span>
+        <span>${questionContent}</span>
+      </div>
+      <div class="mc-options ${colClass}">`;
+
+    opts.forEach((opt, i) => {
+      const text = editable
+        ? `<span class="editable-field" data-original="${esc(opt.text)}">${esc(opt.text)}</span>`
+        : esc(opt.text);
+      html += `<div class="mc-option">
+        <span class="mc-circle"></span>
+        <span class="mc-option-letter">${letters[i]})</span>
+        <span>${text}</span>
+      </div>`;
+    });
+
+    html += `</div></li>`;
+  }
+
+  html += `</ol>`;
+  return html;
+}
+
+function renderTrueFalse(activity) {
+  const items = activity.items;
+  const editable = activity.worksheet && activity.worksheet.editable !== false;
+  let html = `<ol class="tf-list">`;
+
+  for (const item of items) {
+    if (item.type !== 'comprehension') continue;
+    const qText = editable
+      ? `<span class="editable-field">${esc(item.question)}</span>`
+      : esc(item.question);
+
+    html += `<li class="tf-item">
+      <span class="tf-circles">
+        <span class="tf-circle">T</span>
+        <span class="tf-circle">F</span>
+      </span>
+      <span class="item-number">${esc(String(item.number || ''))}</span>
+      <span>${qText}</span>
+    </li>`;
+  }
+
+  html += `</ol>`;
+  return html;
+}
+
+function renderMatchingColumns(activity) {
+  const items = activity.items;
+  const editable = activity.worksheet && activity.worksheet.editable !== false;
+  const letters = 'abcdefghijklmnopqrstuvwxyz';
+
+  // For vocabulary items: left = word, right = definition
+  // For matching items: left = left.text, right = right.text/definition
+  let leftItems = [], rightItems = [];
+
+  // Detect item type
+  const firstItem = items[0];
+  if (!firstItem) return '<p class="muted">No items.</p>';
+
+  if (firstItem.type === 'vocabulary') {
+    // Shuffle right side for display
+    leftItems = items.map((item, i) => ({
+      key: String(i + 1),
+      text: item.word
+    }));
+    // Create shuffled right column
+    const shuffled = shuffleArray(items.map((item, i) => ({
+      letter: letters[i],
+      text: item.definition,
+      correctNumber: i + 1
+    })));
+    rightItems = shuffled;
+  } else if (firstItem.type === 'matching') {
+    leftItems = items.map((item, i) => ({
+      key: String(i + 1),
+      text: item.left.text
+    }));
+    const shuffled = shuffleArray(items.map((item, i) => ({
+      letter: letters[i],
+      text: item.right.definition || item.right.text,
+      correctNumber: i + 1
+    })));
+    rightItems = shuffled;
+  } else {
+    // For vocabulary_presentation rendered as matching
+    leftItems = items.map((item, i) => ({
+      key: String(i + 1),
+      text: item.word || item.text || ''
+    }));
+    const shuffled = shuffleArray(items.map((item, i) => ({
+      letter: letters[i],
+      text: item.definition || item.right || '',
+      correctNumber: i + 1
+    })));
+    rightItems = shuffled;
+  }
+
+  let html = `<div class="matching-grid">
+    <div>
+      <div class="matching-col-header">Phrase / Word</div>
+      <ol class="matching-left-list">`;
+
+  leftItems.forEach(item => {
+    const text = editable
+      ? `<span class="editable-field">${esc(item.text)}</span>`
+      : esc(item.text);
+    html += `<li class="matching-left-item">
+      <span class="match-key">${esc(item.key)}.</span>
+      <span class="match-text">${text}</span>
+    </li>`;
+  });
+
+  html += `</ol></div>
+    <div>
+      <div class="matching-col-header">Definition / Meaning</div>
+      <ol class="matching-right-list">`;
+
+  rightItems.forEach(item => {
+    const text = editable
+      ? `<span class="editable-field">${esc(item.text)}</span>`
+      : esc(item.text);
+    html += `<li class="matching-right-item">
+      <span class="match-key">${esc(item.letter)}.</span>
+      <span class="match-text">${text}</span>
+    </li>`;
+  });
+
+  html += `</ol></div></div>`;
+  return html;
+}
+
+function shuffleArray(arr) {
+  // Deterministic shuffle (by reversing) so answer key still lines up
+  // We use a seeded pseudo-shuffle: reverse and interleave
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = (i * 7 + 3) % (i + 1);
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function renderOpenEnded(activity) {
+  const items = activity.items;
+  const editable = activity.worksheet && activity.worksheet.editable !== false;
+  const isRanking = items.length > 0 && items[0].type === 'ranking';
+
+  if (isRanking) {
+    let html = `<ol class="ranking-list">`;
+    items.forEach((item, i) => {
+      const text = editable
+        ? `<span class="editable-field">${esc(item.text)}</span>`
+        : esc(item.text);
+      html += `<li class="ranking-item">
+        <span class="rank-box"></span>
+        <span class="item-number">${i + 1}.</span>
+        <span>${text}</span>
+      </li>`;
+    });
+    html += `</ol>`;
+    // Add write lines for explanation
+    html += `<div class="write-lines" style="margin-top:10px;">
+      <div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:600;">Explain your top choice:</div>
+      ${writeLines(3)}
+    </div>`;
+    return html;
+  }
+
+  let html = `<ol class="open-ended-list">`;
+  items.forEach((item, i) => {
+    const lineCount = item.line_count || 3;
+    let qText = '';
+
+    if (item.type === 'comprehension') {
+      qText = editable
+        ? `<span class="editable-field">${esc(item.question)}</span>`
+        : esc(item.question);
+    } else if (item.type === 'writing') {
+      qText = editable
+        ? `<span class="editable-field">${esc(item.prompt)}</span>`
+        : esc(item.prompt);
+    } else if (item.type === 'drawing') {
+      qText = esc(item.instruction || '');
+    } else {
+      qText = esc(item.prompt || item.question || '');
+    }
+
+    if (item.type === 'drawing') {
+      html += `<li class="open-ended-item">
+        <div class="drawing-box">Draw here</div>`;
+      if (item.writing_prompts) {
+        item.writing_prompts.forEach(wp => {
+          html += `<div style="font-size:12.5px;margin-bottom:4px;color:#333;">${esc(wp.template)}</div>`;
+          html += writeLines(wp.line_count || 1);
+        });
+      }
+      html += `</li>`;
+    } else {
+      const num = item.number ? `<span class="item-number">${esc(String(item.number))}</span>` : '';
+      html += `<li class="open-ended-item">
+        <div class="open-ended-question">${num}<span>${qText}</span></div>
+        ${writeLines(lineCount)}
+      </li>`;
+    }
+
+    // Scaffolding
+    if (item.scaffolding && item.scaffolding.length) {
+      html += `<div style="font-size:11.5px;color:#666;margin-top:4px;margin-bottom:8px;">`;
+      item.scaffolding.forEach(s => {
+        html += `<span style="margin-right:12px;font-style:italic;">${esc(s)}</span>`;
+      });
+      html += `</div>`;
+    }
+  });
+
+  html += `</ol>`;
+  return html;
+}
+
+function writeLines(count) {
+  let html = `<div class="write-lines">`;
+  for (let i = 0; i < count; i++) {
+    html += `<div class="write-line"></div>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+function renderTable(activity) {
+  const items = activity.items;
+  if (!items || !items.length) return '';
+
+  // Get column headers from first item
+  const cols = items[0].columns || [];
+
+  let html = `<table class="listening-table">
+    <thead><tr>
+      <th>Name</th>`;
+
+  cols.forEach(col => {
+    html += `<th>${esc(col.label)}</th>`;
+  });
+
+  html += `</tr></thead><tbody>`;
+
+  items.forEach(item => {
+    if (item.type !== 'listening_row') return;
+    html += `<tr><td>${esc(item.row_label)}</td>`;
+    (item.columns || []).forEach(col => {
+      if (col.is_student_fill !== false) {
+        html += `<td></td>`;
+      } else {
+        html += `<td>${esc(col.answer || '')}</td>`;
+      }
+    });
+    html += `</tr>`;
+  });
+
+  html += `</tbody></table>`;
+  return html;
+}
+
+function renderGrammarPresentation(activity) {
+  const items = activity.items;
+  let html = `<div class="grammar-box">
+    <table class="grammar-table">
+      <thead><tr>
+        <th>Example sentence</th>
+        <th>Note</th>
+      </tr></thead>
+      <tbody>`;
+
+  items.forEach(item => {
+    if (item.type !== 'grammar_example') return;
+    const sentence = highlightGrammar(item.sentence, item.highlight);
+    html += `<tr>
+      <td>${sentence}</td>
+      <td class="muted">${esc(item.note || '')}</td>
+    </tr>`;
+  });
+
+  html += `</tbody></table></div>`;
+  return html;
+}
+
+function highlightGrammar(sentence, highlight) {
+  if (!sentence) return '';
+  if (!highlight) return esc(sentence);
+  const escaped = esc(sentence);
+  const escapedHL = esc(highlight);
+  return escaped.replace(escapedHL, `<strong class="grammar-highlight">${escapedHL}</strong>`);
+}
+
+function renderVocabularyPresentation(activity) {
+  const items = activity.items;
+  let html = `<ol class="vocab-list">`;
+  items.forEach(item => {
+    if (item.type !== 'vocabulary') return;
+    const editable = item.editable !== false && activity.worksheet && activity.worksheet.editable !== false;
+    const wordSpan = editable
+      ? `<span class="vocab-word editable-field">${esc(item.word)}</span>`
+      : `<span class="vocab-word">${esc(item.word)}</span>`;
+    const defSpan = editable
+      ? `<span class="vocab-definition editable-field">${esc(item.definition || '')}</span>`
+      : `<span class="vocab-definition">${esc(item.definition || '')}</span>`;
+    html += `<li class="vocab-item">
+      ${item.emoji ? `<span class="vocab-emoji">${item.emoji}</span>` : ''}
+      <span class="vocab-number">${item.number || ''}.</span>
+      ${wordSpan}
+      <span class="vocab-dash">—</span>
+      ${defSpan}
+    </li>`;
+    if (item.example_sentence) {
+      html += `<div class="vocab-example">${esc(item.example_sentence)}</div>`;
+    }
+  });
+  html += `</ol>`;
+  return html;
+}
+
+function renderSpeakingPrompt(activity) {
+  const items = activity.items;
+  let html = `<div class="speaking-box">`;
+
+  items.forEach((item, i) => {
+    if (item.type !== 'speaking') return;
+    html += `<div class="speaking-prompts">
+      <div class="speaking-prompt-item">
+        <span class="item-number">${i + 1}.</span>
+        <span>${esc(item.prompt)}</span>
+      </div>`;
+    if (item.sub_prompts) {
+      item.sub_prompts.forEach(sp => {
+        html += `<div style="margin-left:22px;font-size:12px;color:#555;margin-top:2px;">${esc(sp)}</div>`;
+      });
+    }
+    html += `</div>`;
+
+    if (item.model_dialogue && item.model_dialogue.length) {
+      html += `<div class="model-dialogue">
+        <div class="model-dialogue-header">Model:</div>`;
+      item.model_dialogue.forEach(line => {
+        html += `<div class="model-line">
+          <span class="model-speaker">${esc(line.speaker_label)}:</span>
+          <span>${esc(line.text)}</span>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+
+    if (item.useful_language && item.useful_language.length) {
+      html += `<div class="useful-lang-header">Useful language</div>
+        <div class="useful-lang-items">`;
+      item.useful_language.forEach(l => {
+        html += `<span class="useful-lang-chip">${esc(l)}</span>`;
+      });
+      html += `</div>`;
+    }
+  });
+
+  html += `</div>`;
+  return html;
+}
+
+function renderPhonics(activity) {
+  const items = activity.items;
+  let html = `<div class="phonics-list">`;
+  items.forEach(item => {
+    if (item.type !== 'phonics') return;
+    const word = item.word || '';
+    const grapheme = item.highlight_grapheme || '';
+    let displayWord = esc(word);
+    if (grapheme) {
+      displayWord = displayWord.replace(esc(grapheme), `<u style="text-decoration:underline;font-weight:800;color:var(--accent);">${esc(grapheme)}</u>`);
+    }
+    html += `<div class="phonics-item">
+      <div class="phonics-word">${displayWord}</div>
+      <div class="phonics-phoneme">${esc(item.target_phoneme || '')}</div>
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function renderDialogue(section) {
+  const lines = (section.content && section.content.dialogue_lines) || [];
+  if (!lines.length) return '';
+  let html = `<div class="dialogue-box">
+    <div class="dialogue-box-title">Dialogue</div>`;
+  lines.forEach(line => {
+    html += `<div class="dialogue-line">
+      <span class="dialogue-speaker">${esc(line.speaker)}</span>
+      <span class="dialogue-text">${esc(line.text)}</span>
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function renderReadingPassage(section) {
+  if (!section.content || !section.content.text) return '';
+  const paras = section.content.text.split('\n\n').map(p => p.trim()).filter(Boolean);
+  let html = `<div style="border:1.5px solid #e0e0e0;border-radius:4px;padding:14px 18px;margin-bottom:16px;font-size:12.5px;line-height:1.7;color:#222;">`;
+  if (section.title) {
+    html += `<div style="font-family:var(--heading-font);font-weight:700;font-size:14px;margin-bottom:10px;color:#111;">${esc(section.title)}</div>`;
+  }
+  paras.forEach(p => {
+    html += `<p style="margin-bottom:8px;">${esc(p)}</p>`;
+  });
+  if (section.content.pull_quote) {
+    html += `<blockquote style="border-left:3px solid var(--accent);padding-left:12px;margin:12px 0 4px;font-style:italic;color:#555;font-size:12.5px;">${esc(section.content.pull_quote)}</blockquote>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+function renderPrescriptionLabel(section) {
+  const doc = section.content && section.content.real_world_document;
+  if (!doc) return '';
+  const fields = doc.fields || [];
+  const warnings = doc.warnings || [];
+
+  let html = `<div class="prescription-label">
+    <div class="rx-header">${esc(doc.title || 'Prescription Label')}</div>
+    <div class="rx-body">`;
+
+  fields.forEach(field => {
+    if (field.label === 'Warning') return; // show at bottom
+    const valueHtml = field.is_student_fill
+      ? `<span class="rx-value student-fill">&nbsp;</span>`
+      : `<span class="rx-value">${esc(field.value)}</span>`;
+    html += `<div class="rx-field">
+      <span class="rx-label">${esc(field.label)}</span>
+      ${valueHtml}
+    </div>`;
+  });
+
+  html += `</div>`;
+
+  if (warnings.length) {
+    html += `<div class="rx-warning">⚠ ${warnings.map(w => esc(w)).join(' | ')}</div>`;
+  }
+
+  html += `</div>`;
+  return html;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ACTIVITY DISPATCHER
+═══════════════════════════════════════════════════════════ */
+function renderActivityItems(activity) {
+  const ws = activity.worksheet || {};
+  const format = ws.format;
+  const type = activity.type;
+
+  if (type === 'grammar_presentation') return renderGrammarPresentation(activity);
+  if (type === 'phonics_drill') return renderPhonics(activity);
+  if (type === 'speaking_prompt' || type === 'role_play') return renderSpeakingPrompt(activity);
+
+  switch (format) {
+    case 'fill_blank':     return renderFillBlank(activity);
+    case 'multiple_choice': return renderMultipleChoice(activity);
+    case 'true_false':     return renderTrueFalse(activity);
+    case 'matching_columns': return renderMatchingColumns(activity);
+    case 'open_ended':     return renderOpenEnded(activity);
+    case 'table':          return renderTable(activity);
+    default:
+      // Fallback by activity type
+      if (type === 'vocabulary_presentation') return renderVocabularyPresentation(activity);
+      if (type === 'fill_in_blank') return renderFillBlank(activity);
+      if (type === 'multiple_choice') return renderMultipleChoice(activity);
+      if (type === 'reading_comprehension' || type === 'dialogue_comprehension') return renderOpenEnded(activity);
+      if (type === 'writing_prompt') return renderOpenEnded(activity);
+      if (type === 'drawing') return renderOpenEnded(activity);
+      if (type === 'ranking') return renderOpenEnded(activity);
+      if (type === 'listening_task') return renderTable(activity);
+      return `<p class="muted" style="font-size:12px;">Activity type: ${esc(type)} / format: ${esc(format)}</p>`;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANSWER KEY BUILDER
+═══════════════════════════════════════════════════════════ */
+function buildAnswerKey(lesson) {
+  const activities = (lesson.activities || []).filter(a => {
+    const ws = a.worksheet || {};
+    return ws.include !== false && ws.include_answer_key === true;
+  });
+
+  if (!activities.length) return '';
+
+  let html = `<div class="answer-key hidden" id="answerKey">
+    <div class="answer-key-header">
+      <span class="answer-key-rule"></span>
+      <span class="answer-key-title">Answer Key</span>
+      <span class="answer-key-rule"></span>
+    </div>`;
+
+  activities.forEach(activity => {
+    const ws = activity.worksheet || {};
+    const format = ws.format;
+    const type = activity.type;
+    const label = `Activity ${activity.number}`;
+    const formatLabel = formatDisplayName(format || type);
+
+    html += `<div class="ak-activity">
+      <div class="ak-activity-title">${esc(label)} — ${esc(formatLabel)}</div>
+      <div class="ak-items">`;
+
+    if (format === 'fill_blank' || type === 'fill_in_blank') {
+      activity.items.forEach(item => {
+        if (item.type !== 'fill_blank') return;
+        const num = item.number || '';
+        const answers = (item.blanks || []).map(b => b.display_answer).join(' / ');
+        html += `<span class="ak-item"><strong>${esc(String(num))}.</strong> ${esc(answers)}</span>`;
+      });
+    } else if (format === 'multiple_choice' || type === 'multiple_choice') {
+      activity.items.forEach(item => {
+        if (item.type !== 'multiple_choice') return;
+        const num = item.number || '';
+        const opts = item.options || [];
+        const correct = opts.find(o => o.id === item.correct_option_id);
+        const letters = ['a', 'b', 'c', 'd'];
+        const idx = opts.findIndex(o => o.id === item.correct_option_id);
+        const letter = idx >= 0 ? letters[idx] : '?';
+        const text = correct ? correct.text : '?';
+        html += `<span class="ak-item"><strong>${esc(String(num))}.</strong> ${esc(letter)}) ${esc(text)}</span>`;
+      });
+    } else if (format === 'true_false') {
+      activity.items.forEach(item => {
+        if (item.type !== 'comprehension') return;
+        const num = item.number || '';
+        html += `<span class="ak-item"><strong>${esc(String(num))}.</strong> ${esc(item.model_answer || '')}</span>`;
+      });
+    } else if (format === 'matching_columns') {
+      // Build the same shuffled order to show correct matches
+      const items = activity.items;
+      const letters = 'abcdefghijklmnopqrstuvwxyz';
+      if (items.length && items[0].type === 'vocabulary') {
+        const shuffled = shuffleArray(items.map((item, i) => ({
+          letter: letters[i],
+          originalIndex: i
+        })));
+        // Show: 1→b, 2→a etc.
+        items.forEach((item, i) => {
+          const entry = shuffled.find(s => s.originalIndex === i);
+          html += `<span class="ak-item"><strong>${i + 1}.</strong> ${entry ? entry.letter : '?'}</span>`;
+        });
+      } else {
+        items.forEach((item, i) => {
+          html += `<span class="ak-item"><strong>${i + 1}.</strong> ${letters[i]}</span>`;
+        });
+      }
+    } else if (format === 'open_ended' || format === 'table') {
+      if (format === 'table') {
+        html += `</div><div class="ak-table-answers">`;
+        activity.items.forEach(item => {
+          if (item.type !== 'listening_row') return;
+          html += `<div class="ak-table-row"><strong>${esc(item.row_label)}:</strong> `;
+          const parts = (item.columns || []).filter(c => c.is_student_fill !== false).map(c => esc(c.answer || ''));
+          html += parts.join(' | ');
+          html += `</div>`;
+        });
+      } else {
+        activity.items.forEach(item => {
+          const num = item.number || '';
+          let ans = '';
+          if (item.type === 'comprehension') ans = item.model_answer || '';
+          else if (item.type === 'writing') ans = item.model_answer || '';
+          else if (item.type === 'ranking') ans = `Suggested: ${item.suggested_rank || ''}`;
+          if (num) html += `<span class="ak-item"><strong>${esc(String(num))}.</strong> ${esc(ans)}</span>`;
+        });
+      }
+    }
+
+    html += `</div></div>`;
+  });
+
+  html += `</div>`;
+  return html;
+}
+
+function formatDisplayName(s) {
+  if (!s) return '';
+  return s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOTAL SCORE
+═══════════════════════════════════════════════════════════ */
+function calcTotalPoints(lesson) {
+  let total = 0;
+  (lesson.activities || []).forEach(a => {
+    const ws = a.worksheet || {};
+    if (ws.include === false) return;
+    if (ws.points_per_item) {
+      const count = (a.items || []).length;
+      total += ws.points_per_item * count;
+    }
+  });
+  return total;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAIN RENDER
+═══════════════════════════════════════════════════════════ */
+function renderWorksheet(lesson) {
+  const container = document.getElementById('worksheetContainer');
+  const meta = lesson.metadata || {};
+  const course = lesson.course || {};
+  const sections = lesson.sections || [];
+  const activities = lesson.activities || [];
+
+  // Build activity lookup
+  const activityById = {};
+  activities.forEach(a => { activityById[a.id] = a; });
+
+  // Build section letter map (A, B, C…) — only for sections that have includable activities
+  const includedSections = sections.filter(sec => {
+    return (sec.activity_ids || []).some(id => {
+      const a = activityById[id];
+      return a && (a.worksheet || {}).include !== false;
+    });
+  });
+
+  const sectionLetter = {};
+  includedSections.forEach((sec, i) => {
+    sectionLetter[sec.id] = String.fromCharCode(65 + i);
+  });
+
+  // Total score
+  const totalPoints = calcTotalPoints(lesson);
+
+  // ─── COURSE HEADER ────────────────────────────────────────
+  let html = `
+  <div class="course-header">
+    <div class="course-header-inner">
+      <div class="course-header-left">
+        <div class="course-series">${esc(course.name || course.series || '')}</div>
+        <div class="course-lesson-title">${esc(meta.title || 'Lesson')}</div>
+        <div class="course-unit-label">Unit ${esc(String(meta.unit_number || ''))} · Lesson ${esc(String(meta.lesson_number || ''))}</div>
+      </div>
+      <div class="course-header-right">
+        <span class="cefr-badge">${esc(meta.cefr_level || '')}</span>
+        <span class="age-group-label">${esc(formatAgeGroup(meta.age_group))}</span>
+        ${totalPoints > 0 ? `<span class="total-score-box">Total: &nbsp; / ${totalPoints}</span>` : ''}
+      </div>
+    </div>
+  </div>
+
+  <!-- STUDENT INFO -->
+  <div class="student-info">
+    <div class="info-field">
+      <label>Name</label>
+      <div class="underline"></div>
+    </div>
+    <div class="info-field">
+      <label>Date</label>
+      <div class="underline"></div>
+    </div>
+    <div class="info-field">
+      <label>Class</label>
+      <div class="underline"></div>
+    </div>
+  </div>
+
+  <!-- WORKSHEET BODY -->
+  <div class="worksheet-body">`;
+
+  let pageBreakPending = false;
+
+  includedSections.forEach((section, sectionIdx) => {
+    const sectionActivities = (section.activity_ids || [])
+      .map(id => activityById[id])
+      .filter(a => a && (a.worksheet || {}).include !== false);
+
+    if (!sectionActivities.length && !hasSectionContent(section)) return;
+
+    const letter = sectionLetter[section.id] || '';
+    const labelTitle = section.label
+      ? sectionTitleFromLabel(section.label)
+      : section.title || '';
+
+    if (pageBreakPending) {
+      html += `<hr class="page-break-hint">`;
+      pageBreakPending = false;
+    }
+
+    html += `
+    <div class="section-label">
+      ${letter ? `<span class="section-letter">${esc(letter)}</span>` : ''}
+      <span class="section-title-text">${esc(labelTitle)}</span>
+    </div>
+    <hr class="section-rule">`;
+
+    // Section-level content (reading passage, dialogue, prescription label)
+    if (section.type === 'reading' && section.content && section.content.text) {
+      html += renderReadingPassage(section);
+    }
+    if (section.type === 'dialogue' && section.content && section.content.dialogue_lines) {
+      html += renderDialogue(section);
+    }
+    if (section.type === 'real_world_document' && section.content && section.content.real_world_document) {
+      html += renderPrescriptionLabel(section);
+    }
+
+    // Section-level images (Real Life English vocabulary section)
+    if (section.content && section.content.images && section.content.images.length) {
+      html += `<div class="image-grid">`;
+      section.content.images.slice(0, 4).forEach(img => {
+        html += `<img src="${esc(resolveImage(img))}" alt="${esc(img.alt_text || '')}" onerror="this.src='../images/placeholder.svg'">`;
+      });
+      html += `</div>`;
+    }
+
+    // Activities
+    sectionActivities.forEach((activity, actIdx) => {
+      const ws = activity.worksheet || {};
+      const instruction = ws.print_instruction || activity.instruction || '';
+      const points = ws.points_per_item;
+      const itemCount = (activity.items || []).length;
+      const scoreHtml = points
+        ? `<span class="activity-score-box">&thinsp;/&thinsp;${points * itemCount}</span>`
+        : '';
+
+      html += `
+      <div class="activity-block">
+        <div class="activity-header">
+          <span class="activity-number">${esc(String(activity.number || actIdx + 1))}</span>
+          <span class="activity-instruction">${esc(instruction)}</span>
+          ${scoreHtml}
+        </div>
+        ${renderActivityItems(activity)}
+      </div>`;
+    });
+
+    // Add page break hint every ~2 sections (rough heuristic: after sections C, F, etc.)
+    if (letter && ['C', 'F', 'I'].includes(letter)) {
+      pageBreakPending = true;
+    }
+  });
+
+  // ANSWER KEY
+  html += buildAnswerKey(lesson);
+
+  html += `</div>`; // end worksheet-body
+
+  container.innerHTML = html;
+
+  // Re-apply edit mode if active
+  if (editMode) {
+    container.classList.add('edit-mode');
+    container.querySelectorAll('.editable-field').forEach(f => f.setAttribute('contenteditable', 'true'));
+  }
+
+  // Re-apply answer key visibility
+  const key = document.getElementById('answerKey');
+  if (key && answerKeyVisible) key.classList.remove('hidden');
+}
+
+function hasSectionContent(section) {
+  if (!section.content) return false;
+  const c = section.content;
+  return !!(c.text || c.dialogue_lines || c.real_world_document || c.images);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   KEYBOARD SHORTCUT: Ctrl+P already native. Ctrl+L to load.
+═══════════════════════════════════════════════════════════ */
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 'l') {
+    e.preventDefault();
+    document.getElementById('fileInput').click();
+  }
+});
+</script>
+</body>
+</html>
