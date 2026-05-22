@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spark! Level 2 — Unit 2, Lesson 1: Wild Animals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --teal:        #00BFA5;
+      --teal-dark:   #009688;
+      --teal-light:  #E0F7F4;
+      --orange:      #FF6D00;
+      --orange-light:#FFF3E0;
+      --yellow:      #FFD600;
+      --yellow-light:#FFFDE7;
+      --navy:        #1A237E;
+      --white:       #FFFFFF;
+      --grey-bg:     #d0d0d0;
+      --grey-text:   #666;
+      --grey-line:   #ccc;
+      --page-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      --radius-sm:   8px;
+      --radius-md:   12px;
+      --radius-lg:   16px;
+    }
+
+    html, body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--grey-bg);
+      color: #222;
+      min-height: 100vh;
+      padding: 32px 16px 48px;
+    }
+
+    /* ─── Layout ───────────────────────────────────────────────── */
+    .lesson-wrapper {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Each spread = 2 pages side by side */
+    .spread {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      box-shadow: var(--page-shadow);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    /* Individual page */
+    .page {
+      background: var(--white);
+      min-height: 760px;
+      padding: 28px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .page-left {
+      border-right: 2px solid #e0e0e0;
+    }
+
+    /* Page numbers */
+    .page-number {
+      position: absolute;
+      bottom: 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--grey-text);
+    }
+    .page-left  .page-number { left: 28px; }
+    .page-right .page-number { right: 28px; }
+
+    /* ─── Reusable Components ──────────────────────────────────── */
+
+    /* Activity number circles */
+    .act-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-weight: 900;
+      font-size: 15px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .act-orange { background: var(--orange); }
+    .act-teal   { background: var(--teal); }
+    .act-yellow { background: var(--yellow); color: #333; }
+    .act-navy   { background: var(--navy); }
+
+    /* Activity header row */
+    .act-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .act-header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .act-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #222;
+      line-height: 1.2;
+    }
+    .act-sub {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--grey-text);
+      font-style: italic;
+    }
+
+    /* ─── Spread 1, Left Page (p.20) ──────────────────────────── */
+
+    /* Top bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .logo-spark {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--teal);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .logo-spark .dot {
+      color: var(--orange);
+    }
+
+    .unit-badge {
+      background: var(--orange);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Lesson header bar */
+    .lesson-header {
+      background: var(--teal);
+      border-radius: var(--radius-md);
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .lesson-number-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--teal-dark);
+      font-size: 20px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .lesson-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.3px;
+    }
+
+    /* Hero photo */
+    .hero-photo {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      display: block;
+    }
+    .hero-fallback {
+      width: 100%;
+      height: 220px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #2e7d32, #66bb6a, #a5d6a7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+    }
+
+    /* Warmup box */
+    .warmup-box {
+      background: var(--yellow-light);
+      border-left: 5px solid var(--orange);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 12px 16px;
+    }
+    .warmup-label {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    .warmup-questions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .warmup-questions li {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .warmup-questions li::before {
+      content: "▶";
+      color: var(--orange);
+      font-size: 10px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ─── Spread 1, Right Page (p.21) ─────────────────────────── */
+
+    /* Words to Know top bar */
+    .words-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .words-label {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+    .words-instruction {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--grey-text);
+      font-style: italic;
+    }
+
+    /* Vocabulary grid */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .vocab-card {
+      border: 2.5px solid var(--teal);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .vocab-emoji-area {
+      background: var(--teal-light);
+      padding: 12px 8px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .vocab-emoji {
+      font-size: 36px;
+      line-height: 1;
+    }
+    .vocab-num {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--teal-dark);
+      opacity: 0.7;
+    }
+    .vocab-word {
+      padding: 7px 6px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: #222;
+      background: var(--white);
+    }
+
+    /* Circle activity grid */
+    .circle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .circle-card {
+      border: 1.5px dashed var(--grey-line);
+      border-radius: var(--radius-sm);
+      padding: 8px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: default;
+    }
+    .circle-card .emoji-lg {
+      font-size: 30px;
+      line-height: 1;
+    }
+    .circle-card .word-sm {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #444;
+    }
+
+    /* Match activity */
+    .match-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+      align-items: start;
+      padding: 10px 12px;
+      background: #f9f9f9;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid #e0e0e0;
+    }
+    .match-col-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--teal-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      grid-column: 1;
+    }
+    .match-col-label-r {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      grid-column: 2;
+    }
+    .match-item {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 8px;
+      background: var(--white);
+      border-radius: 6px;
+      border: 1.5px solid #ddd;
+      text-align: center;
+    }
+    .match-item-r {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 8px;
+      background: var(--teal-light);
+      border-radius: 6px;
+      border: 1.5px solid var(--teal);
+      text-align: center;
+    }
+
+    /* ─── Spread 2, Left Page (p.22) ──────────────────────────── */
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--grey-text);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Grammar box */
+    .grammar-box {
+      background: var(--teal-light);
+      border-left: 5px solid var(--teal);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .grammar-focus-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--teal-dark);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .grammar-examples {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .grammar-example-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #333;
+      flex: 1;
+      min-width: 130px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    }
+    .grammar-example-card strong {
+      color: var(--teal-dark);
+    }
+    .grammar-pattern {
+      font-size: 13px;
+      font-weight: 700;
+      color: #444;
+    }
+    .grammar-blank {
+      color: var(--teal-dark);
+      font-weight: 900;
+      border-bottom: 2px dashed var(--teal);
+      padding: 0 4px;
+    }
+
+    /* Write activity */
+    .write-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .write-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #333;
+      flex-wrap: wrap;
+    }
+    .write-item .item-num {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--grey-text);
+      width: 18px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .write-item .item-emoji {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .blank-line {
+      display: inline-block;
+      width: 52px;
+      border-bottom: 2px dashed #aaa;
+      margin: 0 3px;
+      vertical-align: bottom;
+    }
+
+    /* Phonics strip */
+    .phonics-strip {
+      background: var(--yellow-light);
+      border: 2px solid var(--orange);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+    }
+    .phonics-label {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .phonics-words {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .phonics-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 7px 12px;
+      font-size: 17px;
+      font-weight: 800;
+      color: #333;
+      border: 1.5px solid var(--yellow);
+    }
+    .phonics-card .ph-highlight {
+      color: var(--orange);
+    }
+    .phonics-listen {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--grey-text);
+      font-style: italic;
+    }
+
+    /* ─── Spread 2, Right Page (p.23) ─────────────────────────── */
+
+    /* Speaking box */
+    .speaking-box {
+      border: 2.5px solid var(--navy);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: #f7f8ff;
+    }
+
+    /* Chat bubbles */
+    .dialogue {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bubble-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    .bubble-row.right {
+      flex-direction: row-reverse;
+    }
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .avatar-boy  { background: var(--teal-light); }
+    .avatar-girl { background: #FCE4EC; }
+
+    .bubble {
+      max-width: 75%;
+      padding: 9px 13px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: #222;
+    }
+    .bubble-left {
+      background: var(--white);
+      border: 2px solid var(--teal);
+      border-bottom-left-radius: 4px;
+    }
+    .bubble-right {
+      background: var(--navy);
+      color: var(--white);
+      border-bottom-right-radius: 4px;
+    }
+    .bubble-right strong {
+      color: var(--yellow);
+    }
+
+    .speaker-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--grey-text);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    /* Draw activity */
+    .draw-box {
+      border: 2.5px dashed var(--teal);
+      border-radius: var(--radius-md);
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--teal);
+      background: #fafffe;
+    }
+
+    /* Writing lines */
+    .write-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .write-line-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #333;
+    }
+    .write-underline {
+      flex: 1;
+      border-bottom: 2px dashed #bbb;
+      min-width: 60px;
+    }
+
+    /* Values banner */
+    .values-banner {
+      background: var(--orange);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+    }
+    .values-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .values-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .values-our-value {
+      font-size: 10px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.75);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .values-message {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--white);
+    }
+
+    /* Footer */
+    .page-footer {
+      position: absolute;
+      bottom: 16px;
+      left: 28px;
+      right: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      font-size: 11px;
+      font-weight: 700;
+      color: #aaa;
+    }
+
+    /* ─── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 820px) {
+      .spread {
+        grid-template-columns: 1fr;
+      }
+      .page-left {
+        border-right: none;
+        border-bottom: 2px solid #e0e0e0;
+      }
+      .page {
+        min-height: unset;
+        padding-bottom: 48px;
+      }
+      .vocab-grid,
+      .circle-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 16px 6px 32px;
+      }
+      .lesson-title {
+        font-size: 17px;
+      }
+      .vocab-grid,
+      .circle-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grammar-examples {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lesson-wrapper">
+
+  <!-- ══════════════════════════════════════════════════════════
+       SPREAD 1
+  ══════════════════════════════════════════════════════════ -->
+  <div class="spread">
+
+    <!-- ── Page 20 (Left) ──────────────────────────────────── -->
+    <div class="page page-left">
+
+      <!-- Top bar: logo + unit badge -->
+      <div class="top-bar">
+        <div class="logo-spark">spark<span class="dot">!</span></div>
+        <div class="unit-badge">Unit 2 · Lesson 1</div>
+      </div>
+
+      <!-- Lesson header -->
+      <div class="lesson-header">
+        <div class="lesson-number-circle">2</div>
+        <div class="lesson-title">🦁 Wild Animals</div>
+      </div>
+
+      <!-- Hero photo -->
+      <img
+        class="hero-photo"
+        src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=900&q=80"
+        alt="African savanna with wild animals"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="hero-fallback" aria-hidden="true">🌍</div>
+
+      <!-- Look and Talk warmup box -->
+      <div class="warmup-box">
+        <div class="warmup-label">Look and Talk! 💬</div>
+        <ul class="warmup-questions">
+          <li>What animals can you see?</li>
+          <li>Where do these animals live?</li>
+        </ul>
+      </div>
+
+      <!-- Activity 1 -->
+      <div class="act-header">
+        <div class="act-circle act-orange">1</div>
+        <div class="act-header-text">
+          <div class="act-title">Listen and point. 🔊</div>
+          <div class="act-sub">Listen to the words. Point to each animal.</div>
+        </div>
+      </div>
+
+      <!-- Page number -->
+      <div class="page-number">20</div>
+    </div>
+
+    <!-- ── Page 21 (Right) ─────────────────────────────────── -->
+    <div class="page page-right">
+
+      <!-- Words to Know top bar -->
+      <div class="words-top-bar">
+        <div class="words-label">Words to Know</div>
+        <div class="words-instruction">🔊 Listen and say the words.</div>
+      </div>
+
+      <!-- Vocabulary 2×3 grid -->
+      <div class="vocab-grid">
+
+        <div class="vocab-card">
+          <div class="vocab-emoji-area">
+            <div class="vocab-emoji">🦁</div>
+            <div class="vocab-num">1</div>
+          </div>
+          <div class="vocab-word">lion</div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-emoji-area">
+            <div class="vocab-emoji">🐘</div>
+            <div class="vocab-num">2</div>
+          </div>
+          <div class="vocab-word">elephant</div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-emoji-area">
+            <div class="vocab-emoji">🦒</div>
+            <div class="vocab-num">3</div>
+          </div>
+          <div class="vocab-word">giraffe</div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-emoji-area">
+            <div class="vocab-emoji">🦜</div>
+            <div class="vocab-num">4</div>
+          </div>
+          <div class="vocab-word">parrot</div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-emoji-area">
+            <div class="vocab-emoji">🐸</div>
+            <div class="vocab-num">5</div>
+          </div>
+          <div class="vocab-word">frog</div>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-emoji-area">
+            <div class="vocab-emoji">🦈</div>
+            <div class="vocab-num">6</div>
+          </div>
+          <div class="vocab-word">shark</div>
+        </div>
+
+      </div>
+
+      <!-- Activity 2 -->
+      <div class="act-header">
+        <div class="act-circle act-teal">2</div>
+        <div class="act-header-text">
+          <div class="act-title">Listen and circle. 🔊</div>
+          <div class="act-sub">Circle the animal you hear.</div>
+        </div>
+      </div>
+
+      <!-- Circle targets grid -->
+      <div class="circle-grid">
+        <div class="circle-card"><span class="emoji-lg">🦁</span><span class="word-sm">lion</span></div>
+        <div class="circle-card"><span class="emoji-lg">🐘</span><span class="word-sm">elephant</span></div>
+        <div class="circle-card"><span class="emoji-lg">🦒</span><span class="word-sm">giraffe</span></div>
+        <div class="circle-card"><span class="emoji-lg">🦜</span><span class="word-sm">parrot</span></div>
+        <div class="circle-card"><span class="emoji-lg">🐸</span><span class="word-sm">frog</span></div>
+        <div class="circle-card"><span class="emoji-lg">🦈</span><span class="word-sm">shark</span></div>
+      </div>
+
+      <!-- Activity 3 -->
+      <div class="act-header">
+        <div class="act-circle act-orange">3</div>
+        <div class="act-header-text">
+          <div class="act-title">Look and match. Then say. 💬</div>
+        </div>
+      </div>
+
+      <!-- Match area -->
+      <div class="match-area">
+        <div class="match-col-label">Animal</div>
+        <div class="match-col-label-r">Where it lives</div>
+
+        <div class="match-item">🦁 lion</div>
+        <div class="match-item-r">🌊 ocean</div>
+
+        <div class="match-item">🦈 shark</div>
+        <div class="match-item-r">🌿 rainforest</div>
+
+        <div class="match-item">🐸 frog</div>
+        <div class="match-item-r">🌾 savanna</div>
+
+        <div class="match-item">🦜 parrot</div>
+        <div class="match-item-r">🏊 pond / river</div>
+      </div>
+
+      <!-- Page number -->
+      <div class="page-number">21</div>
+    </div>
+
+  </div><!-- end spread 1 -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SPREAD 2
+  ══════════════════════════════════════════════════════════ -->
+  <div class="spread">
+
+    <!-- ── Page 22 (Left) ──────────────────────────────────── -->
+    <div class="page page-left">
+
+      <!-- Section label -->
+      <div class="section-label">Grammar</div>
+
+      <!-- Grammar box -->
+      <div class="grammar-box">
+        <div class="grammar-focus-label">📖 Language Focus</div>
+
+        <div class="grammar-examples">
+          <div class="grammar-example-card">🦁 It's a <strong>lion</strong>.</div>
+          <div class="grammar-example-card">🐘 It has big <strong>ears</strong>.</div>
+        </div>
+
+        <div class="grammar-pattern">
+          It's a <span class="grammar-blank">[animal]</span>. &nbsp;·&nbsp; It has <span class="grammar-blank">[feature]</span>.
+        </div>
+      </div>
+
+      <!-- Activity 4 -->
+      <div class="act-header">
+        <div class="act-circle act-yellow">4</div>
+        <div class="act-header-text">
+          <div class="act-title">Look and write. ✏️</div>
+          <div class="act-sub">Write <em>It's</em> or <em>It has</em> to complete the sentence.</div>
+        </div>
+      </div>
+
+      <!-- Write items -->
+      <div class="write-items">
+
+        <div class="write-item">
+          <span class="item-num">1.</span>
+          <span class="item-emoji">🦒</span>
+          <span class="blank-line"></span>
+          <span>a giraffe.</span>
+        </div>
+
+        <div class="write-item">
+          <span class="item-num">2.</span>
+          <span class="item-emoji">🦁</span>
+          <span class="blank-line"></span>
+          <span>a big mane.</span>
+        </div>
+
+        <div class="write-item">
+          <span class="item-num">3.</span>
+          <span class="item-emoji">🐸</span>
+          <span class="blank-line"></span>
+          <span>a frog.</span>
+        </div>
+
+        <div class="write-item">
+          <span class="item-num">4.</span>
+          <span class="item-emoji">🦈</span>
+          <span class="blank-line"></span>
+          <span>sharp teeth.</span>
+        </div>
+
+      </div>
+
+      <!-- Phonics strip -->
+      <div class="phonics-strip">
+        <div class="phonics-label">🔤 Phonics — the /æ/ sound</div>
+        <div class="phonics-words">
+          <div class="phonics-card">c<span class="ph-highlight">a</span>t</div>
+          <div class="phonics-card">b<span class="ph-highlight">a</span>t</div>
+          <div class="phonics-card">h<span class="ph-highlight">a</span>t</div>
+          <div class="phonics-card">r<span class="ph-highlight">a</span>t</div>
+        </div>
+        <div class="phonics-listen">🔊 Listen and say.</div>
+      </div>
+
+      <!-- Page number -->
+      <div class="page-number">22</div>
+    </div>
+
+    <!-- ── Page 23 (Right) ─────────────────────────────────── -->
+    <div class="page page-right">
+
+      <!-- Activity 5 -->
+      <div class="act-header">
+        <div class="act-circle act-navy">5</div>
+        <div class="act-header-text">
+          <div class="act-title">Ask and answer. 💬</div>
+          <div class="act-sub">Talk with your partner.</div>
+        </div>
+      </div>
+
+      <!-- Speaking box -->
+      <div class="speaking-box">
+
+        <div class="dialogue">
+
+          <!-- A speaks -->
+          <div>
+            <div class="speaker-label" style="margin-left:42px;">A</div>
+            <div class="bubble-row left">
+              <div class="avatar avatar-boy">👦</div>
+              <div class="bubble bubble-left">"What's this?"</div>
+            </div>
+          </div>
+
+          <!-- B speaks -->
+          <div>
+            <div class="speaker-label" style="text-align:right; margin-right:42px;">B</div>
+            <div class="bubble-row right">
+              <div class="avatar avatar-girl">👧</div>
+              <div class="bubble bubble-right">"It's a <strong>lion</strong>. It has a big <strong>mane</strong>."</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Activity 6 -->
+      <div class="act-header">
+        <div class="act-circle act-teal">6</div>
+        <div class="act-header-text">
+          <div class="act-title">Draw and write. ✏️ 🎨</div>
+          <div class="act-sub">Draw your favourite wild animal. Then write.</div>
+        </div>
+      </div>
+
+      <!-- Drawing box -->
+      <div class="draw-box">Draw here 🎨</div>
+
+      <!-- Writing lines -->
+      <div class="write-lines">
+        <div class="write-line-row">
+          It's a <span class="write-underline"></span>.
+        </div>
+        <div class="write-line-row">
+          It has <span class="write-underline"></span>.
+        </div>
+      </div>
+
+      <!-- Values banner (pushed to bottom via margin-top:auto in flex column) -->
+      <div class="values-banner">
+        <div class="values-icon">🌍</div>
+        <div class="values-text">
+          <div class="values-our-value">Our Value</div>
+          <div class="values-message">We respect all living things.</div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="page-footer">
+        <div class="footer-brand">Compass ELT · Spark! Level 2</div>
+        <div class="page-number" style="position:static;">23</div>
+      </div>
+
+    </div><!-- end page 23 -->
+
+  </div><!-- end spread 2 -->
+
+</div><!-- end lesson-wrapper -->
+
+</body>
+</html>
