@@ -1,7 +1,6 @@
 {
   "id": "horizon-b1b2-u5-la",
   "schema_version": "1.0",
-
   "metadata": {
     "title": "The Happiness Paradox",
     "unit_number": 5,
@@ -38,7 +37,10 @@
       "writing",
       "critical_thinking"
     ],
-    "page_range": [40, 43],
+    "page_range": [
+      40,
+      43
+    ],
     "topic_tags": [
       "happiness",
       "well-being",
@@ -47,14 +49,12 @@
       "science"
     ]
   },
-
   "course": {
     "name": "Horizon B1–B2",
     "publisher": "Meridian Press",
     "series": "Horizon",
     "level": "B1–B2"
   },
-
   "sections": [
     {
       "id": "warmup",
@@ -62,9 +62,18 @@
       "title": "Lead In",
       "label": "LEAD IN",
       "page_number": 40,
-      "activity_ids": ["act-1"],
+      "activity_ids": [
+        "act-1"
+      ],
       "content": {
-        "text": "Look at the photo. What is happening? How do the people look?"
+        "text": "Look at the photo. What is happening? How do the people look?",
+        "image": {
+          "url": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85",
+          "alt_text": "Crowd of joyful people celebrating together",
+          "description": "Vibrant crowd at a celebration, people laughing and smiling",
+          "credit": "Unsplash",
+          "local_path": "../images/horizon-opener.jpg"
+        }
       }
     },
     {
@@ -73,7 +82,10 @@
       "title": "What Really Makes Us Happy?",
       "label": "A READING",
       "page_number": 41,
-      "activity_ids": ["act-2", "act-3"],
+      "activity_ids": [
+        "act-2",
+        "act-3"
+      ],
       "content": {
         "text": "For generations, people have pursued happiness as if it were a destination — a place to arrive at once they secure the right job, earn enough money, or buy the perfect home. Yet research in positive psychology tells a surprisingly different story.\n\nPsychologist Sonja Lyubomirsky has spent decades studying what makes people genuinely content. Her findings suggest that the circumstances of our lives — where we live, how much we earn, even our relationship status — account for only around ten percent of our long-term satisfaction. Genetics explains roughly fifty percent. The remaining forty percent comes down to our own thoughts and deliberate behaviours.\n\nSo what behaviours actually boost your mood and lead to lasting well-being? The evidence points strongly in one direction: other people. Study after study confirms that maintaining meaningful relationships is the single most important factor in human happiness. A landmark 75-year study by Harvard University followed hundreds of people from adolescence into old age and reached a striking conclusion: the quality of our relationships — not wealth, fame, or professional achievement — is the greatest predictor of a happy life.\n\nExperiences also appear to matter more than possessions. People who spend money on doing things — travelling, attending concerts, learning new skills — consistently report higher levels of satisfaction than those who spend the same amount on material goods. One reason, researchers suggest, is that experiences become part of our identity and our personal story in a way that objects never can.\n\nPerhaps most interesting of all is what happens when people pursue happiness as a direct goal. Paradoxically, those who treat happiness as something to be actively chased often end up feeling less of it. Happiness, it seems, is more of a by-product than a destination — something that tends to emerge when we live with a genuine sense of purpose: working towards something that matters, contributing to others, and remaining curious about the world around us.\n\nThe lesson from the science of well-being is clear: resist the pull of instant gratification. Invest instead in your connections, your experiences, and your curiosity — and happiness will quietly follow.",
         "pull_quote": "Happiness is not a destination. It is a by-product of a life well lived."
@@ -85,7 +97,10 @@
       "title": "Vocabulary in Context",
       "label": "B VOCABULARY",
       "page_number": 42,
-      "activity_ids": ["act-4", "act-5"]
+      "activity_ids": [
+        "act-4",
+        "act-5"
+      ]
     },
     {
       "id": "grammar",
@@ -93,7 +108,10 @@
       "title": "Grammar Focus",
       "label": "C GRAMMAR",
       "page_number": 42,
-      "activity_ids": ["act-6", "act-7"],
+      "activity_ids": [
+        "act-6",
+        "act-7"
+      ],
       "content": {
         "grammar_rule": {
           "structure": "Present perfect: HAVE/HAS + past participle | Simple past: verb + -ed / irregular form",
@@ -138,7 +156,9 @@
       "title": "Critical Thinking",
       "label": "D CRITICAL THINKING",
       "page_number": 43,
-      "activity_ids": ["act-8"]
+      "activity_ids": [
+        "act-8"
+      ]
     },
     {
       "id": "speaking",
@@ -146,7 +166,9 @@
       "title": "My World",
       "label": "E MY WORLD",
       "page_number": 43,
-      "activity_ids": ["act-9"]
+      "activity_ids": [
+        "act-9"
+      ]
     },
     {
       "id": "writing",
@@ -154,10 +176,11 @@
       "title": "Extend",
       "label": "F EXTEND",
       "page_number": 43,
-      "activity_ids": ["act-10"]
+      "activity_ids": [
+        "act-10"
+      ]
     }
   ],
-
   "activities": [
     {
       "id": "act-1",
@@ -193,7 +216,6 @@
         "include": false
       }
     },
-
     {
       "id": "act-2",
       "number": 2,
@@ -335,7 +357,6 @@
         "feedback_mode": "immediate"
       }
     },
-
     {
       "id": "act-3",
       "number": 3,
@@ -389,7 +410,6 @@
         "difficulty": "medium"
       }
     },
-
     {
       "id": "act-4",
       "number": 4,
@@ -404,7 +424,11 @@
           "word": "pursue happiness",
           "definition": "to actively try to find or achieve happiness",
           "example_sentence": "Many people pursue happiness through their careers.",
-          "collocation_partners": ["actively", "relentlessly", "the right to"],
+          "collocation_partners": [
+            "actively",
+            "relentlessly",
+            "the right to"
+          ],
           "editable": true
         },
         {
@@ -414,7 +438,11 @@
           "word": "boost your mood",
           "definition": "to make yourself feel more positive or cheerful",
           "example_sentence": "Exercise is a great way to boost your mood.",
-          "collocation_partners": ["instantly", "naturally", "significantly"],
+          "collocation_partners": [
+            "instantly",
+            "naturally",
+            "significantly"
+          ],
           "editable": true
         },
         {
@@ -424,7 +452,11 @@
           "word": "long-term satisfaction",
           "definition": "a lasting feeling that your life is going well",
           "example_sentence": "Meaningful work provides long-term satisfaction.",
-          "collocation_partners": ["provide", "achieve", "feel"],
+          "collocation_partners": [
+            "provide",
+            "achieve",
+            "feel"
+          ],
           "editable": true
         },
         {
@@ -434,7 +466,12 @@
           "word": "meaningful relationships",
           "definition": "close connections with people who genuinely matter to you",
           "example_sentence": "Research shows meaningful relationships are key to happiness.",
-          "collocation_partners": ["build", "maintain", "develop", "sustain"],
+          "collocation_partners": [
+            "build",
+            "maintain",
+            "develop",
+            "sustain"
+          ],
           "editable": true
         },
         {
@@ -444,7 +481,12 @@
           "word": "instant gratification",
           "definition": "pleasure or reward that comes immediately, without waiting",
           "example_sentence": "Social media often provides instant gratification.",
-          "collocation_partners": ["seek", "resist", "provide", "the pull of"],
+          "collocation_partners": [
+            "seek",
+            "resist",
+            "provide",
+            "the pull of"
+          ],
           "editable": true
         },
         {
@@ -454,7 +496,13 @@
           "word": "sense of purpose",
           "definition": "the feeling that your life and actions have real meaning",
           "example_sentence": "Volunteering gave her a strong sense of purpose.",
-          "collocation_partners": ["strong", "genuine", "give", "find", "lack"],
+          "collocation_partners": [
+            "strong",
+            "genuine",
+            "give",
+            "find",
+            "lack"
+          ],
           "editable": true
         }
       ],
@@ -479,7 +527,6 @@
         "allow_hint": true
       }
     },
-
     {
       "id": "act-5",
       "number": 5,
@@ -496,7 +543,9 @@
             {
               "id": "act-5-item-1-blank-0",
               "position": 0,
-              "accepted_answers": ["boost your mood"],
+              "accepted_answers": [
+                "boost your mood"
+              ],
               "display_answer": "boost your mood",
               "feedback": {
                 "correct": "Exactly right! 'Boost your mood' fits perfectly here.",
@@ -523,7 +572,9 @@
             {
               "id": "act-5-item-2-blank-0",
               "position": 0,
-              "accepted_answers": ["sense of purpose"],
+              "accepted_answers": [
+                "sense of purpose"
+              ],
               "display_answer": "sense of purpose",
               "feedback": {
                 "correct": "Well done! A nurse's work provides real meaning — a 'sense of purpose'.",
@@ -550,7 +601,9 @@
             {
               "id": "act-5-item-3-blank-0",
               "position": 0,
-              "accepted_answers": ["instant gratification"],
+              "accepted_answers": [
+                "instant gratification"
+              ],
               "display_answer": "instant gratification",
               "feedback": {
                 "correct": "Correct! 'Instant gratification' refers to the temptation of immediate rewards.",
@@ -577,7 +630,9 @@
             {
               "id": "act-5-item-4-blank-0",
               "position": 0,
-              "accepted_answers": ["meaningful relationships"],
+              "accepted_answers": [
+                "meaningful relationships"
+              ],
               "display_answer": "meaningful relationships",
               "feedback": {
                 "correct": "Exactly! The article confirms that 'meaningful relationships' are central to happiness.",
@@ -616,7 +671,6 @@
         "attempts_allowed": 2
       }
     },
-
     {
       "id": "act-6",
       "number": 6,
@@ -674,7 +728,6 @@
         "include": false
       }
     },
-
     {
       "id": "act-7",
       "number": 7,
@@ -691,7 +744,9 @@
             {
               "id": "act-7-item-1-blank-0",
               "position": 0,
-              "accepted_answers": ["have studied"],
+              "accepted_answers": [
+                "have studied"
+              ],
               "display_answer": "have studied",
               "feedback": {
                 "correct": "Correct! We use the present perfect with 'for many years' — an unfinished time period.",
@@ -710,7 +765,10 @@
             {
               "id": "act-7-item-2-blank-0",
               "position": 0,
-              "accepted_answers": ["travelled", "traveled"],
+              "accepted_answers": [
+                "travelled",
+                "traveled"
+              ],
               "display_answer": "travelled",
               "feedback": {
                 "correct": "Right! 'Last summer' tells us it's finished. Use simple past.",
@@ -729,7 +787,9 @@
             {
               "id": "act-7-item-3-blank-0",
               "position": 0,
-              "accepted_answers": ["has never felt"],
+              "accepted_answers": [
+                "has never felt"
+              ],
               "display_answer": "has never felt",
               "feedback": {
                 "correct": "Correct! 'Never' with a life experience uses the present perfect.",
@@ -748,7 +808,9 @@
             {
               "id": "act-7-item-4-blank-0",
               "position": 0,
-              "accepted_answers": ["published"],
+              "accepted_answers": [
+                "published"
+              ],
               "display_answer": "published",
               "feedback": {
                 "correct": "Well done! 'In 2019' is a specific finished time, so use simple past.",
@@ -781,7 +843,6 @@
         "feedback_mode": "immediate"
       }
     },
-
     {
       "id": "act-8",
       "number": 8,
@@ -855,7 +916,6 @@
         "allow_hint": false
       }
     },
-
     {
       "id": "act-9",
       "number": 9,
@@ -901,7 +961,6 @@
         "include": false
       }
     },
-
     {
       "id": "act-10",
       "number": 10,

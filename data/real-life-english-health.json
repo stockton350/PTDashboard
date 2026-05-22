@@ -32,18 +32,32 @@
       "shouldn't + base verb (negative advice)",
       "Should + subject + verb? (questions)"
     ],
-    "skills": ["vocabulary", "reading", "listening", "speaking", "writing", "grammar"],
-    "page_range": [44, 49],
-    "topic_tags": ["health", "medicine", "doctor", "advice", "modals"]
+    "skills": [
+      "vocabulary",
+      "reading",
+      "listening",
+      "speaking",
+      "writing",
+      "grammar"
+    ],
+    "page_range": [
+      44,
+      49
+    ],
+    "topic_tags": [
+      "health",
+      "medicine",
+      "doctor",
+      "advice",
+      "modals"
+    ]
   },
-
   "course": {
     "name": "Real Life English Book 2",
     "publisher": "Keystone Learning",
     "series": "Real Life English",
     "level": "Intermediate (Book 2)"
   },
-
   "sections": [
     {
       "id": "vocabulary",
@@ -51,7 +65,41 @@
       "label": "A VOCABULARY",
       "title": "Health Words",
       "page_number": 44,
-      "activity_ids": ["act-1"]
+      "activity_ids": [
+        "act-1"
+      ],
+      "content": {
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80",
+            "alt_text": "Person exercising outdoors",
+            "description": "Active person jogging or exercising",
+            "credit": "Unsplash",
+            "local_path": "../images/health-exercise.jpg"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=600&q=80",
+            "alt_text": "Doctor and patient in consultation",
+            "description": "Doctor speaking with a patient at a clinic",
+            "credit": "Unsplash",
+            "local_path": "../images/health-doctor.jpg"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+            "alt_text": "Pharmacy counter with medicine",
+            "description": "Pharmacist at a pharmacy counter",
+            "credit": "Unsplash",
+            "local_path": "../images/health-pharmacy.jpg"
+          },
+          {
+            "url": "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=600&q=80",
+            "alt_text": "Healthy fresh food on a table",
+            "description": "Bowl of healthy salad and fresh vegetables",
+            "credit": "Unsplash",
+            "local_path": "../images/health-food.jpg"
+          }
+        ]
+      }
     },
     {
       "id": "dialogue",
@@ -59,7 +107,10 @@
       "label": "B DIALOGUE",
       "title": "At the Doctor's Office",
       "page_number": 45,
-      "activity_ids": ["act-2", "act-3"],
+      "activity_ids": [
+        "act-2",
+        "act-3"
+      ],
       "content": {
         "dialogue_lines": [
           {
@@ -126,7 +177,10 @@
       "label": "C GRAMMAR FOCUS",
       "title": "Should / Shouldn't",
       "page_number": 46,
-      "activity_ids": ["act-4", "act-5"],
+      "activity_ids": [
+        "act-4",
+        "act-5"
+      ],
       "content": {
         "grammar_rule": {
           "structure": "should / shouldn't + base verb",
@@ -192,7 +246,9 @@
       "label": "D LISTENING",
       "title": "Health Problems",
       "page_number": 47,
-      "activity_ids": ["act-6"]
+      "activity_ids": [
+        "act-6"
+      ]
     },
     {
       "id": "real_world_document",
@@ -200,7 +256,9 @@
       "label": "E REAL-WORLD READING",
       "title": "Read a Prescription Label",
       "page_number": 48,
-      "activity_ids": ["act-7"],
+      "activity_ids": [
+        "act-7"
+      ],
       "content": {
         "real_world_document": {
           "document_type": "prescription_label",
@@ -270,7 +328,9 @@
       "label": "F SPEAKING",
       "title": "Role Play",
       "page_number": 49,
-      "activity_ids": ["act-8"]
+      "activity_ids": [
+        "act-8"
+      ]
     },
     {
       "id": "writing",
@@ -278,10 +338,11 @@
       "label": "G WRITING",
       "title": "Health Advice",
       "page_number": 49,
-      "activity_ids": ["act-9"]
+      "activity_ids": [
+        "act-9"
+      ]
     }
   ],
-
   "activities": [
     {
       "id": "act-1",
@@ -385,7 +446,6 @@
         "feedback_mode": "immediate"
       }
     },
-
     {
       "id": "act-2",
       "number": 2,
@@ -441,7 +501,6 @@
         "feedback_mode": "immediate"
       }
     },
-
     {
       "id": "act-3",
       "number": 3,
@@ -638,7 +697,6 @@
         "feedback_mode": "immediate"
       }
     },
-
     {
       "id": "act-4",
       "number": 4,
@@ -695,7 +753,6 @@
         "include": false
       }
     },
-
     {
       "id": "act-5",
       "number": 5,
@@ -713,7 +770,9 @@
             {
               "id": "act-5-fb1-b0",
               "position": 0,
-              "accepted_answers": ["should"],
+              "accepted_answers": [
+                "should"
+              ],
               "display_answer": "should",
               "feedback": {
                 "correct": "Correct! This is positive advice — 'should' is right.",
@@ -721,7 +780,10 @@
               }
             }
           ],
-          "word_bank": ["should", "shouldn't"],
+          "word_bank": [
+            "should",
+            "shouldn't"
+          ],
           "editable": true
         },
         {
@@ -733,7 +795,9 @@
             {
               "id": "act-5-fb2-b0",
               "position": 0,
-              "accepted_answers": ["should"],
+              "accepted_answers": [
+                "should"
+              ],
               "display_answer": "should",
               "feedback": {
                 "correct": "Right! Following the dosage is important — 'should' gives positive advice.",
@@ -741,7 +805,10 @@
               }
             }
           ],
-          "word_bank": ["should", "shouldn't"],
+          "word_bank": [
+            "should",
+            "shouldn't"
+          ],
           "editable": true
         },
         {
@@ -753,7 +820,9 @@
             {
               "id": "act-5-fb3-b0",
               "position": 0,
-              "accepted_answers": ["shouldn't"],
+              "accepted_answers": [
+                "shouldn't"
+              ],
               "display_answer": "shouldn't",
               "feedback": {
                 "correct": "Exactly! Smoking is harmful — 'shouldn't' gives negative advice.",
@@ -761,7 +830,10 @@
               }
             }
           ],
-          "word_bank": ["should", "shouldn't"],
+          "word_bank": [
+            "should",
+            "shouldn't"
+          ],
           "editable": true
         },
         {
@@ -773,7 +845,9 @@
             {
               "id": "act-5-fb4-b0",
               "position": 0,
-              "accepted_answers": ["shouldn't"],
+              "accepted_answers": [
+                "shouldn't"
+              ],
               "display_answer": "shouldn't",
               "feedback": {
                 "correct": "Correct! Eating too much sugar is bad for health — 'shouldn't' is right.",
@@ -781,7 +855,10 @@
               }
             }
           ],
-          "word_bank": ["should", "shouldn't"],
+          "word_bank": [
+            "should",
+            "shouldn't"
+          ],
           "editable": true
         },
         {
@@ -793,7 +870,9 @@
             {
               "id": "act-5-fb5-b0",
               "position": 0,
-              "accepted_answers": ["should"],
+              "accepted_answers": [
+                "should"
+              ],
               "display_answer": "should",
               "feedback": {
                 "correct": "Great! Calling ahead is good advice — 'should' is correct.",
@@ -801,7 +880,10 @@
               }
             }
           ],
-          "word_bank": ["should", "shouldn't"],
+          "word_bank": [
+            "should",
+            "shouldn't"
+          ],
           "editable": true
         },
         {
@@ -813,7 +895,9 @@
             {
               "id": "act-5-fb6-b0",
               "position": 0,
-              "accepted_answers": ["shouldn't"],
+              "accepted_answers": [
+                "shouldn't"
+              ],
               "display_answer": "shouldn't",
               "feedback": {
                 "correct": "Right! This is reassuring negative advice — 'shouldn't' is perfect.",
@@ -821,7 +905,10 @@
               }
             }
           ],
-          "word_bank": ["should", "shouldn't"],
+          "word_bank": [
+            "should",
+            "shouldn't"
+          ],
           "editable": true
         }
       ],
@@ -849,7 +936,6 @@
         "attempts_allowed": 2
       }
     },
-
     {
       "id": "act-6",
       "number": 6,
@@ -955,7 +1041,6 @@
         "include": false
       }
     },
-
     {
       "id": "act-7",
       "number": 7,
@@ -1031,7 +1116,6 @@
         "feedback_mode": "immediate"
       }
     },
-
     {
       "id": "act-8",
       "number": 8,
@@ -1085,7 +1169,6 @@
         "include": false
       }
     },
-
     {
       "id": "act-9",
       "number": 9,

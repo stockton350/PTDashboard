@@ -16,20 +16,42 @@
       "Recognise and produce the short /æ/ vowel sound",
       "Ask and answer 'What's this?' with a partner"
     ],
-    "key_vocabulary": ["lion", "elephant", "giraffe", "parrot", "frog", "shark"],
-    "key_grammar": ["It's a [noun].", "It has [feature]."],
-    "skills": ["vocabulary", "listening", "speaking", "writing", "phonics"],
-    "page_range": [20, 23],
-    "topic_tags": ["animals", "wild animals", "nature", "describing"]
+    "key_vocabulary": [
+      "lion",
+      "elephant",
+      "giraffe",
+      "parrot",
+      "frog",
+      "shark"
+    ],
+    "key_grammar": [
+      "It's a [noun].",
+      "It has [feature]."
+    ],
+    "skills": [
+      "vocabulary",
+      "listening",
+      "speaking",
+      "writing",
+      "phonics"
+    ],
+    "page_range": [
+      20,
+      23
+    ],
+    "topic_tags": [
+      "animals",
+      "wild animals",
+      "nature",
+      "describing"
+    ]
   },
-
   "course": {
     "name": "Spark! Level 2",
     "publisher": "Compass ELT",
     "series": "Spark!",
     "level": "Level 2"
   },
-
   "sections": [
     {
       "id": "warmup",
@@ -37,7 +59,18 @@
       "title": "Look and Talk!",
       "label": "WARM UP",
       "page_number": 20,
-      "activity_ids": ["act-1"]
+      "activity_ids": [
+        "act-1"
+      ],
+      "content": {
+        "image": {
+          "url": "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=85",
+          "alt_text": "Lions resting on the savanna at sunset",
+          "description": "Wide savanna landscape with wild animals at golden hour",
+          "credit": "Unsplash",
+          "local_path": "../images/spark-opener.jpg"
+        }
+      }
     },
     {
       "id": "vocabulary",
@@ -45,7 +78,10 @@
       "title": "Words to Know",
       "label": "A VOCABULARY",
       "page_number": 21,
-      "activity_ids": ["act-2", "act-3"]
+      "activity_ids": [
+        "act-2",
+        "act-3"
+      ]
     },
     {
       "id": "grammar",
@@ -53,7 +89,10 @@
       "title": "Language Focus",
       "label": "B GRAMMAR",
       "page_number": 22,
-      "activity_ids": ["act-4", "act-5"],
+      "activity_ids": [
+        "act-4",
+        "act-5"
+      ],
       "content": {
         "grammar_rule": {
           "structure": "It's a + noun / It has + noun phrase",
@@ -93,7 +132,9 @@
       "title": "Phonics: /æ/ sound",
       "label": "C PHONICS",
       "page_number": 22,
-      "activity_ids": ["act-6"]
+      "activity_ids": [
+        "act-6"
+      ]
     },
     {
       "id": "speaking",
@@ -101,7 +142,9 @@
       "title": "Ask and Answer",
       "label": "D SPEAKING",
       "page_number": 23,
-      "activity_ids": ["act-7"]
+      "activity_ids": [
+        "act-7"
+      ]
     },
     {
       "id": "writing",
@@ -109,7 +152,9 @@
       "title": "Draw and Write",
       "label": "E MY WORLD",
       "page_number": 23,
-      "activity_ids": ["act-8"]
+      "activity_ids": [
+        "act-8"
+      ]
     },
     {
       "id": "values",
@@ -120,7 +165,6 @@
       "activity_ids": []
     }
   ],
-
   "activities": [
     {
       "id": "act-1",
@@ -156,7 +200,6 @@
         "include": false
       }
     },
-
     {
       "id": "act-2",
       "number": 2,
@@ -252,7 +295,6 @@
         "feedback_mode": "immediate"
       }
     },
-
     {
       "id": "act-3",
       "number": 3,
@@ -493,7 +535,6 @@
         "feedback_mode": "immediate"
       }
     },
-
     {
       "id": "act-4",
       "number": 4,
@@ -550,7 +591,6 @@
         "include": false
       }
     },
-
     {
       "id": "act-5",
       "number": 5,
@@ -569,7 +609,9 @@
             {
               "id": "act-5-item-1-blank-0",
               "position": 0,
-              "accepted_answers": ["It's a"],
+              "accepted_answers": [
+                "It's a"
+              ],
               "display_answer": "It's a",
               "feedback": {
                 "correct": "Well done! ✅",
@@ -577,7 +619,10 @@
               }
             }
           ],
-          "word_bank": ["It's a", "It has"],
+          "word_bank": [
+            "It's a",
+            "It has"
+          ],
           "editable": true
         },
         {
@@ -590,7 +635,9 @@
             {
               "id": "act-5-item-2-blank-0",
               "position": 0,
-              "accepted_answers": ["It has"],
+              "accepted_answers": [
+                "It has"
+              ],
               "display_answer": "It has",
               "feedback": {
                 "correct": "Excellent! ✅",
@@ -598,7 +645,10 @@
               }
             }
           ],
-          "word_bank": ["It's a", "It has"],
+          "word_bank": [
+            "It's a",
+            "It has"
+          ],
           "editable": true
         },
         {
@@ -611,7 +661,9 @@
             {
               "id": "act-5-item-3-blank-0",
               "position": 0,
-              "accepted_answers": ["It's a"],
+              "accepted_answers": [
+                "It's a"
+              ],
               "display_answer": "It's a",
               "feedback": {
                 "correct": "Well done! ✅",
@@ -619,7 +671,10 @@
               }
             }
           ],
-          "word_bank": ["It's a", "It has"],
+          "word_bank": [
+            "It's a",
+            "It has"
+          ],
           "editable": true
         },
         {
@@ -632,7 +687,9 @@
             {
               "id": "act-5-item-4-blank-0",
               "position": 0,
-              "accepted_answers": ["It has"],
+              "accepted_answers": [
+                "It has"
+              ],
               "display_answer": "It has",
               "feedback": {
                 "correct": "Excellent! ✅",
@@ -640,7 +697,10 @@
               }
             }
           ],
-          "word_bank": ["It's a", "It has"],
+          "word_bank": [
+            "It's a",
+            "It has"
+          ],
           "editable": true
         }
       ],
@@ -668,7 +728,6 @@
         "attempts_allowed": 2
       }
     },
-
     {
       "id": "act-6",
       "number": 6,
@@ -728,7 +787,6 @@
         "feedback_mode": "immediate"
       }
     },
-
     {
       "id": "act-7",
       "number": 7,
@@ -779,7 +837,6 @@
         "include": false
       }
     },
-
     {
       "id": "act-8",
       "number": 8,
