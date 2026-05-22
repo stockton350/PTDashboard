@@ -1,0 +1,944 @@
+{
+  "id": "horizon-b1b2-u5-la",
+  "schema_version": "1.0",
+
+  "metadata": {
+    "title": "The Happiness Paradox",
+    "unit_number": 5,
+    "lesson_number": 1,
+    "unit_title": "The Happiness Paradox",
+    "cefr_level": "B1",
+    "age_group": "young_adults",
+    "target_language": "en",
+    "duration_minutes": 60,
+    "learning_objectives": [
+      "Read and understand an article about the science of happiness",
+      "Use 6 collocations related to well-being in context",
+      "Distinguish and use present perfect vs. simple past correctly",
+      "Evaluate ideas critically and support opinions with evidence",
+      "Speak about personal experiences using target grammar"
+    ],
+    "key_vocabulary": [
+      "pursue happiness",
+      "boost your mood",
+      "long-term satisfaction",
+      "meaningful relationships",
+      "instant gratification",
+      "sense of purpose"
+    ],
+    "key_grammar": [
+      "present perfect (have/has + past participle)",
+      "simple past (verb + -ed / irregular)"
+    ],
+    "skills": [
+      "reading",
+      "vocabulary",
+      "grammar",
+      "speaking",
+      "writing",
+      "critical_thinking"
+    ],
+    "page_range": [40, 43],
+    "topic_tags": [
+      "happiness",
+      "well-being",
+      "positive psychology",
+      "relationships",
+      "science"
+    ]
+  },
+
+  "course": {
+    "name": "Horizon B1–B2",
+    "publisher": "Meridian Press",
+    "series": "Horizon",
+    "level": "B1–B2"
+  },
+
+  "sections": [
+    {
+      "id": "warmup",
+      "type": "warmup",
+      "title": "Lead In",
+      "label": "LEAD IN",
+      "page_number": 40,
+      "activity_ids": ["act-1"],
+      "content": {
+        "text": "Look at the photo. What is happening? How do the people look?"
+      }
+    },
+    {
+      "id": "reading",
+      "type": "reading",
+      "title": "What Really Makes Us Happy?",
+      "label": "A READING",
+      "page_number": 41,
+      "activity_ids": ["act-2", "act-3"],
+      "content": {
+        "text": "For generations, people have pursued happiness as if it were a destination — a place to arrive at once they secure the right job, earn enough money, or buy the perfect home. Yet research in positive psychology tells a surprisingly different story.\n\nPsychologist Sonja Lyubomirsky has spent decades studying what makes people genuinely content. Her findings suggest that the circumstances of our lives — where we live, how much we earn, even our relationship status — account for only around ten percent of our long-term satisfaction. Genetics explains roughly fifty percent. The remaining forty percent comes down to our own thoughts and deliberate behaviours.\n\nSo what behaviours actually boost your mood and lead to lasting well-being? The evidence points strongly in one direction: other people. Study after study confirms that maintaining meaningful relationships is the single most important factor in human happiness. A landmark 75-year study by Harvard University followed hundreds of people from adolescence into old age and reached a striking conclusion: the quality of our relationships — not wealth, fame, or professional achievement — is the greatest predictor of a happy life.\n\nExperiences also appear to matter more than possessions. People who spend money on doing things — travelling, attending concerts, learning new skills — consistently report higher levels of satisfaction than those who spend the same amount on material goods. One reason, researchers suggest, is that experiences become part of our identity and our personal story in a way that objects never can.\n\nPerhaps most interesting of all is what happens when people pursue happiness as a direct goal. Paradoxically, those who treat happiness as something to be actively chased often end up feeling less of it. Happiness, it seems, is more of a by-product than a destination — something that tends to emerge when we live with a genuine sense of purpose: working towards something that matters, contributing to others, and remaining curious about the world around us.\n\nThe lesson from the science of well-being is clear: resist the pull of instant gratification. Invest instead in your connections, your experiences, and your curiosity — and happiness will quietly follow.",
+        "pull_quote": "Happiness is not a destination. It is a by-product of a life well lived."
+      }
+    },
+    {
+      "id": "vocabulary",
+      "type": "vocabulary",
+      "title": "Vocabulary in Context",
+      "label": "B VOCABULARY",
+      "page_number": 42,
+      "activity_ids": ["act-4", "act-5"]
+    },
+    {
+      "id": "grammar",
+      "type": "grammar",
+      "title": "Grammar Focus",
+      "label": "C GRAMMAR",
+      "page_number": 42,
+      "activity_ids": ["act-6", "act-7"],
+      "content": {
+        "grammar_rule": {
+          "structure": "Present perfect: HAVE/HAS + past participle | Simple past: verb + -ed / irregular form",
+          "use": "Use the present perfect for past actions with present relevance or when no specific time is given. Use the simple past for finished actions at a specific past time.",
+          "notes": [
+            "Time expressions like 'last year', 'in 2010', 'yesterday' signal simple past.",
+            "Time expressions like 'for', 'since', 'ever', 'never', 'already', 'just' often signal present perfect.",
+            "The present perfect connects the past to the present moment."
+          ],
+          "comparison_table": [
+            {
+              "form_a": "Present Perfect",
+              "form_b": "Simple Past",
+              "example_a": "Scientists have studied happiness for decades.",
+              "example_b": "She studied happiness in the 1990s.",
+              "use_a": "Past action with present relevance; no specific time given",
+              "use_b": "Finished action at a specific time in the past"
+            },
+            {
+              "form_a": "have/has + past participle",
+              "form_b": "verb + -ed (or irregular form)",
+              "example_a": "He has never felt so content in his life.",
+              "example_b": "They published their findings last year.",
+              "use_a": "Used with 'never', 'ever', 'already', 'just', 'since', 'for'",
+              "use_b": "Used with 'last week', 'yesterday', 'in [year]', 'ago'"
+            },
+            {
+              "form_a": "Connects past to NOW",
+              "form_b": "Refers to a finished, closed past",
+              "example_a": "We have learned a lot about well-being recently.",
+              "example_b": "The researchers completed their report in 2019.",
+              "use_a": "The action or its effects are still relevant at the time of speaking",
+              "use_b": "The action is over and belongs to a completed period of time"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "critical_thinking",
+      "type": "critical_thinking",
+      "title": "Critical Thinking",
+      "label": "D CRITICAL THINKING",
+      "page_number": 43,
+      "activity_ids": ["act-8"]
+    },
+    {
+      "id": "speaking",
+      "type": "speaking",
+      "title": "My World",
+      "label": "E MY WORLD",
+      "page_number": 43,
+      "activity_ids": ["act-9"]
+    },
+    {
+      "id": "writing",
+      "type": "writing",
+      "title": "Extend",
+      "label": "F EXTEND",
+      "page_number": 43,
+      "activity_ids": ["act-10"]
+    }
+  ],
+
+  "activities": [
+    {
+      "id": "act-1",
+      "number": 1,
+      "section_id": "warmup",
+      "type": "speaking_prompt",
+      "instruction": "Look at the photo and discuss with a partner.",
+      "items": [
+        {
+          "id": "act-1-item-1",
+          "type": "speaking",
+          "prompt": "What is happening in the photo? Describe what you see.",
+          "interaction_pattern": "pair_work"
+        },
+        {
+          "id": "act-1-item-2",
+          "type": "speaking",
+          "prompt": "What makes people happy in your culture? Is it different from other cultures?",
+          "interaction_pattern": "pair_work"
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "teacher_led_only",
+        "teacher_notes": "Use the opening photo to activate schema. Take 3–4 responses. Note any interesting answers on the board. Don't pre-teach vocabulary.",
+        "answer_reveal": false,
+        "estimated_time_minutes": 5
+      },
+      "worksheet": {
+        "include": false
+      },
+      "app": {
+        "include": false
+      }
+    },
+
+    {
+      "id": "act-2",
+      "number": 2,
+      "section_id": "reading",
+      "type": "reading_comprehension",
+      "instruction": "Read the article. Are these statements True (T) or False (F)?",
+      "items": [
+        {
+          "id": "act-2-item-1",
+          "type": "comprehension",
+          "number": 1,
+          "question": "According to Lyubomirsky, our life circumstances account for the majority of our happiness.",
+          "answer_type": "true_false",
+          "model_answer": "False",
+          "options": [
+            {
+              "id": "act-2-item-1-true",
+              "text": "True",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Re-read paragraph 2. What percentage is given for circumstances?"
+              }
+            },
+            {
+              "id": "act-2-item-1-false",
+              "text": "False",
+              "feedback": {
+                "correct": "False. Circumstances account for only about 10%.",
+                "incorrect": ""
+              }
+            }
+          ],
+          "correct_option_id": "act-2-item-1-false",
+          "editable": true
+        },
+        {
+          "id": "act-2-item-2",
+          "type": "comprehension",
+          "number": 2,
+          "question": "The Harvard study found that the quality of relationships predicts happiness more than wealth.",
+          "answer_type": "true_false",
+          "model_answer": "True",
+          "options": [
+            {
+              "id": "act-2-item-2-true",
+              "text": "True",
+              "feedback": {
+                "correct": "Correct! The Harvard study concluded that the quality of relationships is the greatest predictor of a happy life.",
+                "incorrect": ""
+              }
+            },
+            {
+              "id": "act-2-item-2-false",
+              "text": "False",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Re-read paragraph 3. What did the Harvard study conclude?"
+              }
+            }
+          ],
+          "correct_option_id": "act-2-item-2-true",
+          "editable": true
+        },
+        {
+          "id": "act-2-item-3",
+          "type": "comprehension",
+          "number": 3,
+          "question": "The article argues that spending money on possessions brings more satisfaction than experiences.",
+          "answer_type": "true_false",
+          "model_answer": "False",
+          "options": [
+            {
+              "id": "act-2-item-3-true",
+              "text": "True",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Re-read paragraph 4. Does the article say possessions bring more satisfaction?"
+              }
+            },
+            {
+              "id": "act-2-item-3-false",
+              "text": "False",
+              "feedback": {
+                "correct": "False. The article argues that experiences bring more satisfaction than material possessions.",
+                "incorrect": ""
+              }
+            }
+          ],
+          "correct_option_id": "act-2-item-3-false",
+          "editable": true
+        },
+        {
+          "id": "act-2-item-4",
+          "type": "comprehension",
+          "number": 4,
+          "question": "People who actively pursue happiness as a goal tend to feel happier.",
+          "answer_type": "true_false",
+          "model_answer": "False",
+          "options": [
+            {
+              "id": "act-2-item-4-true",
+              "text": "True",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Re-read paragraph 5. What does the article say about chasing happiness directly?"
+              }
+            },
+            {
+              "id": "act-2-item-4-false",
+              "text": "False",
+              "feedback": {
+                "correct": "False. Paradoxically, actively chasing happiness often leads to feeling less of it.",
+                "incorrect": ""
+              }
+            }
+          ],
+          "correct_option_id": "act-2-item-4-false",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "Students read silently (4 min). Then pairs compare answers before whole-class check.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 8
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "true_false",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 16,
+        "difficulty": "medium",
+        "allow_hint": true,
+        "feedback_mode": "immediate"
+      }
+    },
+
+    {
+      "id": "act-3",
+      "number": 3,
+      "section_id": "reading",
+      "type": "reading_comprehension",
+      "instruction": "Answer these questions about the article.",
+      "items": [
+        {
+          "id": "act-3-item-1",
+          "type": "comprehension",
+          "number": 1,
+          "question": "What percentage of happiness comes from our own behaviours?",
+          "answer_type": "short_answer",
+          "model_answer": "About 40%",
+          "editable": true
+        },
+        {
+          "id": "act-3-item-2",
+          "type": "comprehension",
+          "number": 2,
+          "question": "What does the Harvard study suggest is the most important factor in happiness?",
+          "answer_type": "short_answer",
+          "model_answer": "The quality of our relationships",
+          "editable": true
+        },
+        {
+          "id": "act-3-item-3",
+          "type": "comprehension",
+          "number": 3,
+          "question": "According to the article, when does happiness tend to appear?",
+          "answer_type": "short_answer",
+          "model_answer": "When we live with a sense of purpose — working towards something, contributing to others, staying curious",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "answer_reveal": true,
+        "estimated_time_minutes": 5
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "open_ended",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 12,
+        "difficulty": "medium"
+      }
+    },
+
+    {
+      "id": "act-4",
+      "number": 4,
+      "section_id": "vocabulary",
+      "type": "vocabulary_presentation",
+      "instruction": "Find these phrases in the article. Match each to its meaning.",
+      "items": [
+        {
+          "id": "act-4-item-1",
+          "type": "vocabulary",
+          "number": 1,
+          "word": "pursue happiness",
+          "definition": "to actively try to find or achieve happiness",
+          "example_sentence": "Many people pursue happiness through their careers.",
+          "collocation_partners": ["actively", "relentlessly", "the right to"],
+          "editable": true
+        },
+        {
+          "id": "act-4-item-2",
+          "type": "vocabulary",
+          "number": 2,
+          "word": "boost your mood",
+          "definition": "to make yourself feel more positive or cheerful",
+          "example_sentence": "Exercise is a great way to boost your mood.",
+          "collocation_partners": ["instantly", "naturally", "significantly"],
+          "editable": true
+        },
+        {
+          "id": "act-4-item-3",
+          "type": "vocabulary",
+          "number": 3,
+          "word": "long-term satisfaction",
+          "definition": "a lasting feeling that your life is going well",
+          "example_sentence": "Meaningful work provides long-term satisfaction.",
+          "collocation_partners": ["provide", "achieve", "feel"],
+          "editable": true
+        },
+        {
+          "id": "act-4-item-4",
+          "type": "vocabulary",
+          "number": 4,
+          "word": "meaningful relationships",
+          "definition": "close connections with people who genuinely matter to you",
+          "example_sentence": "Research shows meaningful relationships are key to happiness.",
+          "collocation_partners": ["build", "maintain", "develop", "sustain"],
+          "editable": true
+        },
+        {
+          "id": "act-4-item-5",
+          "type": "vocabulary",
+          "number": 5,
+          "word": "instant gratification",
+          "definition": "pleasure or reward that comes immediately, without waiting",
+          "example_sentence": "Social media often provides instant gratification.",
+          "collocation_partners": ["seek", "resist", "provide", "the pull of"],
+          "editable": true
+        },
+        {
+          "id": "act-4-item-6",
+          "type": "vocabulary",
+          "number": 6,
+          "word": "sense of purpose",
+          "definition": "the feeling that your life and actions have real meaning",
+          "example_sentence": "Volunteering gave her a strong sense of purpose.",
+          "collocation_partners": ["strong", "genuine", "give", "find", "lack"],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "Have students find each phrase in the article first. Then reveal definitions. Drill pronunciation of longer phrases.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 6
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "matching_columns",
+        "print_instruction": "Match each phrase to its definition.",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 18,
+        "difficulty": "medium",
+        "allow_hint": true
+      }
+    },
+
+    {
+      "id": "act-5",
+      "number": 5,
+      "section_id": "vocabulary",
+      "type": "fill_in_blank",
+      "instruction": "Complete the sentences with a phrase from Activity 4.",
+      "items": [
+        {
+          "id": "act-5-item-1",
+          "type": "fill_blank",
+          "number": 1,
+          "template": "Regular exercise can {{0}} and reduce stress.",
+          "blanks": [
+            {
+              "id": "act-5-item-1-blank-0",
+              "position": 0,
+              "accepted_answers": ["boost your mood"],
+              "display_answer": "boost your mood",
+              "feedback": {
+                "correct": "Exactly right! 'Boost your mood' fits perfectly here.",
+                "incorrect": "Think about which phrase means 'make you feel more positive'."
+              }
+            }
+          ],
+          "word_bank": [
+            "pursue happiness",
+            "boost your mood",
+            "long-term satisfaction",
+            "meaningful relationships",
+            "instant gratification",
+            "sense of purpose"
+          ],
+          "editable": true
+        },
+        {
+          "id": "act-5-item-2",
+          "type": "fill_blank",
+          "number": 2,
+          "template": "She found a real {{0}} in her work as a nurse.",
+          "blanks": [
+            {
+              "id": "act-5-item-2-blank-0",
+              "position": 0,
+              "accepted_answers": ["sense of purpose"],
+              "display_answer": "sense of purpose",
+              "feedback": {
+                "correct": "Well done! A nurse's work provides real meaning — a 'sense of purpose'.",
+                "incorrect": "Think about which phrase means 'the feeling that your work has real meaning'."
+              }
+            }
+          ],
+          "word_bank": [
+            "pursue happiness",
+            "boost your mood",
+            "long-term satisfaction",
+            "meaningful relationships",
+            "instant gratification",
+            "sense of purpose"
+          ],
+          "editable": true
+        },
+        {
+          "id": "act-5-item-3",
+          "type": "fill_blank",
+          "number": 3,
+          "template": "Don't be tempted by {{0}} — save your money for experiences.",
+          "blanks": [
+            {
+              "id": "act-5-item-3-blank-0",
+              "position": 0,
+              "accepted_answers": ["instant gratification"],
+              "display_answer": "instant gratification",
+              "feedback": {
+                "correct": "Correct! 'Instant gratification' refers to the temptation of immediate rewards.",
+                "incorrect": "Which phrase describes immediate rewards or pleasures that are hard to resist?"
+              }
+            }
+          ],
+          "word_bank": [
+            "pursue happiness",
+            "boost your mood",
+            "long-term satisfaction",
+            "meaningful relationships",
+            "instant gratification",
+            "sense of purpose"
+          ],
+          "editable": true
+        },
+        {
+          "id": "act-5-item-4",
+          "type": "fill_blank",
+          "number": 4,
+          "template": "Studies show that {{0}} are the key to a happy life.",
+          "blanks": [
+            {
+              "id": "act-5-item-4-blank-0",
+              "position": 0,
+              "accepted_answers": ["meaningful relationships"],
+              "display_answer": "meaningful relationships",
+              "feedback": {
+                "correct": "Exactly! The article confirms that 'meaningful relationships' are central to happiness.",
+                "incorrect": "Think about what the Harvard study identified as the key to happiness."
+              }
+            }
+          ],
+          "word_bank": [
+            "pursue happiness",
+            "boost your mood",
+            "long-term satisfaction",
+            "meaningful relationships",
+            "instant gratification",
+            "sense of purpose"
+          ],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "answer_reveal": true,
+        "estimated_time_minutes": 5
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "fill_blank",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 16,
+        "difficulty": "medium",
+        "feedback_mode": "immediate",
+        "attempts_allowed": 2
+      }
+    },
+
+    {
+      "id": "act-6",
+      "number": 6,
+      "section_id": "grammar",
+      "type": "grammar_presentation",
+      "instruction": "Study the grammar table. Notice the difference.",
+      "items": [
+        {
+          "id": "act-6-item-1",
+          "type": "grammar_example",
+          "sentence": "Scientists have studied happiness for decades.",
+          "polarity": "positive",
+          "highlight": "have studied",
+          "note": "Present perfect: past action with present relevance. No specific time given."
+        },
+        {
+          "id": "act-6-item-2",
+          "type": "grammar_example",
+          "sentence": "She studied happiness in the 1990s.",
+          "polarity": "positive",
+          "highlight": "studied",
+          "note": "Simple past: finished action at a specific time in the past."
+        },
+        {
+          "id": "act-6-item-3",
+          "type": "grammar_example",
+          "sentence": "He has never felt so content in his life.",
+          "polarity": "negative",
+          "highlight": "has never felt",
+          "note": "Present perfect with 'never': life experience up to the present moment."
+        },
+        {
+          "id": "act-6-item-4",
+          "type": "grammar_example",
+          "sentence": "They published their findings last year.",
+          "polarity": "positive",
+          "highlight": "published",
+          "note": "Simple past: 'last year' signals a specific finished time."
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "present_then_reveal",
+        "teacher_notes": "Cover the USE column. Ask students to identify the difference. Reveal. Ask: 'Which tense connects to NOW?' Draw a timeline on the board.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 6
+      },
+      "worksheet": {
+        "include": true,
+        "editable": false,
+        "format": "fill_blank",
+        "include_answer_key": false
+      },
+      "app": {
+        "include": false
+      }
+    },
+
+    {
+      "id": "act-7",
+      "number": 7,
+      "section_id": "grammar",
+      "type": "fill_in_blank",
+      "instruction": "Complete with the present perfect or simple past.",
+      "items": [
+        {
+          "id": "act-7-item-1",
+          "type": "fill_blank",
+          "number": 1,
+          "template": "Researchers {{0}} (study) well-being for many years.",
+          "blanks": [
+            {
+              "id": "act-7-item-1-blank-0",
+              "position": 0,
+              "accepted_answers": ["have studied"],
+              "display_answer": "have studied",
+              "feedback": {
+                "correct": "Correct! We use the present perfect with 'for many years' — an unfinished time period.",
+                "incorrect": "Is this a finished action at a specific time, or an ongoing action up to now? Use present perfect."
+              }
+            }
+          ],
+          "editable": true
+        },
+        {
+          "id": "act-7-item-2",
+          "type": "fill_blank",
+          "number": 2,
+          "template": "She {{0}} (travel) to Japan last summer.",
+          "blanks": [
+            {
+              "id": "act-7-item-2-blank-0",
+              "position": 0,
+              "accepted_answers": ["travelled", "traveled"],
+              "display_answer": "travelled",
+              "feedback": {
+                "correct": "Right! 'Last summer' tells us it's finished. Use simple past.",
+                "incorrect": "The time marker 'last summer' signals a finished past action. Use simple past."
+              }
+            }
+          ],
+          "editable": true
+        },
+        {
+          "id": "act-7-item-3",
+          "type": "fill_blank",
+          "number": 3,
+          "template": "He {{0}} (never / feel) so happy in his life.",
+          "blanks": [
+            {
+              "id": "act-7-item-3-blank-0",
+              "position": 0,
+              "accepted_answers": ["has never felt"],
+              "display_answer": "has never felt",
+              "feedback": {
+                "correct": "Correct! 'Never' with a life experience uses the present perfect.",
+                "incorrect": "Use 'has never felt' — the present perfect is used with 'never' for life experiences."
+              }
+            }
+          ],
+          "editable": true
+        },
+        {
+          "id": "act-7-item-4",
+          "type": "fill_blank",
+          "number": 4,
+          "template": "They {{0}} (publish) their report in 2019.",
+          "blanks": [
+            {
+              "id": "act-7-item-4-blank-0",
+              "position": 0,
+              "accepted_answers": ["published"],
+              "display_answer": "published",
+              "feedback": {
+                "correct": "Well done! 'In 2019' is a specific finished time, so use simple past.",
+                "incorrect": "'In 2019' tells us exactly when — a finished time in the past. Use simple past."
+              }
+            }
+          ],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "Students complete individually first. Compare in pairs. Whole-class check — ask students to explain their choice.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 6
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "fill_blank",
+        "include_answer_key": true,
+        "points_per_item": 1
+      },
+      "app": {
+        "include": true,
+        "points": 16,
+        "difficulty": "medium",
+        "allow_hint": true,
+        "feedback_mode": "immediate"
+      }
+    },
+
+    {
+      "id": "act-8",
+      "number": 8,
+      "section_id": "critical_thinking",
+      "type": "ranking",
+      "instruction": "Rank these activities from 1 (most likely to bring lasting happiness) to 5 (least likely). Then compare with a partner and explain your choices.",
+      "items": [
+        {
+          "id": "act-8-item-1",
+          "type": "ranking",
+          "number": 1,
+          "text": "Buying something new and expensive",
+          "suggested_rank": 5,
+          "rationale": "Research suggests material possessions bring short-lived happiness. Link to instant gratification.",
+          "editable": true
+        },
+        {
+          "id": "act-8-item-2",
+          "type": "ranking",
+          "number": 2,
+          "text": "Spending an afternoon with close friends or family",
+          "suggested_rank": 1,
+          "rationale": "Directly supports 'meaningful relationships' — the strongest predictor identified in the article.",
+          "editable": true
+        },
+        {
+          "id": "act-8-item-3",
+          "type": "ranking",
+          "number": 3,
+          "text": "Learning a new skill over several months",
+          "suggested_rank": 2,
+          "rationale": "Linked to sense of purpose and long-term satisfaction.",
+          "editable": true
+        },
+        {
+          "id": "act-8-item-4",
+          "type": "ranking",
+          "number": 4,
+          "text": "Watching your favourite TV series all evening",
+          "suggested_rank": 4,
+          "rationale": "Pleasant but passive — likely instant gratification with limited long-term benefit.",
+          "editable": true
+        },
+        {
+          "id": "act-8-item-5",
+          "type": "ranking",
+          "number": 5,
+          "text": "Doing something kind for a stranger, anonymously",
+          "suggested_rank": 3,
+          "rationale": "Contributing to others is linked to purpose. Research supports this ('helper's high').",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "teacher_led_only",
+        "teacher_notes": "Students rank individually (2 min). Then pair comparison (3 min). Take class vote — show of hands. Invite justification using article evidence.",
+        "answer_reveal": false,
+        "estimated_time_minutes": 8
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "open_ended",
+        "print_instruction": "Number these activities 1–5 (1 = most likely to bring lasting happiness). Explain your top choice."
+      },
+      "app": {
+        "include": true,
+        "points": 10,
+        "difficulty": "hard",
+        "allow_hint": false
+      }
+    },
+
+    {
+      "id": "act-9",
+      "number": 9,
+      "section_id": "speaking",
+      "type": "speaking_prompt",
+      "instruction": "Tell your partner about a time you felt genuinely happy.",
+      "items": [
+        {
+          "id": "act-9-item-1",
+          "type": "speaking",
+          "prompt": "Think about a time you felt truly happy.",
+          "sub_prompts": [
+            "Where were you and who were you with?",
+            "What were you doing?",
+            "How long did that feeling last?"
+          ],
+          "interaction_pattern": "pair_work",
+          "useful_language": [
+            "I've always felt happiest when...",
+            "The last time I felt really happy was...",
+            "I remember one time I...",
+            "It lasted for..."
+          ],
+          "self_assessment_criteria": [
+            "Did I use the present perfect or simple past correctly?",
+            "Did I give enough detail?",
+            "Did I listen to my partner's story?"
+          ],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "teacher_led_only",
+        "teacher_notes": "Model briefly with your own example. Pairs speak for 2–3 minutes each way. Ask 2–3 pairs to share with class.",
+        "answer_reveal": false,
+        "estimated_time_minutes": 7
+      },
+      "worksheet": {
+        "include": false
+      },
+      "app": {
+        "include": false
+      }
+    },
+
+    {
+      "id": "act-10",
+      "number": 10,
+      "section_id": "writing",
+      "type": "writing_prompt",
+      "instruction": "Write 3–4 sentences in your notebook.",
+      "items": [
+        {
+          "id": "act-10-item-1",
+          "type": "writing",
+          "prompt": "What do you think is the most important factor for happiness? Use evidence from the article.",
+          "word_limit_min": 40,
+          "word_limit_max": 80,
+          "scaffolding": [
+            "I believe that... because...",
+            "According to the article,...",
+            "In my opinion,...",
+            "The research suggests..."
+          ],
+          "model_answer": "I believe that meaningful relationships are the most important factor for happiness. According to the article, a 75-year Harvard study found that the quality of our relationships predicts happiness more than wealth or fame. In my own life, I have always felt happiest when I am with the people I care about.",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "teacher_led_only",
+        "answer_reveal": false,
+        "estimated_time_minutes": 4
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "open_ended"
+      },
+      "app": {
+        "include": false
+      }
+    }
+  ]
+}

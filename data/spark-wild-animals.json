@@ -1,0 +1,836 @@
+{
+  "id": "spark2-u2-l1",
+  "schema_version": "1.0",
+  "metadata": {
+    "title": "Wild Animals",
+    "unit_number": 2,
+    "lesson_number": 1,
+    "unit_title": "Wild Animals",
+    "cefr_level": "A1",
+    "age_group": "young_learners",
+    "target_language": "en",
+    "duration_minutes": 45,
+    "learning_objectives": [
+      "Name 6 wild animals in English",
+      "Use 'It's a...' and 'It has...' to describe animals",
+      "Recognise and produce the short /æ/ vowel sound",
+      "Ask and answer 'What's this?' with a partner"
+    ],
+    "key_vocabulary": ["lion", "elephant", "giraffe", "parrot", "frog", "shark"],
+    "key_grammar": ["It's a [noun].", "It has [feature]."],
+    "skills": ["vocabulary", "listening", "speaking", "writing", "phonics"],
+    "page_range": [20, 23],
+    "topic_tags": ["animals", "wild animals", "nature", "describing"]
+  },
+
+  "course": {
+    "name": "Spark! Level 2",
+    "publisher": "Compass ELT",
+    "series": "Spark!",
+    "level": "Level 2"
+  },
+
+  "sections": [
+    {
+      "id": "warmup",
+      "type": "warmup",
+      "title": "Look and Talk!",
+      "label": "WARM UP",
+      "page_number": 20,
+      "activity_ids": ["act-1"]
+    },
+    {
+      "id": "vocabulary",
+      "type": "vocabulary",
+      "title": "Words to Know",
+      "label": "A VOCABULARY",
+      "page_number": 21,
+      "activity_ids": ["act-2", "act-3"]
+    },
+    {
+      "id": "grammar",
+      "type": "grammar",
+      "title": "Language Focus",
+      "label": "B GRAMMAR",
+      "page_number": 22,
+      "activity_ids": ["act-4", "act-5"],
+      "content": {
+        "grammar_rule": {
+          "structure": "It's a + noun / It has + noun phrase",
+          "use": "Use 'It's a' to identify an animal. Use 'It has' to describe a feature of the animal.",
+          "notes": [
+            "Use 'It's a' before an animal name (noun).",
+            "Use 'It has' before a description of a feature (noun phrase)."
+          ],
+          "examples": [
+            {
+              "sentence": "It's a lion.",
+              "highlight": "It's a",
+              "polarity": "positive"
+            },
+            {
+              "sentence": "It has a big mane.",
+              "highlight": "It has",
+              "polarity": "positive"
+            },
+            {
+              "sentence": "It's a shark.",
+              "highlight": "It's a",
+              "polarity": "positive"
+            },
+            {
+              "sentence": "It has sharp teeth.",
+              "highlight": "It has",
+              "polarity": "positive"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "phonics",
+      "type": "phonics",
+      "title": "Phonics: /æ/ sound",
+      "label": "C PHONICS",
+      "page_number": 22,
+      "activity_ids": ["act-6"]
+    },
+    {
+      "id": "speaking",
+      "type": "speaking",
+      "title": "Ask and Answer",
+      "label": "D SPEAKING",
+      "page_number": 23,
+      "activity_ids": ["act-7"]
+    },
+    {
+      "id": "writing",
+      "type": "writing",
+      "title": "Draw and Write",
+      "label": "E MY WORLD",
+      "page_number": 23,
+      "activity_ids": ["act-8"]
+    },
+    {
+      "id": "values",
+      "type": "values",
+      "title": "Our Value",
+      "label": "VALUES",
+      "page_number": 23,
+      "activity_ids": []
+    }
+  ],
+
+  "activities": [
+    {
+      "id": "act-1",
+      "number": 1,
+      "section_id": "warmup",
+      "type": "speaking_prompt",
+      "instruction": "Look and talk! 💬",
+      "items": [
+        {
+          "id": "act-1-item-1",
+          "type": "speaking",
+          "prompt": "What animals can you see?",
+          "interaction_pattern": "pair_work"
+        },
+        {
+          "id": "act-1-item-2",
+          "type": "speaking",
+          "prompt": "Where do these animals live?",
+          "interaction_pattern": "pair_work"
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "teacher_led_only",
+        "teacher_notes": "Point to the opening photo. Elicit animal names students already know. Accept L1 if needed.",
+        "answer_reveal": false,
+        "estimated_time_minutes": 3
+      },
+      "worksheet": {
+        "include": false
+      },
+      "app": {
+        "include": false
+      }
+    },
+
+    {
+      "id": "act-2",
+      "number": 2,
+      "section_id": "vocabulary",
+      "type": "vocabulary_presentation",
+      "instruction": "Listen and say the words. 🔊",
+      "icon": "🔊",
+      "audio": {
+        "track_id": "s2-u2-vocab-1",
+        "description": "Native speaker reads all 6 animal words at natural pace then again slowly"
+      },
+      "items": [
+        {
+          "id": "act-2-vocab-1",
+          "type": "vocabulary",
+          "number": 1,
+          "word": "lion",
+          "definition": "a big wild cat with a mane",
+          "emoji": "🦁",
+          "collocation_partners": [],
+          "editable": true
+        },
+        {
+          "id": "act-2-vocab-2",
+          "type": "vocabulary",
+          "number": 2,
+          "word": "elephant",
+          "definition": "the largest land animal with a long trunk",
+          "emoji": "🐘",
+          "collocation_partners": [],
+          "editable": true
+        },
+        {
+          "id": "act-2-vocab-3",
+          "type": "vocabulary",
+          "number": 3,
+          "word": "giraffe",
+          "definition": "a very tall animal with a long neck",
+          "emoji": "🦒",
+          "collocation_partners": [],
+          "editable": true
+        },
+        {
+          "id": "act-2-vocab-4",
+          "type": "vocabulary",
+          "number": 4,
+          "word": "parrot",
+          "definition": "a colourful bird that can copy sounds",
+          "emoji": "🦜",
+          "collocation_partners": [],
+          "editable": true
+        },
+        {
+          "id": "act-2-vocab-5",
+          "type": "vocabulary",
+          "number": 5,
+          "word": "frog",
+          "definition": "a small green animal that jumps and lives near water",
+          "emoji": "🐸",
+          "collocation_partners": [],
+          "editable": true
+        },
+        {
+          "id": "act-2-vocab-6",
+          "type": "vocabulary",
+          "number": 6,
+          "word": "shark",
+          "definition": "a large fish with sharp teeth that lives in the ocean",
+          "emoji": "🦈",
+          "collocation_partners": [],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "Point to each card. Model the pronunciation. Students repeat chorally then individually. Drill: fast/slow.",
+        "answer_reveal": false,
+        "estimated_time_minutes": 5
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "matching_columns",
+        "print_instruction": "Match the word to its picture.",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 10,
+        "difficulty": "easy",
+        "allow_hint": false,
+        "feedback_mode": "immediate"
+      }
+    },
+
+    {
+      "id": "act-3",
+      "number": 3,
+      "section_id": "vocabulary",
+      "type": "multiple_choice",
+      "instruction": "Listen and circle. 🔊",
+      "sub_instruction": "Listen. Circle the animal you hear.",
+      "audio": {
+        "track_id": "s2-u2-listen-1",
+        "description": "Audio track in which each of the six animal words is spoken in a sequence different from the vocabulary list order"
+      },
+      "items": [
+        {
+          "id": "act-3-item-1",
+          "type": "multiple_choice",
+          "number": 1,
+          "question": "Which animal do you hear first?",
+          "options": [
+            {
+              "id": "act-3-item-1-a",
+              "text": "lion",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-1-b",
+              "text": "elephant",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-1-c",
+              "text": "giraffe",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            }
+          ],
+          "correct_option_id": "act-3-item-1-a",
+          "editable": true
+        },
+        {
+          "id": "act-3-item-2",
+          "type": "multiple_choice",
+          "number": 2,
+          "question": "Which animal do you hear next?",
+          "options": [
+            {
+              "id": "act-3-item-2-a",
+              "text": "parrot",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-2-b",
+              "text": "frog",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-2-c",
+              "text": "shark",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            }
+          ],
+          "correct_option_id": "act-3-item-2-c",
+          "editable": true
+        },
+        {
+          "id": "act-3-item-3",
+          "type": "multiple_choice",
+          "number": 3,
+          "question": "Which animal do you hear next?",
+          "options": [
+            {
+              "id": "act-3-item-3-a",
+              "text": "lion",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-3-b",
+              "text": "giraffe",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-3-c",
+              "text": "frog",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            }
+          ],
+          "correct_option_id": "act-3-item-3-a",
+          "editable": true
+        },
+        {
+          "id": "act-3-item-4",
+          "type": "multiple_choice",
+          "number": 4,
+          "question": "Which animal do you hear next?",
+          "options": [
+            {
+              "id": "act-3-item-4-a",
+              "text": "elephant",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-4-b",
+              "text": "shark",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-4-c",
+              "text": "giraffe",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            }
+          ],
+          "correct_option_id": "act-3-item-4-b",
+          "editable": true
+        },
+        {
+          "id": "act-3-item-5",
+          "type": "multiple_choice",
+          "number": 5,
+          "question": "Which animal do you hear next?",
+          "options": [
+            {
+              "id": "act-3-item-5-a",
+              "text": "frog",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-5-b",
+              "text": "lion",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-5-c",
+              "text": "parrot",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            }
+          ],
+          "correct_option_id": "act-3-item-5-a",
+          "editable": true
+        },
+        {
+          "id": "act-3-item-6",
+          "type": "multiple_choice",
+          "number": 6,
+          "question": "Which animal do you hear last?",
+          "options": [
+            {
+              "id": "act-3-item-6-a",
+              "text": "giraffe",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-6-b",
+              "text": "parrot",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            },
+            {
+              "id": "act-3-item-6-c",
+              "text": "elephant",
+              "feedback": {
+                "correct": "Great listening! 🌟",
+                "incorrect": "Listen again carefully. 👂"
+              }
+            }
+          ],
+          "correct_option_id": "act-3-item-6-a",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "Play track s2-u2-listen-1. Pause after each animal sound/word. Students circle on their page.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 5
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "multiple_choice",
+        "print_instruction": "Circle the animal you hear.",
+        "include_answer_key": true,
+        "points_per_item": 1
+      },
+      "app": {
+        "include": true,
+        "points": 12,
+        "difficulty": "easy",
+        "allow_hint": true,
+        "feedback_mode": "immediate"
+      }
+    },
+
+    {
+      "id": "act-4",
+      "number": 4,
+      "section_id": "grammar",
+      "type": "grammar_presentation",
+      "instruction": "Read and repeat. 📖",
+      "items": [
+        {
+          "id": "act-4-item-1",
+          "type": "grammar_example",
+          "sentence": "It's a lion.",
+          "polarity": "positive",
+          "highlight": "It's a",
+          "note": "Use 'It's a' + animal name."
+        },
+        {
+          "id": "act-4-item-2",
+          "type": "grammar_example",
+          "sentence": "It has a big mane.",
+          "polarity": "positive",
+          "highlight": "It has",
+          "note": "Use 'It has' + feature."
+        },
+        {
+          "id": "act-4-item-3",
+          "type": "grammar_example",
+          "sentence": "It's a shark.",
+          "polarity": "positive",
+          "highlight": "It's a"
+        },
+        {
+          "id": "act-4-item-4",
+          "type": "grammar_example",
+          "sentence": "It has sharp teeth.",
+          "polarity": "positive",
+          "highlight": "It has"
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "present_then_reveal",
+        "teacher_notes": "Show sentence 1. Elicit the pattern. Drill both patterns. Ask students to make their own examples.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 4
+      },
+      "worksheet": {
+        "include": true,
+        "editable": false,
+        "format": "fill_blank",
+        "print_instruction": "Read the examples.",
+        "include_answer_key": false
+      },
+      "app": {
+        "include": false
+      }
+    },
+
+    {
+      "id": "act-5",
+      "number": 5,
+      "section_id": "grammar",
+      "type": "fill_in_blank",
+      "instruction": "Look and write. ✏️",
+      "sub_instruction": "Write 'It's a' or 'It has'.",
+      "items": [
+        {
+          "id": "act-5-item-1",
+          "type": "fill_blank",
+          "number": 1,
+          "template": "{{0}} giraffe.",
+          "display_prefix": "🦒",
+          "blanks": [
+            {
+              "id": "act-5-item-1-blank-0",
+              "position": 0,
+              "accepted_answers": ["It's a"],
+              "display_answer": "It's a",
+              "feedback": {
+                "correct": "Well done! ✅",
+                "incorrect": "Try again! Use 'It's a' before an animal name."
+              }
+            }
+          ],
+          "word_bank": ["It's a", "It has"],
+          "editable": true
+        },
+        {
+          "id": "act-5-item-2",
+          "type": "fill_blank",
+          "number": 2,
+          "template": "{{0}} big mane.",
+          "display_prefix": "🦁",
+          "blanks": [
+            {
+              "id": "act-5-item-2-blank-0",
+              "position": 0,
+              "accepted_answers": ["It has"],
+              "display_answer": "It has",
+              "feedback": {
+                "correct": "Excellent! ✅",
+                "incorrect": "Think about the feature. Use 'It has'."
+              }
+            }
+          ],
+          "word_bank": ["It's a", "It has"],
+          "editable": true
+        },
+        {
+          "id": "act-5-item-3",
+          "type": "fill_blank",
+          "number": 3,
+          "template": "{{0}} frog.",
+          "display_prefix": "🐸",
+          "blanks": [
+            {
+              "id": "act-5-item-3-blank-0",
+              "position": 0,
+              "accepted_answers": ["It's a"],
+              "display_answer": "It's a",
+              "feedback": {
+                "correct": "Well done! ✅",
+                "incorrect": "Try again! Use 'It's a' before an animal name."
+              }
+            }
+          ],
+          "word_bank": ["It's a", "It has"],
+          "editable": true
+        },
+        {
+          "id": "act-5-item-4",
+          "type": "fill_blank",
+          "number": 4,
+          "template": "{{0}} sharp teeth.",
+          "display_prefix": "🦈",
+          "blanks": [
+            {
+              "id": "act-5-item-4-blank-0",
+              "position": 0,
+              "accepted_answers": ["It has"],
+              "display_answer": "It has",
+              "feedback": {
+                "correct": "Excellent! ✅",
+                "incorrect": "Think about the feature. Use 'It has'."
+              }
+            }
+          ],
+          "word_bank": ["It's a", "It has"],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "Students write independently first. Then reveal answers one by one. Ask a student to explain why.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 5
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "fill_blank",
+        "print_instruction": "Write 'It's a' or 'It has'.",
+        "include_answer_key": true,
+        "points_per_item": 1
+      },
+      "app": {
+        "include": true,
+        "points": 16,
+        "difficulty": "easy",
+        "allow_hint": true,
+        "feedback_mode": "immediate",
+        "attempts_allowed": 2
+      }
+    },
+
+    {
+      "id": "act-6",
+      "number": 6,
+      "section_id": "phonics",
+      "type": "phonics_drill",
+      "instruction": "Listen and say. 🔊",
+      "sub_instruction": "Listen to the /æ/ sound. Repeat the words.",
+      "items": [
+        {
+          "id": "act-6-item-1",
+          "type": "phonics",
+          "word": "cat",
+          "target_phoneme": "/æ/",
+          "highlight_grapheme": "a"
+        },
+        {
+          "id": "act-6-item-2",
+          "type": "phonics",
+          "word": "bat",
+          "target_phoneme": "/æ/",
+          "highlight_grapheme": "a"
+        },
+        {
+          "id": "act-6-item-3",
+          "type": "phonics",
+          "word": "hat",
+          "target_phoneme": "/æ/",
+          "highlight_grapheme": "a"
+        },
+        {
+          "id": "act-6-item-4",
+          "type": "phonics",
+          "word": "rat",
+          "target_phoneme": "/æ/",
+          "highlight_grapheme": "a"
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "Model mouth position for /æ/. Students repeat. Try fast/slow. Ask: 'Do you know any other /æ/ words?'",
+        "answer_reveal": true,
+        "estimated_time_minutes": 4
+      },
+      "worksheet": {
+        "include": true,
+        "editable": false,
+        "format": "fill_blank",
+        "print_instruction": "Circle the letter that makes the /æ/ sound in each word.",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 8,
+        "difficulty": "easy",
+        "allow_hint": false,
+        "feedback_mode": "immediate"
+      }
+    },
+
+    {
+      "id": "act-7",
+      "number": 7,
+      "section_id": "speaking",
+      "type": "speaking_prompt",
+      "instruction": "Ask and answer. 💬",
+      "sub_instruction": "Point to an animal. Ask your partner.",
+      "items": [
+        {
+          "id": "act-7-item-1",
+          "type": "speaking",
+          "prompt": "Point to one of the vocabulary pictures and ask your partner.",
+          "interaction_pattern": "pair_work",
+          "model_dialogue": [
+            {
+              "speaker_label": "Student A",
+              "text": "What's this?"
+            },
+            {
+              "speaker_label": "Student B",
+              "text": "It's a lion. It has a big mane."
+            }
+          ],
+          "useful_language": [
+            "What's this?",
+            "It's a ___.",
+            "It has ___."
+          ],
+          "self_assessment_criteria": [
+            "Did I use 'It's a'?",
+            "Did I use 'It has'?",
+            "Did my partner understand me?"
+          ],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "teacher_led_only",
+        "teacher_notes": "Demo with a strong student. Then pair work for 3 minutes. Monitor. Take feedback: who said the most interesting sentence?",
+        "answer_reveal": false,
+        "estimated_time_minutes": 6
+      },
+      "worksheet": {
+        "include": false
+      },
+      "app": {
+        "include": false
+      }
+    },
+
+    {
+      "id": "act-8",
+      "number": 8,
+      "section_id": "writing",
+      "type": "drawing",
+      "instruction": "Draw and write. ✏️🎨",
+      "sub_instruction": "Draw your favourite animal. Write two sentences.",
+      "items": [
+        {
+          "id": "act-8-item-1",
+          "type": "drawing",
+          "instruction": "Draw your favourite wild animal in the box.",
+          "writing_prompts": [
+            {
+              "template": "It's a ___.",
+              "line_count": 1
+            },
+            {
+              "template": "It has ___.",
+              "line_count": 1
+            }
+          ]
+        },
+        {
+          "id": "act-8-item-2",
+          "type": "writing",
+          "prompt": "Write two sentences about your animal using 'It's a' and 'It has'.",
+          "line_count": 2,
+          "scaffolding": [
+            "It's a ___.",
+            "It has ___."
+          ],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "teacher_led_only",
+        "teacher_notes": "Allow 5–7 minutes. Circulate and help with spelling. Invite 3–4 students to share.",
+        "answer_reveal": false,
+        "estimated_time_minutes": 7
+      },
+      "worksheet": {
+        "include": true,
+        "editable": false,
+        "format": "open_ended",
+        "print_instruction": "Draw an animal. Write two sentences."
+      },
+      "app": {
+        "include": false
+      }
+    }
+  ]
+}
