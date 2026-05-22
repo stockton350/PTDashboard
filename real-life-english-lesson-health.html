@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit 4 — Staying Healthy | Real Life English | Keystone Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #e8e8e8;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      color: #212121;
+      line-height: 1.6;
+      padding: 32px 16px;
+    }
+
+    /* ── PAGE SECTION ── */
+    .page {
+      background: #fff;
+      max-width: 760px;
+      margin: 0 auto 32px auto;
+      padding: 40px 44px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      border-radius: 2px;
+      position: relative;
+      border-top: 4px solid #1565C0;
+    }
+
+    /* ── COURSE HEADER ── */
+    .course-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .course-logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-logo .series-name {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #1565C0;
+      letter-spacing: -0.3px;
+    }
+
+    .course-logo .publisher {
+      font-size: 11px;
+      color: #757575;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    .unit-badge {
+      background: #388E3C;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'Roboto Condensed', sans-serif;
+      letter-spacing: 0.5px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── UNIT TITLE BOX ── */
+    .unit-title-box {
+      border-left: 4px solid #388E3C;
+      padding-left: 16px;
+      margin-bottom: 22px;
+    }
+
+    .unit-label {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #388E3C;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .unit-main-title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: #1565C0;
+      line-height: 1.2;
+    }
+
+    .unit-sub-title {
+      font-size: 14px;
+      color: #757575;
+      margin-top: 3px;
+    }
+
+    /* ── PHOTO STRIP ── */
+    .photo-strip {
+      display: flex;
+      width: calc(100% + 88px);
+      margin-left: -44px;
+      margin-right: -44px;
+      height: 110px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .photo-strip-item {
+      flex: 1;
+      height: 110px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    .photo-fallback-1 { background: linear-gradient(135deg, #1565C0 0%, #42A5F5 100%); }
+    .photo-fallback-2 { background: linear-gradient(135deg, #1B5E20 0%, #66BB6A 100%); }
+    .photo-fallback-3 { background: linear-gradient(135deg, #0D47A1 0%, #29B6F6 100%); }
+    .photo-fallback-4 { background: linear-gradient(135deg, #004D40 0%, #4DB6AC 100%); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #1565C0;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .section-label.green {
+      color: #388E3C;
+    }
+
+    .section-intro {
+      font-size: 13.5px;
+      color: #757575;
+      margin-bottom: 14px;
+    }
+
+    /* ── VOCABULARY GRID ── */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .vocab-cell {
+      background: #fff;
+      border-top: 3px solid #1565C0;
+      border-radius: 0 0 6px 6px;
+      padding: 10px 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .vocab-cell .word {
+      font-weight: 700;
+      font-size: 14px;
+      color: #1565C0;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .vocab-cell .icon {
+      font-size: 16px;
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .vocab-cell .definition {
+      font-size: 11.5px;
+      color: #757575;
+      line-height: 1.4;
+    }
+
+    /* ── DIALOGUE BOX ── */
+    .dialogue-box {
+      background: #E3F2FD;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+    }
+
+    .dialogue-line {
+      display: flex;
+      gap: 10px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      align-items: flex-start;
+    }
+
+    .dialogue-line:nth-child(odd) {
+      background: rgba(255,255,255,0.55);
+    }
+
+    .dialogue-line:nth-child(even) {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .speaker {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      min-width: 100px;
+      padding-top: 2px;
+      letter-spacing: 0.4px;
+      flex-shrink: 0;
+    }
+
+    .speaker.dr { color: #1565C0; }
+    .speaker.patient { color: #388E3C; }
+
+    .dialogue-text {
+      font-size: 14px;
+      color: #212121;
+      line-height: 1.5;
+    }
+
+    /* ── COMPREHENSION QUESTIONS ── */
+    .comprehension {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid #BBDEFB;
+    }
+
+    .comprehension .think-label {
+      font-weight: 700;
+      font-size: 13px;
+      color: #1565C0;
+      margin-bottom: 8px;
+    }
+
+    .comprehension ol {
+      padding-left: 20px;
+    }
+
+    .comprehension li {
+      font-size: 13.5px;
+      color: #212121;
+      margin-bottom: 5px;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 28px 0;
+    }
+
+    /* ── GRAMMAR CHART ── */
+    .grammar-box {
+      background: #E8F5E9;
+      border-left: 5px solid #388E3C;
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 4px;
+    }
+
+    .grammar-box .grammar-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #212121;
+      margin-bottom: 14px;
+    }
+
+    .grammar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-bottom: 16px;
+    }
+
+    .grammar-table th {
+      background: #388E3C;
+      color: #fff;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .grammar-table th:first-child { border-radius: 4px 0 0 0; }
+    .grammar-table th:last-child  { border-radius: 0 4px 0 0; }
+
+    .grammar-table td {
+      padding: 9px 12px;
+      color: #212121;
+      line-height: 1.45;
+    }
+
+    .grammar-table tr:nth-child(even) td { background: rgba(255,255,255,0.6); }
+    .grammar-table tr:nth-child(odd) td  { background: rgba(255,255,255,0.25); }
+
+    .grammar-table td strong { color: #1565C0; }
+
+    .note-box {
+      background: #FFFDE7;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: #5D4037;
+      margin-bottom: 14px;
+    }
+
+    .example-sentences {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ex-sentence {
+      font-size: 14px;
+      padding: 7px 12px;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .ex-sentence strong { color: #1565C0; }
+
+    /* ── PRACTICE ITEMS ── */
+    .practice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .practice-item {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      background: #F5F5F5;
+      padding: 10px 16px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .practice-num {
+      font-weight: 700;
+      color: #1565C0;
+      min-width: 18px;
+      flex-shrink: 0;
+    }
+
+    .practice-sentence {
+      flex: 1;
+    }
+
+    .blank {
+      display: inline-block;
+      min-width: 64px;
+      border-bottom: 2px solid #1565C0;
+      margin: 0 2px;
+      vertical-align: bottom;
+    }
+
+    .answer {
+      font-size: 11.5px;
+      color: #9e9e9e;
+      font-style: italic;
+      margin-left: 6px;
+    }
+
+    /* ── LISTENING TABLE ── */
+    .listening-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-top: 4px;
+    }
+
+    .listening-table th {
+      background: #1565C0;
+      color: #fff;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      text-align: left;
+    }
+
+    .listening-table th:first-child { border-radius: 4px 0 0 0; }
+    .listening-table th:last-child  { border-radius: 0 4px 0 0; }
+
+    .listening-table td {
+      padding: 14px 14px;
+      border-bottom: 1px solid #e0e0e0;
+      color: #212121;
+      min-height: 44px;
+    }
+
+    .listening-table tr:nth-child(even) td { background: #fafafa; }
+    .listening-table tr:nth-child(odd) td  { background: #fff; }
+
+    .listening-table td:first-child {
+      font-weight: 700;
+      color: #1565C0;
+    }
+
+    /* ── PAGE FOOTER ── */
+    .page-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 36px;
+      padding-top: 12px;
+      border-top: 1px solid #e0e0e0;
+      font-size: 11px;
+      color: #9e9e9e;
+    }
+
+    .page-footer .footer-center {
+      text-align: center;
+    }
+
+    .page-footer .page-num {
+      font-weight: 500;
+      color: #bdbdbd;
+    }
+
+    /* ── PRESCRIPTION LABEL ── */
+    .rx-label {
+      background: #fff;
+      border: 2px solid #212121;
+      border-radius: 6px;
+      padding: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #212121;
+      margin-bottom: 18px;
+    }
+
+    .rx-rule-double {
+      border: none;
+      border-top: 3px double #212121;
+      margin: 10px 0;
+    }
+
+    .rx-rule-single {
+      border: none;
+      border-top: 1px solid #bdbdbd;
+      margin: 10px 0;
+    }
+
+    .rx-header {
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .rx-header .pharmacy-name {
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .rx-header .pharmacy-address {
+      font-size: 12px;
+      font-weight: normal;
+    }
+
+    .rx-drug-name {
+      font-weight: bold;
+      font-size: 14.5px;
+    }
+
+    .rx-generic {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .rx-dir-block {
+      font-size: 13px;
+    }
+
+    .rx-warning {
+      font-size: 12.5px;
+      font-weight: bold;
+      color: #b71c1c;
+    }
+
+    .rx-footer-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+    }
+
+    /* ── COMPREHENSION QUESTIONS (RX) ── */
+    .question-list {
+      padding-left: 20px;
+    }
+
+    .question-list li {
+      font-size: 14px;
+      color: #212121;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    /* ── ROLE PLAY ── */
+    .roleplay-box {
+      border: 2px solid #388E3C;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .roleplay-intro {
+      font-size: 14px;
+      color: #212121;
+      margin-bottom: 14px;
+    }
+
+    .role-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .role-card {
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    .role-card.patient { background: #E3F2FD; }
+    .role-card.doctor  { background: #E8F5E9; }
+
+    .role-card .role-title {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .role-card.patient .role-title { color: #1565C0; }
+    .role-card.doctor  .role-title { color: #388E3C; }
+
+    .useful-lang-box {
+      background: #F5F5F5;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #212121;
+    }
+
+    /* ── WRITING LINES ── */
+    .writing-prompt {
+      font-size: 14px;
+      color: #212121;
+      margin-bottom: 14px;
+    }
+
+    .writing-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .writing-line {
+      display: block;
+      width: 100%;
+      border-bottom: 1.5px dashed #bdbdbd;
+      height: 38px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      body {
+        padding: 16px 8px;
+      }
+
+      .page {
+        padding: 28px 20px;
+      }
+
+      .photo-strip {
+        width: calc(100% + 40px);
+        margin-left: -20px;
+        margin-right: -20px;
+      }
+
+      .vocab-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .role-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .course-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .grammar-table {
+        font-size: 12px;
+      }
+
+      .grammar-table td, .grammar-table th {
+        padding: 7px 8px;
+      }
+
+      .listening-table {
+        font-size: 12px;
+      }
+
+      .listening-table td, .listening-table th {
+        padding: 10px 8px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .vocab-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dialogue-line {
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .speaker {
+        min-width: unset;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        margin: 0;
+        padding: 28px 32px;
+        page-break-after: always;
+        max-width: 100%;
+        border-top: 4px solid #1565C0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- PAGE 1 — Vocabulary + Dialogue                     -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <section class="page" aria-label="Page 1 — Vocabulary and Dialogue">
+
+    <!-- Course Header -->
+    <header class="course-header">
+      <div class="course-logo">
+        <span class="series-name">Real Life English</span>
+        <span class="publisher">Keystone Learning</span>
+      </div>
+      <span class="unit-badge">Unit 4 · Staying Healthy</span>
+    </header>
+
+    <!-- Unit Title -->
+    <div class="unit-title-box">
+      <div class="unit-label">Unit 4</div>
+      <div class="unit-main-title">Staying Healthy</div>
+      <div class="unit-sub-title">Lesson A — At the Doctor's Office</div>
+    </div>
+
+    <!-- Photo Strip -->
+    <div class="photo-strip" role="img" aria-label="Photo collage: medical equipment, medicine, pharmacy, doctor with patient">
+      <div class="photo-strip-item">
+        <img
+          src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=300&q=80"
+          alt="Stethoscope on a medical chart"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="photo-fallback photo-fallback-1" style="display:none;">🩺</div>
+      </div>
+      <div class="photo-strip-item">
+        <img
+          src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80"
+          alt="Medicine pills and tablets"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="photo-fallback photo-fallback-2" style="display:none;">💊</div>
+      </div>
+      <div class="photo-strip-item">
+        <img
+          src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=300&q=80"
+          alt="Pharmacy shelves"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="photo-fallback photo-fallback-3" style="display:none;">🏪</div>
+      </div>
+      <div class="photo-strip-item">
+        <img
+          src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=300&q=80"
+          alt="Doctor consulting with a patient"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="photo-fallback photo-fallback-4" style="display:none;">👨‍⚕️</div>
+      </div>
+    </div>
+
+    <!-- Section A: Vocabulary -->
+    <div class="section-label">A &nbsp;Vocabulary · Health Words</div>
+    <p class="section-intro">Look at the words. Find each word in the dialogue below.</p>
+
+    <div class="vocab-grid" role="list">
+      <div class="vocab-cell" role="listitem">
+        <span class="icon">💊</span>
+        <span class="word">prescription</span>
+        <span class="definition">a doctor's written order for medicine</span>
+      </div>
+      <div class="vocab-cell" role="listitem">
+        <span class="icon">🏪</span>
+        <span class="word">pharmacy</span>
+        <span class="definition">a store where you buy medicine</span>
+      </div>
+      <div class="vocab-cell" role="listitem">
+        <span class="icon">🤒</span>
+        <span class="word">symptoms</span>
+        <span class="definition">signs of an illness (pain, fever, etc.)</span>
+      </div>
+      <div class="vocab-cell" role="listitem">
+        <span class="icon">📅</span>
+        <span class="word">appointment</span>
+        <span class="definition">a scheduled time to see a doctor</span>
+      </div>
+      <div class="vocab-cell" role="listitem">
+        <span class="icon">📋</span>
+        <span class="word">insurance</span>
+        <span class="definition">a plan that helps pay for health care</span>
+      </div>
+      <div class="vocab-cell" role="listitem">
+        <span class="icon">💉</span>
+        <span class="word">dosage</span>
+        <span class="definition">how much medicine to take</span>
+      </div>
+      <div class="vocab-cell" role="listitem">
+        <span class="icon">👨‍⚕️</span>
+        <span class="word">specialist</span>
+        <span class="definition">a doctor who focuses on one area of medicine</span>
+      </div>
+      <div class="vocab-cell" role="listitem">
+        <span class="icon">🚑</span>
+        <span class="word">emergency room</span>
+        <span class="definition">hospital area for serious or urgent care</span>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Section B: Dialogue -->
+    <div class="section-label">B &nbsp;Dialogue · Listen and Read 🔊</div>
+    <p class="section-intro">Listen to the conversation. Then read it with a partner.</p>
+
+    <div class="dialogue-box" role="article" aria-label="Dialogue: At the Doctor's Office">
+      <div class="dialogue-line">
+        <span class="speaker dr">DR. MILLER:</span>
+        <span class="dialogue-text">Good morning. What seems to be the problem today?</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker patient">PATIENT:</span>
+        <span class="dialogue-text">Hi, Doctor. I've had a headache for three days, and I feel very tired.</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker dr">DR. MILLER:</span>
+        <span class="dialogue-text">I see. Do you have any other <strong>symptoms</strong>?</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker patient">PATIENT:</span>
+        <span class="dialogue-text">Yes, I also have a sore throat and a slight fever.</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker dr">DR. MILLER:</span>
+        <span class="dialogue-text">Let me take a look. Are you taking any medication at the moment?</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker patient">PATIENT:</span>
+        <span class="dialogue-text">I took some aspirin, but it didn't really help.</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker dr">DR. MILLER:</span>
+        <span class="dialogue-text">OK. I'm going to write you a <strong>prescription</strong>. You should rest and drink plenty of water.</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker patient">PATIENT:</span>
+        <span class="dialogue-text">Should I go to work tomorrow?</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker dr">DR. MILLER:</span>
+        <span class="dialogue-text">You shouldn't go to work for at least two days. Rest is very important.</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker patient">PATIENT:</span>
+        <span class="dialogue-text">Should I come back if I don't feel better?</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker dr">DR. MILLER:</span>
+        <span class="dialogue-text">Yes, you should call the office and make another <strong>appointment</strong> if your <strong>symptoms</strong> continue.</span>
+      </div>
+
+      <div class="comprehension" role="group" aria-label="Comprehension questions">
+        <p class="think-label">Think about it:</p>
+        <ol>
+          <li>What are the patient's symptoms?</li>
+          <li>What does the doctor recommend?</li>
+          <li>How long should the patient stay home?</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Page Footer -->
+    <footer class="page-footer">
+      <span>Keystone Learning · Real Life English Book 2</span>
+      <span class="footer-center">Unit 4: Staying Healthy</span>
+      <span class="page-num">1</span>
+    </footer>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- PAGE 2 — Grammar + Practice                        -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <section class="page" aria-label="Page 2 — Grammar and Practice">
+
+    <!-- Course Header -->
+    <header class="course-header">
+      <div class="course-logo">
+        <span class="series-name">Real Life English</span>
+        <span class="publisher">Keystone Learning</span>
+      </div>
+      <span class="unit-badge">Unit 4 · Staying Healthy</span>
+    </header>
+
+    <!-- Section C: Grammar Focus -->
+    <div class="section-label">C &nbsp;Grammar Focus · Should / Shouldn't</div>
+
+    <div class="grammar-box" role="region" aria-label="Grammar chart: Should and Shouldn't">
+      <p class="grammar-title">Using SHOULD and SHOULDN'T for Advice</p>
+
+      <table class="grammar-table" aria-label="Should and Shouldn't forms and examples">
+        <thead>
+          <tr>
+            <th>Form</th>
+            <th>Example</th>
+            <th>Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>You <strong>should</strong> + base verb</td>
+            <td>"You <strong>should</strong> rest at home."</td>
+            <td>To give positive advice</td>
+          </tr>
+          <tr>
+            <td>You <strong>shouldn't</strong> + base verb</td>
+            <td>"You <strong>shouldn't</strong> go to work."</td>
+            <td>To give negative advice</td>
+          </tr>
+          <tr>
+            <td><strong>Should</strong> + subject + verb?</td>
+            <td>"<strong>Should</strong> I see a specialist?"</td>
+            <td>To ask for advice</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note-box" role="note">
+        ⚠️ <strong>Note:</strong> SHOULD does not change with he / she / it. No <em>-s</em>. No <em>-ed</em>.
+      </div>
+
+      <div class="example-sentences">
+        <div class="ex-sentence">✓ &nbsp;"You <strong>should</strong> drink plenty of water."</div>
+        <div class="ex-sentence">✗ &nbsp;"You <strong>shouldn't</strong> go to work for two days."</div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Section D: Practice -->
+    <div class="section-label">D &nbsp;Practice</div>
+    <p class="section-intro">Complete the sentences. Use <strong>should</strong> or <strong>shouldn't</strong>.</p>
+
+    <div class="practice-list" role="list">
+      <div class="practice-item" role="listitem">
+        <span class="practice-num">1.</span>
+        <span class="practice-sentence">
+          You <span class="blank">&nbsp;</span> see a doctor if you feel worse.
+          <span class="answer">(should)</span>
+        </span>
+      </div>
+      <div class="practice-item" role="listitem">
+        <span class="practice-num">2.</span>
+        <span class="practice-sentence">
+          She <span class="blank">&nbsp;</span> take her medicine twice a day.
+          <span class="answer">(should)</span>
+        </span>
+      </div>
+      <div class="practice-item" role="listitem">
+        <span class="practice-num">3.</span>
+        <span class="practice-sentence">
+          We <span class="blank">&nbsp;</span> smoke — it is very bad for our health.
+          <span class="answer">(shouldn't)</span>
+        </span>
+      </div>
+      <div class="practice-item" role="listitem">
+        <span class="practice-num">4.</span>
+        <span class="practice-sentence">
+          He <span class="blank">&nbsp;</span> eat a lot of sugar.
+          <span class="answer">(shouldn't)</span>
+        </span>
+      </div>
+      <div class="practice-item" role="listitem">
+        <span class="practice-num">5.</span>
+        <span class="practice-sentence">
+          They <span class="blank">&nbsp;</span> call the pharmacy before picking up the prescription.
+          <span class="answer">(should)</span>
+        </span>
+      </div>
+      <div class="practice-item" role="listitem">
+        <span class="practice-num">6.</span>
+        <span class="practice-sentence">
+          You <span class="blank">&nbsp;</span> worry — it is probably just a cold!
+          <span class="answer">(shouldn't)</span>
+        </span>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Section E: Listening -->
+    <div class="section-label">E &nbsp;Listening 🔊</div>
+    <p class="section-intro">Listen to three people talk about a health problem. Complete the chart.</p>
+
+    <table class="listening-table" aria-label="Listening activity chart">
+      <thead>
+        <tr>
+          <th>Person</th>
+          <th>Symptoms</th>
+          <th>Doctor's Advice</th>
+          <th>Should / Shouldn't</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Maria</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>James</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Anh</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Page Footer -->
+    <footer class="page-footer">
+      <span>Keystone Learning · Real Life English Book 2</span>
+      <span class="footer-center">Unit 4: Staying Healthy</span>
+      <span class="page-num">2</span>
+    </footer>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- PAGE 3 — Real-World Document + Speaking + Writing  -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <section class="page" aria-label="Page 3 — Real-World Reading, Speaking, and Writing">
+
+    <!-- Course Header -->
+    <header class="course-header">
+      <div class="course-logo">
+        <span class="series-name">Real Life English</span>
+        <span class="publisher">Keystone Learning</span>
+      </div>
+      <span class="unit-badge">Unit 4 · Staying Healthy</span>
+    </header>
+
+    <!-- Section F: Real-World Reading -->
+    <div class="section-label">F &nbsp;Real-World Reading · Read a Prescription Label</div>
+    <p class="section-intro">Look at this prescription label. Answer the questions below.</p>
+
+    <!-- Prescription Label -->
+    <div class="rx-label" role="img" aria-label="Sample US pharmacy prescription label for Alvidex 250mg">
+
+      <hr class="rx-rule-double" />
+      <div class="rx-header">
+        <div class="pharmacy-name">KEYSTONE PHARMACY &nbsp;&nbsp; Tel: (555) 204-8800</div>
+        <div class="pharmacy-address">1247 Oak Street &nbsp;·&nbsp; Greenfield, CA 93007</div>
+      </div>
+      <hr class="rx-rule-double" />
+
+      <div>
+        <span>PATIENT:&nbsp; </span><span style="text-decoration: underline; color: #aaa;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </div>
+      <div>DATE:&nbsp;&nbsp;&nbsp;&nbsp; May 15, 2026</div>
+      <div>Rx #:&nbsp;&nbsp;&nbsp;&nbsp; KP-20260515-4471</div>
+
+      <hr class="rx-rule-single" />
+
+      <div class="rx-drug-name">ALVIDEX 250mg Tablets</div>
+      <div class="rx-generic">(amoxiphenil hydrochloride)</div>
+      <div style="margin-top:4px; font-size:13px;">Dr. K. Miller, MD &nbsp;&nbsp; NPI: 1234567890</div>
+
+      <hr class="rx-rule-single" />
+
+      <div class="rx-dir-block">
+        <strong>DIRECTIONS:</strong><br />
+        Take ONE (1) tablet THREE (3) times daily<br />
+        WITH FOOD. Continue for SEVEN (7) days.<br />
+        Do NOT stop early, even if you feel better.
+      </div>
+
+      <hr class="rx-rule-single" />
+
+      <div class="rx-footer-row">
+        <span>QTY: 21 tablets</span>
+        <span>REFILLS: 0 remaining</span>
+      </div>
+      <div class="rx-warning" style="margin-top:6px;">
+        WARNING: May cause drowsiness.<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Do not drive after taking.
+      </div>
+
+      <hr class="rx-rule-double" />
+
+    </div>
+
+    <!-- Comprehension Questions -->
+    <ol class="question-list" aria-label="Prescription label comprehension questions">
+      <li>How many tablets should the patient take each day?</li>
+      <li>When should the patient take the tablets? (before or after food?)</li>
+      <li>How many days should the patient take this medicine?</li>
+      <li>Can the patient get more medicine without seeing the doctor again?</li>
+      <li>What warning does the label give?</li>
+    </ol>
+
+    <hr class="section-divider" />
+
+    <!-- Section G: Speaking — Role Play -->
+    <div class="section-label green">G &nbsp;Speaking · Role Play 💬</div>
+
+    <div class="roleplay-box" role="region" aria-label="Speaking role play activity">
+      <p class="roleplay-intro">Work with a partner. Take turns being the doctor and the patient.</p>
+
+      <div class="role-cards">
+        <div class="role-card patient">
+          <span class="role-title">🧑 PATIENT</span>
+          You have these symptoms: <em>[choose 2]</em><br />
+          headache / sore throat / fever / stomachache / back pain.<br />
+          Ask the doctor for advice.
+        </div>
+        <div class="role-card doctor">
+          <span class="role-title">👨‍⚕️ DOCTOR</span>
+          Listen to the patient's symptoms. Give advice using <strong>should</strong> and <strong>shouldn't</strong>. Suggest whether they need a prescription.
+        </div>
+      </div>
+
+      <div class="useful-lang-box" role="note" aria-label="Useful language phrases">
+        <strong>Useful language:</strong> &nbsp;· You should … &nbsp;· You shouldn't … &nbsp;· I recommend … &nbsp;· You might want to … &nbsp;· Make sure you …
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Section H: Writing -->
+    <div class="section-label">H &nbsp;Writing</div>
+    <p class="writing-prompt">
+      Write 3–4 sentences of health advice for a friend who has a cold. Use <strong>should</strong> and <strong>shouldn't</strong>.
+    </p>
+
+    <div class="writing-lines" role="group" aria-label="Writing lines">
+      <span class="writing-line" aria-label="Writing line 1"></span>
+      <span class="writing-line" aria-label="Writing line 2" style="margin-top:12px;"></span>
+      <span class="writing-line" aria-label="Writing line 3" style="margin-top:12px;"></span>
+    </div>
+
+    <!-- Page Footer -->
+    <footer class="page-footer">
+      <span>Keystone Learning · Real Life English Book 2</span>
+      <span class="footer-center">Unit 4: Staying Healthy</span>
+      <span class="page-num">3</span>
+    </footer>
+
+  </section>
+
+</body>
+</html>
