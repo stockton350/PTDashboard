@@ -1,0 +1,1129 @@
+{
+  "id": "rle2-u4-la",
+  "schema_version": "1.0",
+  "metadata": {
+    "title": "At the Doctor's Office",
+    "unit_number": 4,
+    "lesson_number": 1,
+    "unit_title": "Staying Healthy",
+    "cefr_level": "B1",
+    "age_group": "adults",
+    "target_language": "en",
+    "duration_minutes": 75,
+    "learning_objectives": [
+      "Understand and use 8 health and medical vocabulary words",
+      "Follow and participate in a conversation at a doctor's office",
+      "Use should/shouldn't to give and ask for advice",
+      "Read and understand a prescription label",
+      "Role-play a doctor-patient conversation"
+    ],
+    "key_vocabulary": [
+      "prescription",
+      "pharmacy",
+      "symptoms",
+      "appointment",
+      "insurance",
+      "dosage",
+      "specialist",
+      "emergency room"
+    ],
+    "key_grammar": [
+      "should + base verb (positive advice)",
+      "shouldn't + base verb (negative advice)",
+      "Should + subject + verb? (questions)"
+    ],
+    "skills": ["vocabulary", "reading", "listening", "speaking", "writing", "grammar"],
+    "page_range": [44, 49],
+    "topic_tags": ["health", "medicine", "doctor", "advice", "modals"]
+  },
+
+  "course": {
+    "name": "Real Life English Book 2",
+    "publisher": "Keystone Learning",
+    "series": "Real Life English",
+    "level": "Intermediate (Book 2)"
+  },
+
+  "sections": [
+    {
+      "id": "vocabulary",
+      "type": "vocabulary",
+      "label": "A VOCABULARY",
+      "title": "Health Words",
+      "page_number": 44,
+      "activity_ids": ["act-1"]
+    },
+    {
+      "id": "dialogue",
+      "type": "dialogue",
+      "label": "B DIALOGUE",
+      "title": "At the Doctor's Office",
+      "page_number": 45,
+      "activity_ids": ["act-2", "act-3"],
+      "content": {
+        "dialogue_lines": [
+          {
+            "speaker": "DR. MILLER",
+            "speaker_role": "doctor",
+            "text": "Good morning. What seems to be the problem today?"
+          },
+          {
+            "speaker": "PATIENT",
+            "speaker_role": "patient",
+            "text": "Hi, Doctor. I've had a headache for three days, and I feel very tired."
+          },
+          {
+            "speaker": "DR. MILLER",
+            "speaker_role": "doctor",
+            "text": "I see. Do you have any other symptoms?"
+          },
+          {
+            "speaker": "PATIENT",
+            "speaker_role": "patient",
+            "text": "Yes, I also have a sore throat and a slight fever."
+          },
+          {
+            "speaker": "DR. MILLER",
+            "speaker_role": "doctor",
+            "text": "Let me take a look. Are you taking any medication at the moment?"
+          },
+          {
+            "speaker": "PATIENT",
+            "speaker_role": "patient",
+            "text": "I took some aspirin, but it didn't really help."
+          },
+          {
+            "speaker": "DR. MILLER",
+            "speaker_role": "doctor",
+            "text": "OK. I'm going to write you a prescription. You should rest and drink plenty of water."
+          },
+          {
+            "speaker": "PATIENT",
+            "speaker_role": "patient",
+            "text": "Should I go to work tomorrow?"
+          },
+          {
+            "speaker": "DR. MILLER",
+            "speaker_role": "doctor",
+            "text": "You shouldn't go to work for at least two days. Rest is very important."
+          },
+          {
+            "speaker": "PATIENT",
+            "speaker_role": "patient",
+            "text": "Should I come back if I don't feel better?"
+          },
+          {
+            "speaker": "DR. MILLER",
+            "speaker_role": "doctor",
+            "text": "Yes, you should call the office and make another appointment if your symptoms continue."
+          }
+        ]
+      }
+    },
+    {
+      "id": "grammar",
+      "type": "grammar",
+      "label": "C GRAMMAR FOCUS",
+      "title": "Should / Shouldn't",
+      "page_number": 46,
+      "activity_ids": ["act-4", "act-5"],
+      "content": {
+        "grammar_rule": {
+          "structure": "should / shouldn't + base verb",
+          "use": "giving and asking for advice",
+          "notes": [
+            "should does not change with he/she/it — no -s",
+            "Use the base form of the verb after should/shouldn't"
+          ],
+          "examples": [
+            {
+              "sentence": "You should rest and drink plenty of water.",
+              "polarity": "positive",
+              "highlight": "should rest"
+            },
+            {
+              "sentence": "You shouldn't go to work for at least two days.",
+              "polarity": "negative",
+              "highlight": "shouldn't go"
+            },
+            {
+              "sentence": "Should I go to work tomorrow?",
+              "polarity": "question",
+              "highlight": "Should I go"
+            },
+            {
+              "sentence": "You should call the office and make another appointment.",
+              "polarity": "positive",
+              "highlight": "should call"
+            }
+          ],
+          "comparison_table": [
+            {
+              "form_a": "should",
+              "form_b": "positive advice",
+              "example_a": "You should rest.",
+              "example_b": "She should see a doctor.",
+              "use_a": "Recommending an action",
+              "use_b": "Applies to all subjects — no -s"
+            },
+            {
+              "form_a": "shouldn't",
+              "form_b": "negative advice",
+              "example_a": "You shouldn't go to work.",
+              "example_b": "He shouldn't eat too much sugar.",
+              "use_a": "Advising against an action",
+              "use_b": "Short form of should not"
+            },
+            {
+              "form_a": "Should...?",
+              "form_b": "question / asking for advice",
+              "example_a": "Should I come back?",
+              "example_b": "Should she make an appointment?",
+              "use_a": "Requesting advice or a recommendation",
+              "use_b": "Invert subject and should to form a question"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "listening",
+      "type": "listening",
+      "label": "D LISTENING",
+      "title": "Health Problems",
+      "page_number": 47,
+      "activity_ids": ["act-6"]
+    },
+    {
+      "id": "real_world_document",
+      "type": "real_world_document",
+      "label": "E REAL-WORLD READING",
+      "title": "Read a Prescription Label",
+      "page_number": 48,
+      "activity_ids": ["act-7"],
+      "content": {
+        "real_world_document": {
+          "document_type": "prescription_label",
+          "title": "Keystone Pharmacy Prescription Label",
+          "fields": [
+            {
+              "label": "Pharmacy",
+              "value": "Keystone Pharmacy — 1247 Oak Street, Greenfield, CA 93007 — Tel: (555) 204-8800",
+              "is_student_fill": false
+            },
+            {
+              "label": "Patient",
+              "value": "",
+              "is_student_fill": true
+            },
+            {
+              "label": "Date",
+              "value": "May 15, 2026",
+              "is_student_fill": false
+            },
+            {
+              "label": "Rx Number",
+              "value": "KP-20260515-4471",
+              "is_student_fill": false
+            },
+            {
+              "label": "Medication",
+              "value": "ALVIDEX 250mg Tablets (amoxiphenil hydrochloride) — FICTIONAL",
+              "is_student_fill": false
+            },
+            {
+              "label": "Prescribing Physician",
+              "value": "Dr. K. Miller, MD — NPI: 1234567890",
+              "is_student_fill": false
+            },
+            {
+              "label": "Directions",
+              "value": "Take ONE (1) tablet THREE (3) times daily WITH FOOD. Continue for SEVEN (7) days. Do NOT stop early, even if you feel better.",
+              "is_student_fill": false
+            },
+            {
+              "label": "Quantity",
+              "value": "21 tablets",
+              "is_student_fill": false
+            },
+            {
+              "label": "Refills",
+              "value": "0 remaining",
+              "is_student_fill": false
+            },
+            {
+              "label": "Warning",
+              "value": "May cause drowsiness. Do not drive after taking this medication.",
+              "is_student_fill": false
+            }
+          ],
+          "warnings": [
+            "May cause drowsiness. Do not drive after taking this medication."
+          ],
+          "raw_text": "Keystone Pharmacy — 1247 Oak Street, Greenfield, CA 93007 — Tel: (555) 204-8800\nPatient: _______________\nDate: May 15, 2026\nRx Number: KP-20260515-4471\nMedication: ALVIDEX 250mg Tablets (amoxiphenil hydrochloride) — FICTIONAL\nPrescribing Physician: Dr. K. Miller, MD — NPI: 1234567890\nDirections: Take ONE (1) tablet THREE (3) times daily WITH FOOD. Continue for SEVEN (7) days. Do NOT stop early, even if you feel better.\nQuantity: 21 tablets\nRefills: 0 remaining\nWARNING: May cause drowsiness. Do not drive after taking this medication."
+        }
+      }
+    },
+    {
+      "id": "speaking",
+      "type": "speaking",
+      "label": "F SPEAKING",
+      "title": "Role Play",
+      "page_number": 49,
+      "activity_ids": ["act-8"]
+    },
+    {
+      "id": "writing",
+      "type": "writing",
+      "label": "G WRITING",
+      "title": "Health Advice",
+      "page_number": 49,
+      "activity_ids": ["act-9"]
+    }
+  ],
+
+  "activities": [
+    {
+      "id": "act-1",
+      "number": 1,
+      "section_id": "vocabulary",
+      "type": "vocabulary_presentation",
+      "instruction": "Look at the words. Find each word in the dialogue below. 🔊",
+      "items": [
+        {
+          "id": "act-1-v1",
+          "type": "vocabulary",
+          "number": 1,
+          "word": "prescription",
+          "definition": "a doctor's written order for medicine",
+          "emoji": "💊",
+          "example_sentence": "The doctor gave me a prescription for antibiotics.",
+          "editable": true
+        },
+        {
+          "id": "act-1-v2",
+          "type": "vocabulary",
+          "number": 2,
+          "word": "pharmacy",
+          "definition": "a store where you buy medicine with or without a prescription",
+          "emoji": "🏪",
+          "editable": true
+        },
+        {
+          "id": "act-1-v3",
+          "type": "vocabulary",
+          "number": 3,
+          "word": "symptoms",
+          "definition": "signs of an illness, such as a headache, fever, or sore throat",
+          "emoji": "🤒",
+          "editable": true
+        },
+        {
+          "id": "act-1-v4",
+          "type": "vocabulary",
+          "number": 4,
+          "word": "appointment",
+          "definition": "a time you schedule to see a doctor or other professional",
+          "emoji": "📅",
+          "editable": true
+        },
+        {
+          "id": "act-1-v5",
+          "type": "vocabulary",
+          "number": 5,
+          "word": "insurance",
+          "definition": "a plan that helps pay for health care costs",
+          "emoji": "📋",
+          "editable": true
+        },
+        {
+          "id": "act-1-v6",
+          "type": "vocabulary",
+          "number": 6,
+          "word": "dosage",
+          "definition": "the amount of medicine you should take and how often",
+          "emoji": "💉",
+          "editable": true
+        },
+        {
+          "id": "act-1-v7",
+          "type": "vocabulary",
+          "number": 7,
+          "word": "specialist",
+          "definition": "a doctor who focuses on one specific area of medicine",
+          "emoji": "👨‍⚕️",
+          "editable": true
+        },
+        {
+          "id": "act-1-v8",
+          "type": "vocabulary",
+          "number": 8,
+          "word": "emergency room",
+          "definition": "the part of a hospital that treats serious or urgent health problems",
+          "emoji": "🚑",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "Pre-teach using realia if possible (bring a prescription bottle). Drill pronunciation of multi-syllable words: 'prescription', 'appointment', 'emergency'. Use word stress: pre-SCRIP-tion.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 7
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "matching_columns",
+        "print_instruction": "Match the word to its definition.",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 16,
+        "difficulty": "easy",
+        "feedback_mode": "immediate"
+      }
+    },
+
+    {
+      "id": "act-2",
+      "number": 2,
+      "section_id": "dialogue",
+      "type": "dialogue_comprehension",
+      "instruction": "Listen and read. Then answer the questions. 🔊",
+      "items": [
+        {
+          "id": "act-2-q1",
+          "type": "comprehension",
+          "number": 1,
+          "question": "What are the patient's symptoms?",
+          "answer_type": "short_answer",
+          "model_answer": "Headache (for three days), tiredness, sore throat, and slight fever.",
+          "editable": true
+        },
+        {
+          "id": "act-2-q2",
+          "type": "comprehension",
+          "number": 2,
+          "question": "What medication has the patient already taken?",
+          "answer_type": "short_answer",
+          "model_answer": "Aspirin, but it didn't help.",
+          "editable": true
+        },
+        {
+          "id": "act-2-q3",
+          "type": "comprehension",
+          "number": 3,
+          "question": "How long should the patient stay home from work?",
+          "answer_type": "short_answer",
+          "model_answer": "At least two days.",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "present_then_reveal",
+        "teacher_notes": "Play audio (or read aloud yourself with a student). Students read along. Check comprehension with questions. Ask: 'Is this conversation formal or informal? How do you know?'",
+        "answer_reveal": true,
+        "estimated_time_minutes": 8
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "open_ended",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 12,
+        "difficulty": "easy",
+        "feedback_mode": "immediate"
+      }
+    },
+
+    {
+      "id": "act-3",
+      "number": 3,
+      "section_id": "dialogue",
+      "type": "multiple_choice",
+      "instruction": "Choose the correct meaning of each word from the dialogue.",
+      "items": [
+        {
+          "id": "act-3-mc1",
+          "type": "multiple_choice",
+          "number": 1,
+          "question": "In the dialogue, 'symptoms' means:",
+          "options": [
+            {
+              "id": "a",
+              "text": "medicines you take",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Not quite. Medicines are treatments, not symptoms."
+              }
+            },
+            {
+              "id": "b",
+              "text": "signs of an illness",
+              "feedback": {
+                "correct": "Yes! Symptoms are signs of an illness — like headache, fever, or sore throat.",
+                "incorrect": ""
+              }
+            },
+            {
+              "id": "c",
+              "text": "doctors' notes",
+              "feedback": {
+                "correct": "",
+                "incorrect": "That's closer to 'prescription'. Symptoms are what you feel, not what the doctor writes."
+              }
+            },
+            {
+              "id": "d",
+              "text": "health insurance",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Insurance is a payment plan. Symptoms are the physical signs of being unwell."
+              }
+            }
+          ],
+          "correct_option_id": "b",
+          "editable": true
+        },
+        {
+          "id": "act-3-mc2",
+          "type": "multiple_choice",
+          "number": 2,
+          "question": "'Make another appointment' means:",
+          "options": [
+            {
+              "id": "a",
+              "text": "buy more medicine",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Buying medicine happens at a pharmacy, not by making an appointment."
+              }
+            },
+            {
+              "id": "b",
+              "text": "call an ambulance",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Calling an ambulance is for emergencies. An appointment is a scheduled visit."
+              }
+            },
+            {
+              "id": "c",
+              "text": "schedule another visit to the doctor",
+              "feedback": {
+                "correct": "Correct! An appointment is a scheduled time to see a professional.",
+                "incorrect": ""
+              }
+            },
+            {
+              "id": "d",
+              "text": "go to the emergency room",
+              "feedback": {
+                "correct": "",
+                "incorrect": "The emergency room is for urgent problems. An appointment is planned in advance."
+              }
+            }
+          ],
+          "correct_option_id": "c",
+          "editable": true
+        },
+        {
+          "id": "act-3-mc3",
+          "type": "multiple_choice",
+          "number": 3,
+          "question": "Which symptom is NOT mentioned by the patient?",
+          "options": [
+            {
+              "id": "a",
+              "text": "headache",
+              "feedback": {
+                "correct": "",
+                "incorrect": "The patient does mention a headache — 'I've had a headache for three days'."
+              }
+            },
+            {
+              "id": "b",
+              "text": "stomachache",
+              "feedback": {
+                "correct": "Right! The patient mentions a headache, tiredness, sore throat, and fever — but not a stomachache.",
+                "incorrect": ""
+              }
+            },
+            {
+              "id": "c",
+              "text": "sore throat",
+              "feedback": {
+                "correct": "",
+                "incorrect": "The patient does mention a sore throat."
+              }
+            },
+            {
+              "id": "d",
+              "text": "fever",
+              "feedback": {
+                "correct": "",
+                "incorrect": "The patient mentions a slight fever."
+              }
+            }
+          ],
+          "correct_option_id": "b",
+          "editable": true
+        },
+        {
+          "id": "act-3-mc4",
+          "type": "multiple_choice",
+          "number": 4,
+          "question": "What does the doctor give the patient?",
+          "options": [
+            {
+              "id": "a",
+              "text": "vitamins",
+              "feedback": {
+                "correct": "",
+                "incorrect": "The doctor does not give vitamins. Look again at what the doctor writes."
+              }
+            },
+            {
+              "id": "b",
+              "text": "aspirin",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Aspirin was what the patient already took — not what the doctor gives."
+              }
+            },
+            {
+              "id": "c",
+              "text": "a prescription",
+              "feedback": {
+                "correct": "Yes! The doctor says 'I'm going to write you a prescription.'",
+                "incorrect": ""
+              }
+            },
+            {
+              "id": "d",
+              "text": "insurance",
+              "feedback": {
+                "correct": "",
+                "incorrect": "Insurance is not mentioned as something the doctor gives. The doctor writes a prescription."
+              }
+            }
+          ],
+          "correct_option_id": "c",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "answer_reveal": true,
+        "estimated_time_minutes": 5
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "multiple_choice",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 16,
+        "difficulty": "easy",
+        "allow_hint": true,
+        "feedback_mode": "immediate"
+      }
+    },
+
+    {
+      "id": "act-4",
+      "number": 4,
+      "section_id": "grammar",
+      "type": "grammar_presentation",
+      "instruction": "Read the examples. Notice how we use should and shouldn't.",
+      "items": [
+        {
+          "id": "act-4-ge1",
+          "type": "grammar_example",
+          "sentence": "You should rest and drink plenty of water.",
+          "polarity": "positive",
+          "highlight": "should rest",
+          "note": "should + base verb = positive advice"
+        },
+        {
+          "id": "act-4-ge2",
+          "type": "grammar_example",
+          "sentence": "You shouldn't go to work for at least two days.",
+          "polarity": "negative",
+          "highlight": "shouldn't go",
+          "note": "shouldn't + base verb = negative advice (do NOT do this)"
+        },
+        {
+          "id": "act-4-ge3",
+          "type": "grammar_example",
+          "sentence": "Should I go to work tomorrow?",
+          "polarity": "question",
+          "highlight": "Should I go",
+          "note": "Should + subject + base verb = asking for advice"
+        },
+        {
+          "id": "act-4-ge4",
+          "type": "grammar_example",
+          "sentence": "You should call the office and make another appointment.",
+          "polarity": "positive",
+          "highlight": "should call"
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "present_then_reveal",
+        "teacher_notes": "Write 'should' on the board. Elicit what it means from the dialogue. Contrast with 'must'. Clarify: no -s with he/she/it. Quick CCQs: 'Is 'should' an order or a suggestion?'",
+        "answer_reveal": true,
+        "estimated_time_minutes": 5
+      },
+      "worksheet": {
+        "include": true,
+        "editable": false,
+        "format": "fill_blank",
+        "include_answer_key": false
+      },
+      "app": {
+        "include": false
+      }
+    },
+
+    {
+      "id": "act-5",
+      "number": 5,
+      "section_id": "grammar",
+      "type": "fill_in_blank",
+      "instruction": "Complete the sentences. Use should or shouldn't.",
+      "sub_instruction": "Write should or shouldn't.",
+      "items": [
+        {
+          "id": "act-5-fb1",
+          "type": "fill_blank",
+          "number": 1,
+          "template": "You {{0}} see a doctor if you feel worse.",
+          "blanks": [
+            {
+              "id": "act-5-fb1-b0",
+              "position": 0,
+              "accepted_answers": ["should"],
+              "display_answer": "should",
+              "feedback": {
+                "correct": "Correct! This is positive advice — 'should' is right.",
+                "incorrect": "This is advice to do something. Use 'should'."
+              }
+            }
+          ],
+          "word_bank": ["should", "shouldn't"],
+          "editable": true
+        },
+        {
+          "id": "act-5-fb2",
+          "type": "fill_blank",
+          "number": 2,
+          "template": "She {{0}} take her medicine twice a day.",
+          "blanks": [
+            {
+              "id": "act-5-fb2-b0",
+              "position": 0,
+              "accepted_answers": ["should"],
+              "display_answer": "should",
+              "feedback": {
+                "correct": "Right! Following the dosage is important — 'should' gives positive advice.",
+                "incorrect": "Taking medicine as directed is important. Use 'should' to give positive advice."
+              }
+            }
+          ],
+          "word_bank": ["should", "shouldn't"],
+          "editable": true
+        },
+        {
+          "id": "act-5-fb3",
+          "type": "fill_blank",
+          "number": 3,
+          "template": "We {{0}} smoke — it is very bad for our health.",
+          "blanks": [
+            {
+              "id": "act-5-fb3-b0",
+              "position": 0,
+              "accepted_answers": ["shouldn't"],
+              "display_answer": "shouldn't",
+              "feedback": {
+                "correct": "Exactly! Smoking is harmful — 'shouldn't' gives negative advice.",
+                "incorrect": "Smoking is harmful. This is negative advice — use 'shouldn't'."
+              }
+            }
+          ],
+          "word_bank": ["should", "shouldn't"],
+          "editable": true
+        },
+        {
+          "id": "act-5-fb4",
+          "type": "fill_blank",
+          "number": 4,
+          "template": "He {{0}} eat a lot of sugar.",
+          "blanks": [
+            {
+              "id": "act-5-fb4-b0",
+              "position": 0,
+              "accepted_answers": ["shouldn't"],
+              "display_answer": "shouldn't",
+              "feedback": {
+                "correct": "Correct! Eating too much sugar is bad for health — 'shouldn't' is right.",
+                "incorrect": "Eating a lot of sugar is unhealthy. This is negative advice — use 'shouldn't'."
+              }
+            }
+          ],
+          "word_bank": ["should", "shouldn't"],
+          "editable": true
+        },
+        {
+          "id": "act-5-fb5",
+          "type": "fill_blank",
+          "number": 5,
+          "template": "They {{0}} call the pharmacy before going.",
+          "blanks": [
+            {
+              "id": "act-5-fb5-b0",
+              "position": 0,
+              "accepted_answers": ["should"],
+              "display_answer": "should",
+              "feedback": {
+                "correct": "Great! Calling ahead is good advice — 'should' is correct.",
+                "incorrect": "Calling the pharmacy first is a good idea. Use 'should' for positive advice."
+              }
+            }
+          ],
+          "word_bank": ["should", "shouldn't"],
+          "editable": true
+        },
+        {
+          "id": "act-5-fb6",
+          "type": "fill_blank",
+          "number": 6,
+          "template": "You {{0}} worry — it is probably just a cold!",
+          "blanks": [
+            {
+              "id": "act-5-fb6-b0",
+              "position": 0,
+              "accepted_answers": ["shouldn't"],
+              "display_answer": "shouldn't",
+              "feedback": {
+                "correct": "Right! This is reassuring negative advice — 'shouldn't' is perfect.",
+                "incorrect": "The sentence means 'don't worry'. Use 'shouldn't' for negative advice."
+              }
+            }
+          ],
+          "word_bank": ["should", "shouldn't"],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "Students complete individually (3 min). Compare in pairs. Whole-class check. Ask students to explain why for items 3 and 6.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 6
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "fill_blank",
+        "print_instruction": "Write 'should' or 'shouldn't' in each blank.",
+        "include_answer_key": true,
+        "points_per_item": 1
+      },
+      "app": {
+        "include": true,
+        "points": 18,
+        "difficulty": "easy",
+        "allow_hint": true,
+        "feedback_mode": "immediate",
+        "attempts_allowed": 2
+      }
+    },
+
+    {
+      "id": "act-6",
+      "number": 6,
+      "section_id": "listening",
+      "type": "listening_task",
+      "instruction": "Listen to three people talk about a health problem. Complete the chart. 🔊",
+      "audio": {
+        "track_id": "rle2-u4-listen-1",
+        "description": "Three short monologues: Maria, James, and Anh each describe their symptoms and the advice they received from their doctor. Each monologue is approximately 40 seconds."
+      },
+      "items": [
+        {
+          "id": "act-6-lr1",
+          "type": "listening_row",
+          "row_label": "Maria",
+          "columns": [
+            {
+              "column_id": "symptoms",
+              "label": "Symptoms",
+              "answer": "back pain and headaches",
+              "is_student_fill": true
+            },
+            {
+              "column_id": "advice",
+              "label": "Doctor's advice",
+              "answer": "should see a specialist, shouldn't sit at a desk all day",
+              "is_student_fill": true
+            },
+            {
+              "column_id": "grammar",
+              "label": "Should/Shouldn't",
+              "answer": "should, shouldn't",
+              "is_student_fill": true
+            }
+          ]
+        },
+        {
+          "id": "act-6-lr2",
+          "type": "listening_row",
+          "row_label": "James",
+          "columns": [
+            {
+              "column_id": "symptoms",
+              "label": "Symptoms",
+              "answer": "high fever and cough",
+              "is_student_fill": true
+            },
+            {
+              "column_id": "advice",
+              "label": "Doctor's advice",
+              "answer": "should stay home, should drink fluids, shouldn't go to the gym",
+              "is_student_fill": true
+            },
+            {
+              "column_id": "grammar",
+              "label": "Should/Shouldn't",
+              "answer": "should, shouldn't",
+              "is_student_fill": true
+            }
+          ]
+        },
+        {
+          "id": "act-6-lr3",
+          "type": "listening_row",
+          "row_label": "Anh",
+          "columns": [
+            {
+              "column_id": "symptoms",
+              "label": "Symptoms",
+              "answer": "stomach pain after eating",
+              "is_student_fill": true
+            },
+            {
+              "column_id": "advice",
+              "label": "Doctor's advice",
+              "answer": "should change diet, shouldn't eat spicy food, should make an appointment with a specialist",
+              "is_student_fill": true
+            },
+            {
+              "column_id": "grammar",
+              "label": "Should/Shouldn't",
+              "answer": "should, shouldn't",
+              "is_student_fill": true
+            }
+          ]
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "full_activity",
+        "teacher_notes": "Play each monologue twice. Pause between speakers. Students compare in pairs. Whole-class check.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 10
+      },
+      "worksheet": {
+        "include": true,
+        "editable": false,
+        "format": "table",
+        "print_instruction": "Listen and complete the chart.",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": false
+      }
+    },
+
+    {
+      "id": "act-7",
+      "number": 7,
+      "section_id": "real_world_document",
+      "type": "reading_comprehension",
+      "instruction": "Read the prescription label. Answer the questions.",
+      "items": [
+        {
+          "id": "act-7-q1",
+          "type": "comprehension",
+          "number": 1,
+          "question": "How many tablets should the patient take each day?",
+          "answer_type": "short_answer",
+          "model_answer": "Three tablets (one three times daily).",
+          "editable": true
+        },
+        {
+          "id": "act-7-q2",
+          "type": "comprehension",
+          "number": 2,
+          "question": "When should the patient take the tablets — before or after food?",
+          "answer_type": "short_answer",
+          "model_answer": "With food (after or during a meal).",
+          "editable": true
+        },
+        {
+          "id": "act-7-q3",
+          "type": "comprehension",
+          "number": 3,
+          "question": "How many days should the patient take this medicine?",
+          "answer_type": "short_answer",
+          "model_answer": "Seven days.",
+          "editable": true
+        },
+        {
+          "id": "act-7-q4",
+          "type": "comprehension",
+          "number": 4,
+          "question": "Can the patient get more medicine without seeing the doctor again?",
+          "answer_type": "short_answer",
+          "model_answer": "No. Refills: 0 remaining.",
+          "hint": "Look at the 'Refills' section of the label.",
+          "editable": true
+        },
+        {
+          "id": "act-7-q5",
+          "type": "comprehension",
+          "number": 5,
+          "question": "What warning does the label give?",
+          "answer_type": "short_answer",
+          "model_answer": "It may cause drowsiness. Do not drive after taking it.",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "item_by_item",
+        "teacher_notes": "This is authentic literacy practice. Ask: 'Have you seen a label like this before?' Point out each section. Emphasise 'Refills: 0'.",
+        "answer_reveal": true,
+        "estimated_time_minutes": 8
+      },
+      "worksheet": {
+        "include": true,
+        "editable": false,
+        "format": "open_ended",
+        "include_answer_key": true
+      },
+      "app": {
+        "include": true,
+        "points": 15,
+        "difficulty": "medium",
+        "allow_hint": true,
+        "feedback_mode": "immediate"
+      }
+    },
+
+    {
+      "id": "act-8",
+      "number": 8,
+      "section_id": "speaking",
+      "type": "role_play",
+      "instruction": "Work with a partner. Role-play a doctor and patient conversation. 💬",
+      "items": [
+        {
+          "id": "act-8-sp1",
+          "type": "speaking",
+          "prompt": "You are the patient. Choose 2–3 symptoms from the list and describe them to the doctor.",
+          "interaction_pattern": "pair_work",
+          "useful_language": [
+            "I've had a ___ for ___ days.",
+            "I also have ___.",
+            "Should I ___?",
+            "What should I do about ___?"
+          ],
+          "editable": true
+        },
+        {
+          "id": "act-8-sp2",
+          "type": "speaking",
+          "prompt": "You are the doctor. Listen to the patient and give advice using should and shouldn't.",
+          "interaction_pattern": "pair_work",
+          "useful_language": [
+            "You should ___.",
+            "You shouldn't ___.",
+            "I recommend ___.",
+            "Make sure you ___."
+          ],
+          "self_assessment_criteria": [
+            "Did I use should/shouldn't correctly?",
+            "Did I ask follow-up questions?",
+            "Was the conversation natural?"
+          ],
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "teacher_led_only",
+        "teacher_notes": "Demonstrate the role play yourself first (with a strong student). Monitor pairs. Note good examples and errors for whole-class feedback.",
+        "answer_reveal": false,
+        "estimated_time_minutes": 8
+      },
+      "worksheet": {
+        "include": false
+      },
+      "app": {
+        "include": false
+      }
+    },
+
+    {
+      "id": "act-9",
+      "number": 9,
+      "section_id": "writing",
+      "type": "writing_prompt",
+      "instruction": "Write health advice for a friend who has a cold. ✏️",
+      "items": [
+        {
+          "id": "act-9-w1",
+          "type": "writing",
+          "prompt": "Your friend has a cold. Write 3–4 sentences of advice using should and shouldn't.",
+          "line_count": 4,
+          "word_limit_min": 30,
+          "word_limit_max": 60,
+          "scaffolding": [
+            "You should ___.",
+            "You shouldn't ___.",
+            "Make sure you ___."
+          ],
+          "model_answer": "You should stay home and rest for at least two days. You should drink plenty of water and hot tea with honey. You shouldn't go to work or school — you might make other people sick. If your symptoms get worse, you should see a doctor and get a prescription.",
+          "editable": true
+        }
+      ],
+      "classroom": {
+        "include": true,
+        "display_mode": "teacher_led_only",
+        "answer_reveal": true,
+        "estimated_time_minutes": 5
+      },
+      "worksheet": {
+        "include": true,
+        "editable": true,
+        "format": "open_ended",
+        "print_instruction": "Write 3–4 sentences of health advice. Use should and shouldn't."
+      },
+      "app": {
+        "include": false
+      }
+    }
+  ]
+}
