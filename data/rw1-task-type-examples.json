@@ -1,0 +1,315 @@
+[
+  {
+    "id": "ex-mc",
+    "number": 1,
+    "skill": "previewing_a_text",
+    "instruction": "Look at the article below. Circle the correct answers.",
+    "type": "multiple_choice",
+    "items": [
+      {
+        "prompt": "The text is from a",
+        "options": [
+          {
+            "id": "a",
+            "text": "newspaper."
+          },
+          {
+            "id": "b",
+            "text": "book."
+          },
+          {
+            "id": "c",
+            "text": "website."
+          }
+        ],
+        "answer": "c"
+      }
+    ]
+  },
+  {
+    "id": "ex-tick",
+    "number": 1,
+    "skill": "skimming",
+    "instruction": "Skim the text. Tick the correct topics below.",
+    "type": "tick_all",
+    "items": [
+      {
+        "text": "metro systems around the world",
+        "correct": true
+      },
+      {
+        "text": "the most expensive metro system in the world",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "ex-tf",
+    "number": 3,
+    "skill": "reading_for_detail",
+    "instruction": "Write T (true), F (false) or DNS (does not say) next to the sentences.",
+    "type": "true_false",
+    "items": [
+      {
+        "statement": "It is usually snowy on New Year's Eve in New York City.",
+        "answer": "DNS"
+      },
+      {
+        "statement": "Sund Verden is a new restaurant in Denmark.",
+        "answer": "F",
+        "correction": "Sund Verden is a new restaurant in London."
+      }
+    ]
+  },
+  {
+    "id": "ex-sa",
+    "number": 3,
+    "skill": "reading_for_detail",
+    "instruction": "Answer the questions with words or phrases from the article.",
+    "type": "short_answer",
+    "items": [
+      {
+        "prompt": "Who left jeeps in the Philippines?",
+        "answer": "The US Army"
+      }
+    ]
+  },
+  {
+    "id": "ex-gap",
+    "number": 1,
+    "skill": "key_vocabulary",
+    "instruction": "Complete the sentences with the correct form of the words in the box.",
+    "type": "gap_fill",
+    "items": [
+      {
+        "text": "Don't drive to work today. There's a lot of ___.",
+        "answer": "traffic"
+      },
+      {
+        "text": "The metro is ___ (good) way to get around this city.",
+        "answer": "the best",
+        "base_word": "good"
+      }
+    ],
+    "word_bank": [
+      "traffic",
+      "prefer",
+      "hobby",
+      "nurse"
+    ]
+  },
+  {
+    "id": "ex-cc",
+    "number": 1,
+    "skill": "key_vocabulary",
+    "instruction": "Circle the correct words to complete the sentences.",
+    "type": "circle_choice",
+    "items": [
+      {
+        "text": "Tina {takes / relaxes} the bus to work on weekdays.",
+        "options": [
+          "takes",
+          "relaxes"
+        ],
+        "answer": "takes"
+      }
+    ]
+  },
+  {
+    "id": "ex-match",
+    "number": 2,
+    "skill": "key_vocabulary",
+    "instruction": "Match the questions to the answers.",
+    "type": "match",
+    "items": [
+      {
+        "prompt": "Do you take the metro?",
+        "answer": "c"
+      },
+      {
+        "prompt": "Is there a lot of traffic today?",
+        "answer": "d"
+      }
+    ],
+    "options": [
+      {
+        "id": "c",
+        "text": "Yes, because it's fast and clean."
+      },
+      {
+        "id": "d",
+        "text": "No, the roads are clear."
+      }
+    ]
+  },
+  {
+    "id": "ex-rw",
+    "number": 5,
+    "skill": "collocations",
+    "instruction": "Write the words in the correct order to make sentences.",
+    "type": "reorder_words",
+    "items": [
+      {
+        "words": [
+          "by",
+          "Yoko and Tomomi",
+          "bike",
+          "get to",
+          "school",
+          "."
+        ],
+        "answer": "Yoko and Tomomi get to school by bike."
+      }
+    ]
+  },
+  {
+    "id": "ex-rs",
+    "number": 3,
+    "skill": "annotating_a_text",
+    "instruction": "Number the sentences in the order you read about them in the article.",
+    "type": "reorder_sentences",
+    "items": [
+      {
+        "text": "Venus is interested in fashion.",
+        "answer": 2
+      },
+      {
+        "text": "Venus and Serena Williams are from the US.",
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "id": "ex-ec",
+    "number": 2,
+    "skill": "grammar",
+    "instruction": "Correct the mistakes in the sentences. Then rewrite the sentences.",
+    "type": "error_correction",
+    "items": [
+      {
+        "incorrect": "Pizza is the most best dish at this restaurant.",
+        "answer": "Pizza is the best dish at this restaurant.",
+        "error_type": "superlative"
+      }
+    ]
+  },
+  {
+    "id": "ex-pm",
+    "number": 5,
+    "skill": "reading_for_main_ideas",
+    "instruction": "Read the article. Write the number of the paragraph that matches each main idea.",
+    "type": "paragraph_match",
+    "items": [
+      {
+        "topic": "climate",
+        "answer": 1
+      },
+      {
+        "topic": "languages",
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "id": "ex-loc",
+    "number": 2,
+    "skill": "annotating_a_text",
+    "instruction": "Read the questions. Then underline the word(s) in the article which answer the questions.",
+    "type": "locate_in_text",
+    "items": [
+      {
+        "prompt": "Where are Venus and Serena Williams from? (Paragraph 1)",
+        "paragraph": 1,
+        "answer": "the United States"
+      }
+    ]
+  },
+  {
+    "id": "ex-tab",
+    "number": 2,
+    "skill": "taking_notes",
+    "instruction": "Read the article and complete the table.",
+    "type": "table_completion",
+    "items": [
+      {
+        "row": "London Underground",
+        "cells": [
+          {
+            "column": "how long?",
+            "answer": "402 km"
+          },
+          {
+            "column": "when started?",
+            "given": "1890"
+          },
+          {
+            "column": "how many people per day?",
+            "given": "3.7 million"
+          },
+          {
+            "column": "how many stations?",
+            "answer": "270"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ex-mark",
+    "number": 3,
+    "skill": "nouns_and_adjectives",
+    "instruction": "Underline the nouns and circle the adjectives in the sentences.",
+    "type": "mark_words",
+    "items": [
+      {
+        "sentence": "The climate in Sao Paulo, Brazil is warm all year.",
+        "marks": [
+          {
+            "word": "climate",
+            "category": "noun"
+          },
+          {
+            "word": "warm",
+            "category": "adjective"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ex-wr",
+    "number": 1,
+    "skill": "writing_task",
+    "instruction": "Write a paragraph about the kinds of transport people in your city or town use.",
+    "type": "writing_task",
+    "items": [
+      {
+        "prompt": "Write a paragraph about the kinds of transport people in your city or town use. Use the information from your pie chart and the table.",
+        "planning_table": {
+          "columns": [
+            "kind of transport",
+            "reason people use",
+            "reason people don't use"
+          ],
+          "rows": [
+            "train",
+            "bus",
+            "bicycle",
+            "walk",
+            "taxi",
+            "car"
+          ]
+        },
+        "target_words": {
+          "min": 60,
+          "max": 90
+        },
+        "success_criteria": [
+          "uses quantifiers (most, some, a few)",
+          "uses at least one superlative",
+          "links sentences with pronouns"
+        ]
+      }
+    ]
+  }
+]

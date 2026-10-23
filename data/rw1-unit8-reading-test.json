@@ -1,0 +1,236 @@
+{
+  "id": "rw1-u08-reading",
+  "schema_version": "0.1",
+  "course": {
+    "name": "Unlock 2e",
+    "strand": "Reading & Writing",
+    "level": 1,
+    "cefr": "A2"
+  },
+  "scope": {
+    "kind": "unit",
+    "unit_number": 8
+  },
+  "component": "reading",
+  "title": "UNIT 8 READING TEST",
+  "coverage": {
+    "vocabulary": [
+      "transport",
+      "prefer",
+      "take",
+      "drive",
+      "bicycle"
+    ],
+    "grammar": [
+      "superlative adjectives",
+      "quantifiers"
+    ],
+    "reading_skills": [
+      "working_out_meaning_from_context",
+      "reading_for_main_ideas",
+      "reading_for_detail"
+    ]
+  },
+  "texts": [
+    {
+      "id": "t1",
+      "genre": "travel article",
+      "title": "TRAVELLING THE PHILIPPINES BY JEEPNEY",
+      "source_label": "travel guide",
+      "paragraphs": [
+        {
+          "n": 1,
+          "text": "Are you travelling to the Philippines? The most popular form of transport is the jeepney, a colourful bus. The jeepneys in the Philippines are unique. They are very different from buses in other countries."
+        },
+        {
+          "n": 2,
+          "text": "The original jeepneys were not colourful. They were dull green jeeps. The US Army left them in the country after World War II. Filipinos changed the jeeps into buses. They painted them bright colours. They used cloth, not glass, for side windows. They added enough benches for 20 passengers to sit on."
+        },
+        {
+          "n": 3,
+          "text": "People who drive jeepneys do not have set schedules or maps. Before you get on a jeepney, you should know your route. You should ask a Filipino person for advice. Most people are helpful and will tell you which jeepney to take."
+        },
+        {
+          "n": 4,
+          "text": "Riding in a jeepney is not expensive. Find out how much the ride costs before you ride. Most jeepney drivers do not carry a lot of money. The drivers prefer you pay the exact fare. If possible, bring coins or small notes."
+        },
+        {
+          "n": 5,
+          "text": "There are different ways to tell the driver you want to get off. One way is to call out 'Para po!' This means 'Please stop!' in Tagalog."
+        }
+      ],
+      "stats": {
+        "word_count": 197,
+        "paragraph_count": 5
+      }
+    }
+  ],
+  "parts": [
+    {
+      "id": "A",
+      "title": "KEY SKILL: WORKING OUT MEANING FROM CONTEXT",
+      "tasks": [
+        {
+          "id": "u8-r-t1",
+          "number": 1,
+          "skill": "working_out_meaning_from_context",
+          "instruction": "Read the article. Circle the correct definitions for the words in bold.",
+          "type": "multiple_choice",
+          "text_ref": "t1",
+          "marks": 5,
+          "items": [
+            {
+              "prompt": "The jeepneys in the Philippines are unique. They are very different from buses in other countries.",
+              "target_word": "unique",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "like other things"
+                },
+                {
+                  "id": "b",
+                  "text": "not like other things"
+                }
+              ],
+              "answer": "b"
+            },
+            {
+              "prompt": "The original jeepneys were not colourful. They were dull green jeeps.",
+              "target_word": "dull",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "bright"
+                },
+                {
+                  "id": "b",
+                  "text": "not bright"
+                }
+              ],
+              "answer": "b"
+            },
+            {
+              "prompt": "You should ask a Filipino person for advice. Most people are helpful and will tell you which jeepney to take.",
+              "target_word": "advice",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "suggestions"
+                },
+                {
+                  "id": "b",
+                  "text": "money"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "prompt": "The drivers prefer you pay the exact fare. If possible, bring coins or small notes.",
+              "target_word": "fare",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "money for a journey"
+                },
+                {
+                  "id": "b",
+                  "text": "money you take with you"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "prompt": "One way is to call out 'Para po!' This means 'Please stop!' in Tagalog.",
+              "target_word": "Tagalog",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "the name of a place"
+                },
+                {
+                  "id": "b",
+                  "text": "the name of a language"
+                }
+              ],
+              "answer": "b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "ADDITIONAL SKILLS",
+      "tasks": [
+        {
+          "id": "u8-r-t2",
+          "number": 2,
+          "skill": "reading_for_main_ideas",
+          "instruction": "Read the article again. Write the paragraph numbers (1-5) from the article next to the topics (a-e).",
+          "type": "paragraph_match",
+          "text_ref": "t1",
+          "marks": 5,
+          "items": [
+            {
+              "topic": "a  how Filipinos changed army jeeps into jeepneys",
+              "answer": 2
+            },
+            {
+              "topic": "b  what money to bring for your journey",
+              "answer": 4
+            },
+            {
+              "topic": "c  how to tell a jeepney driver to stop",
+              "answer": 5
+            },
+            {
+              "topic": "d  what a jeepney is and where to find it",
+              "answer": 1
+            },
+            {
+              "topic": "e  how to get directions before your journey",
+              "answer": 3
+            }
+          ]
+        },
+        {
+          "id": "u8-r-t3",
+          "number": 3,
+          "skill": "reading_for_detail",
+          "instruction": "Read the article again. Answer the questions with words or phrases from the article.",
+          "type": "short_answer",
+          "text_ref": "t1",
+          "marks": 4,
+          "items": [
+            {
+              "prompt": "Who left jeeps in the Philippines?",
+              "answer": "The US Army"
+            },
+            {
+              "prompt": "What did the jeepney makers use for side windows?",
+              "answer": "cloth",
+              "accept": [
+                "cloth, not glass"
+              ]
+            },
+            {
+              "prompt": "How many people can ride in a jeepney?",
+              "answer": "20",
+              "accept": [
+                "20 passengers"
+              ]
+            },
+            {
+              "prompt": "Why should you know your route before you get on a jeepney?",
+              "answer": "Jeepney drivers do not have set schedules or maps.",
+              "accept": [
+                "They do not have set schedules or maps"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "answer_key_status": "derived_needs_review"
+}

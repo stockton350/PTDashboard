@@ -1,0 +1,1023 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rw1-assessment.schema.json",
+  "title": "Unlock 2e Reading & Writing 1 - assessment",
+  "description": "One component (Reading, Language or Writing) of one RW1 test. Structure: assessment > parts > tasks > items. Reading components also carry the texts the tasks refer to.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "e.g. rw1-u08-reading"
+    },
+    "schema_version": {
+      "const": "0.1"
+    },
+    "course": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unlock 2e"
+        },
+        "strand": {
+          "type": "string",
+          "description": "Reading & Writing"
+        },
+        "level": {
+          "type": "integer",
+          "description": "1 for RW1"
+        },
+        "cefr": {
+          "type": "string",
+          "description": "CEFR band for the level"
+        }
+      },
+      "required": [
+        "name",
+        "level",
+        "cefr"
+      ],
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "unit",
+            "mid_level",
+            "end_of_level"
+          ]
+        },
+        "unit_number": {
+          "type": "integer",
+          "description": "Required when kind is unit"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "component": {
+      "enum": [
+        "reading",
+        "language",
+        "writing"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "Printed title, e.g. UNIT 8 READING TEST"
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "vocabulary": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Target words the test draws on"
+        },
+        "grammar": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reading_skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "writing_skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "description": "What the test is built from. Generators must stay inside this."
+    },
+    "texts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "e.g. t1"
+          },
+          "genre": {
+            "type": "string",
+            "description": "article, profile, review, ..."
+          },
+          "title": {
+            "type": "string",
+            "description": "Printed title"
+          },
+          "source_label": {
+            "type": "string",
+            "description": "Where the text pretends to be from"
+          },
+          "paragraphs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "n": {
+                  "type": "integer"
+                },
+                "text": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "n",
+                "text"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Numbered paragraphs, as printed"
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "word_count": {
+                "type": "integer"
+              },
+              "paragraph_count": {
+                "type": "integer"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "genre",
+          "title",
+          "paragraphs"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "parts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A or B"
+          },
+          "title": {
+            "type": "string",
+            "description": "e.g. KEY SKILL, ADDITIONAL SKILLS, KEY VOCABULARY"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/task"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "tasks"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "answer_key_status": {
+      "enum": [
+        "authored",
+        "derived_needs_review",
+        "missing"
+      ],
+      "description": "The source Word files carry no answer keys. Say where the keys here came from."
+    }
+  },
+  "required": [
+    "id",
+    "schema_version",
+    "course",
+    "scope",
+    "component",
+    "title",
+    "parts",
+    "answer_key_status"
+  ],
+  "$defs": {
+    "task": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique within the test, e.g. u8-r-t1"
+        },
+        "number": {
+          "type": "integer",
+          "description": "Exercise number printed on the page"
+        },
+        "skill": {
+          "type": "string",
+          "description": "Controlled skill label, see skills list"
+        },
+        "instruction": {
+          "type": "string",
+          "description": "Student-facing instruction, exactly as printed"
+        },
+        "type": {
+          "enum": [
+            "multiple_choice",
+            "tick_all",
+            "true_false",
+            "short_answer",
+            "gap_fill",
+            "circle_choice",
+            "match",
+            "reorder_words",
+            "reorder_sentences",
+            "error_correction",
+            "paragraph_match",
+            "locate_in_text",
+            "table_completion",
+            "mark_words",
+            "writing_task"
+          ]
+        },
+        "text_ref": {
+          "type": "string",
+          "description": "id of the reading text this task refers to"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Option letter, e.g. a"
+              },
+              "text": {
+                "type": "string",
+                "description": "Option text"
+              }
+            },
+            "required": [
+              "id",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Shared answer options, used by 'match'"
+        },
+        "word_bank": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Words in the box, used by gap_fill"
+        },
+        "marks": {
+          "type": "integer"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {}
+        }
+      },
+      "required": [
+        "id",
+        "number",
+        "skill",
+        "instruction",
+        "type",
+        "items"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "multiple_choice"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_multiple_choice"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "tick_all"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_tick_all"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "true_false"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_true_false"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "short_answer"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_short_answer"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "gap_fill"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_gap_fill"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "circle_choice"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_circle_choice"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "match"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_match"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "reorder_words"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_reorder_words"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "reorder_sentences"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_reorder_sentences"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "error_correction"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_error_correction"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "paragraph_match"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_paragraph_match"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "locate_in_text"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_locate_in_text"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "table_completion"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_table_completion"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "mark_words"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_mark_words"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "writing_task"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/item_writing_task"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "item_multiple_choice": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "Question stem, or the sentence containing the target word"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Option letter, e.g. a"
+              },
+              "text": {
+                "type": "string",
+                "description": "Option text"
+              }
+            },
+            "required": [
+              "id",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "answer": {
+          "type": "string",
+          "description": "id of the correct option"
+        },
+        "target_word": {
+          "type": "string",
+          "description": "Word being tested, if any"
+        }
+      },
+      "required": [
+        "prompt",
+        "options",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_tick_all": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Option text"
+        },
+        "correct": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "text",
+        "correct"
+      ],
+      "additionalProperties": false
+    },
+    "item_true_false": {
+      "type": "object",
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "Statement to judge"
+        },
+        "answer": {
+          "enum": [
+            "T",
+            "F",
+            "DNS"
+          ]
+        },
+        "correction": {
+          "type": "string",
+          "description": "Corrected sentence when the answer is F and students must correct it"
+        }
+      },
+      "required": [
+        "statement",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_short_answer": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "Question"
+        },
+        "answer": {
+          "type": "string",
+          "description": "Model answer, copied from the text"
+        },
+        "accept": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Other acceptable answers"
+        }
+      },
+      "required": [
+        "prompt",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_gap_fill": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Sentence with ___ marking the gap"
+        },
+        "answer": {
+          "type": "string",
+          "description": "Correct word or phrase"
+        },
+        "accept": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "base_word": {
+          "type": "string",
+          "description": "Word in brackets that students must change, if any"
+        }
+      },
+      "required": [
+        "text",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_circle_choice": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Sentence with {option1 | option2} marking the choice"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The choices in the order shown"
+        },
+        "answer": {
+          "type": "string",
+          "description": "The correct choice"
+        }
+      },
+      "required": [
+        "text",
+        "options",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_match": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "Left-hand item"
+        },
+        "answer": {
+          "type": "string",
+          "description": "id of the matching option in task.options"
+        }
+      },
+      "required": [
+        "prompt",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_reorder_words": {
+      "type": "object",
+      "properties": {
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Scrambled chunks, in the printed order"
+        },
+        "answer": {
+          "type": "string",
+          "description": "Correct sentence"
+        }
+      },
+      "required": [
+        "words",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_reorder_sentences": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Sentence to place in order"
+        },
+        "answer": {
+          "type": "integer",
+          "description": "Position in the correct order"
+        }
+      },
+      "required": [
+        "text",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_error_correction": {
+      "type": "object",
+      "properties": {
+        "incorrect": {
+          "type": "string",
+          "description": "Sentence containing one error"
+        },
+        "answer": {
+          "type": "string",
+          "description": "Corrected sentence"
+        },
+        "error_type": {
+          "type": "string",
+          "description": "e.g. superlative, article, word order, preposition"
+        }
+      },
+      "required": [
+        "incorrect",
+        "answer",
+        "error_type"
+      ],
+      "additionalProperties": false
+    },
+    "item_paragraph_match": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": "Main idea or topic"
+        },
+        "answer": {
+          "type": "integer",
+          "description": "Paragraph number in the text"
+        }
+      },
+      "required": [
+        "topic",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_locate_in_text": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "Question"
+        },
+        "paragraph": {
+          "type": "integer"
+        },
+        "answer": {
+          "type": "string",
+          "description": "Words in the text to underline"
+        }
+      },
+      "required": [
+        "prompt",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "item_table_completion": {
+      "type": "object",
+      "properties": {
+        "row": {
+          "type": "string",
+          "description": "Row label"
+        },
+        "cells": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "column": {
+                "type": "string",
+                "description": "Column heading"
+              },
+              "given": {
+                "type": "string",
+                "description": "Text shown to students, empty for a gap"
+              },
+              "answer": {
+                "type": "string",
+                "description": "Correct entry when the cell is a gap"
+              }
+            },
+            "required": [
+              "column"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "row",
+        "cells"
+      ],
+      "additionalProperties": false
+    },
+    "item_mark_words": {
+      "type": "object",
+      "properties": {
+        "sentence": {
+          "type": "string",
+          "description": "Sentence shown to students"
+        },
+        "marks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "word": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string",
+                "description": "e.g. noun, adjective"
+              }
+            },
+            "required": [
+              "word",
+              "category"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "sentence",
+        "marks"
+      ],
+      "additionalProperties": false
+    },
+    "item_writing_task": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "Writing instruction"
+        },
+        "planning_table": {
+          "type": "object",
+          "properties": {
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "columns",
+            "rows"
+          ],
+          "additionalProperties": false
+        },
+        "target_words": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "integer"
+            },
+            "max": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ],
+          "additionalProperties": false
+        },
+        "success_criteria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "What a good answer must include"
+        }
+      },
+      "required": [
+        "prompt",
+        "success_criteria"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "x-skills": {
+    "reading": [
+      "previewing_a_text",
+      "skimming",
+      "scanning_to_find_information",
+      "annotating_a_text",
+      "taking_notes",
+      "reading_for_main_ideas",
+      "reading_for_detail",
+      "working_out_meaning_from_context"
+    ],
+    "language": [
+      "key_vocabulary",
+      "grammar",
+      "vocabulary",
+      "superlative_adjectives",
+      "quantifiers",
+      "collocations",
+      "nouns_and_adjectives"
+    ],
+    "writing": [
+      "grammar_for_writing",
+      "subject_verb_object",
+      "linking_sentences_with_pronouns",
+      "writing_task"
+    ]
+  }
+}
