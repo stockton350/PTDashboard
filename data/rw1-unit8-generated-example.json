@@ -1,0 +1,236 @@
+{
+  "id": "rw1-u08-reading-generated-example",
+  "schema_version": "0.1",
+  "course": {
+    "name": "Unlock 2e",
+    "strand": "Reading & Writing",
+    "level": 1,
+    "cefr": "A2"
+  },
+  "scope": {
+    "kind": "unit",
+    "unit_number": 8
+  },
+  "component": "reading",
+  "title": "UNIT 8 READING TEST",
+  "coverage": {
+    "vocabulary": [
+      "transport",
+      "prefer",
+      "take",
+      "drive",
+      "bicycle"
+    ],
+    "grammar": [
+      "superlative adjectives",
+      "quantifiers"
+    ],
+    "reading_skills": [
+      "working_out_meaning_from_context",
+      "reading_for_main_ideas",
+      "reading_for_detail"
+    ]
+  },
+  "texts": [
+    {
+      "id": "t1",
+      "genre": "travel article",
+      "title": "GETTING AROUND AMSTERDAM BY BICYCLE",
+      "source_label": "travel guide",
+      "paragraphs": [
+        {
+          "n": 1,
+          "text": "Are you visiting Amsterdam? The most popular way to travel in the city is by bicycle. Amsterdam is flat and small, so it is easy to ride. There are more bicycles than people in the city."
+        },
+        {
+          "n": 2,
+          "text": "The first bicycles in Amsterdam were heavy and expensive. Only rich people had them. Now bicycles are cheap, and almost everyone has one. The city built special roads for bicycles. These roads are separate from the roads for cars."
+        },
+        {
+          "n": 3,
+          "text": "Before you ride, you should know the rules. Cyclists must stop at red lights. You should use your hand to show drivers you want to turn. Most people are friendly and will help you if you are lost."
+        },
+        {
+          "n": 4,
+          "text": "You do not need to buy a bicycle. Many shops rent bicycles by the hour or by the day. The price is about ten euros a day. Ask the shop for a lock, because thieves often take bicycles."
+        },
+        {
+          "n": 5,
+          "text": "If you do not want to ride, there are other choices. Trams are fast and clean. Buy your ticket before you get on. Say 'Dank u wel!' to the driver. This means 'Thank you!' in Dutch."
+        }
+      ],
+      "stats": {
+        "word_count": 187,
+        "paragraph_count": 5
+      }
+    }
+  ],
+  "parts": [
+    {
+      "id": "A",
+      "title": "KEY SKILL: WORKING OUT MEANING FROM CONTEXT",
+      "tasks": [
+        {
+          "id": "u8-r-t1",
+          "number": 1,
+          "skill": "working_out_meaning_from_context",
+          "instruction": "Read the article. Circle the correct definitions for the words in bold.",
+          "type": "multiple_choice",
+          "text_ref": "t1",
+          "marks": 5,
+          "items": [
+            {
+              "prompt": "Amsterdam is flat and small, so it is easy to ride.",
+              "target_word": "flat",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "not having hills"
+                },
+                {
+                  "id": "b",
+                  "text": "very tall"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "prompt": "These roads are separate from the roads for cars.",
+              "target_word": "separate",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "not together"
+                },
+                {
+                  "id": "b",
+                  "text": "next to each other"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "prompt": "Most people are friendly and will help you if you are lost.",
+              "target_word": "lost",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "very tired"
+                },
+                {
+                  "id": "b",
+                  "text": "not knowing where you are"
+                }
+              ],
+              "answer": "b"
+            },
+            {
+              "prompt": "Many shops rent bicycles by the hour or by the day.",
+              "target_word": "rent",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "pay to use for a short time"
+                },
+                {
+                  "id": "b",
+                  "text": "buy"
+                }
+              ],
+              "answer": "a"
+            },
+            {
+              "prompt": "Say 'Dank u wel!' to the driver. This means 'Thank you!' in Dutch.",
+              "target_word": "Dutch",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "the name of a place"
+                },
+                {
+                  "id": "b",
+                  "text": "the name of a language"
+                }
+              ],
+              "answer": "b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "ADDITIONAL SKILLS",
+      "tasks": [
+        {
+          "id": "u8-r-t2",
+          "number": 2,
+          "skill": "reading_for_main_ideas",
+          "instruction": "Read the article again. Write the paragraph numbers (1-5) from the article next to the topics (a-e).",
+          "type": "paragraph_match",
+          "text_ref": "t1",
+          "marks": 5,
+          "items": [
+            {
+              "topic": "a  what the city built for cyclists and how bicycles changed",
+              "answer": 2
+            },
+            {
+              "topic": "b  where to get a bicycle for a day",
+              "answer": 4
+            },
+            {
+              "topic": "c  how to say thank you in Dutch",
+              "answer": 5
+            },
+            {
+              "topic": "d  why Amsterdam is easy to cycle in",
+              "answer": 1
+            },
+            {
+              "topic": "e  what to know before you ride",
+              "answer": 3
+            }
+          ]
+        },
+        {
+          "id": "u8-r-t3",
+          "number": 3,
+          "skill": "reading_for_detail",
+          "instruction": "Read the article again. Answer the questions with words or phrases from the article.",
+          "type": "short_answer",
+          "text_ref": "t1",
+          "marks": 4,
+          "items": [
+            {
+              "prompt": "Who had the first bicycles in Amsterdam?",
+              "answer": "Only rich people",
+              "accept": [
+                "rich people"
+              ]
+            },
+            {
+              "prompt": "What are the special roads for bicycles separate from?",
+              "answer": "the roads for cars"
+            },
+            {
+              "prompt": "How much does it cost to rent a bicycle for a day?",
+              "answer": "about ten euros",
+              "accept": [
+                "ten euros"
+              ]
+            },
+            {
+              "prompt": "Why should you ask the shop for a lock?",
+              "answer": "Thieves often take bicycles.",
+              "accept": [
+                "because thieves often take bicycles"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "answer_key_status": "derived_needs_review"
+}
