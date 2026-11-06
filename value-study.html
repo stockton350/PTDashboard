@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Value Study Maker</title>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: controls column beside a large result; result on top, original and grayscale underneath. Stacks on phones. */
+:root {
+  --bg: #eceeed;
+  --panel: #f8f9f8;
+  --fg: #1a1f1f;
+  --muted: #5d6766;
+  --line: #cfd5d3;
+  --accent: #2c5a60;
+  --accent-fg: #ffffff;
+  --well: #dfe3e1;
+  --font-ui: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121615; --panel: #1b2120; --fg: #e6ebea; --muted: #94a09e; --line: #2f3836;
+    --accent: #7fb8bf; --accent-fg: #0c1313; --well: #0f1312; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121615; --panel: #1b2120; --fg: #e6ebea; --muted: #94a09e; --line: #2f3836;
+  --accent: #7fb8bf; --accent-fg: #0c1313; --well: #0f1312; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-ui); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 40px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; }
+h1 { margin: 0; font-size: 26px; line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
+.sub { margin: 4px 0 0; color: var(--muted); max-width: 52ch; }
+.btn {
+  appearance: none; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-fg);
+  font: inherit; font-weight: 600; padding: 10px 16px; border-radius: 6px; cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:focus-visible, input:focus-visible, select:focus-visible, .seg label:has(input:focus-visible) {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.main { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 800px) { .main { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field > .lab { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.field > .lab output { font-family: var(--font-data); font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--fg); }
+input[type="range"] { width: 100%; accent-color: var(--accent); margin: 0; }
+select { font: inherit; padding: 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); width: 100%; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg label { text-align: center; padding: 8px; cursor: pointer; font-weight: 600; background: var(--bg); }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label:has(input:checked) { background: var(--accent); color: var(--accent-fg); }
+.check { display: flex; gap: 8px; align-items: center; font-weight: 500; }
+.check input { accent-color: var(--accent); width: 18px; height: 18px; }
+.hist-wrap { position: relative; }
+canvas.hist { width: 100%; height: 84px; display: block; background: var(--well); border-radius: 4px; }
+.areas { display: flex; height: 22px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
+.areas span { display: block; height: 100%; }
+.area-text { display: flex; justify-content: space-between; font-family: var(--font-data); font-size: 12px; color: var(--muted); }
+.results { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 520px) { .pair { grid-template-columns: minmax(0, 1fr); } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figcaption { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+figure canvas, figure img.saved { width: 100%; height: auto; display: block; background: var(--well); border-radius: 6px; border: 1px solid var(--line); }
+.drop { border: 2px dashed var(--line); border-radius: 8px; padding: 10px 14px; color: var(--muted); font-size: 13px; text-align: center; }
+.drop.over { border-color: var(--accent); color: var(--fg); }
+.savebox { display: flex; flex-direction: column; gap: 8px; }
+.savebox p { margin: 0; color: var(--muted); font-size: 13px; }
+.gw { position: relative; }
+.gw::after { content: ""; position: absolute; inset: 0; border-radius: 6px; pointer-events: none; display: none; background-position: 0 0; background-image: linear-gradient(to right, var(--gc, rgba(220,40,40,.8)) 1px, transparent 1px), linear-gradient(to bottom, var(--gc, rgba(220,40,40,.8)) 1px, transparent 1px); background-size: var(--gx, 12.5%) var(--gy, 12.5%); }
+.grid-on .gw::after { display: block; }
+.sample-tag { font-family: var(--font-data); text-transform: none; letter-spacing: 0; font-weight: 400; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Value Study Maker</h1>
+      <p class="sub">Load a photo. It is converted to grayscale, contrast-stretched and smoothed, then reduced to 2 or 3 values. Nothing leaves your device.</p>
+    </div>
+    <div class="actions">
+      <label class="btn" for="file" style="cursor:pointer">Choose image</label>
+      <input id="file" type="file" accept="image/*" hidden>
+      <button class="btn ghost" id="sampleBtn" type="button">Use sample</button>
+    </div>
+  </header>
+
+  <div class="drop" id="drop">Drop an image here, or paste one with Ctrl/Cmd+V.</div>
+
+  <div class="main">
+    <section class="panel" aria-label="Controls">
+      <div class="field">
+        <span class="lab">Number of values</span>
+        <div class="seg" role="radiogroup" aria-label="Number of values">
+          <label><input type="radio" name="nv" value="2"> 2 values</label>
+          <label><input type="radio" name="nv" value="3" checked> 3 values</label>
+        </div>
+      </div>
+
+      <label class="check" for="auto"><input id="auto" type="checkbox" checked> Auto contrast (stretch darkest and lightest 1%)</label>
+
+      <div class="field">
+        <span class="lab"><label for="smooth">Smoothing</label><output id="smoothO">6</output></span>
+        <input id="smooth" type="range" min="0" max="30" value="6">
+      </div>
+
+      <div class="field">
+        <span class="lab"><label for="mode">Where to split</label></span>
+        <select id="mode">
+          <option value="otsu">Best separation (Otsu)</option>
+          <option value="equal">Equal areas</option>
+          <option value="manual">Manual</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="lab"><label for="t1">Dark / mid split</label><output id="t1O">85</output></span>
+        <input id="t1" type="range" min="1" max="254" value="85">
+      </div>
+      <div class="field" id="t2Field">
+        <span class="lab"><label for="t2">Mid / light split</label><output id="t2O">170</output></span>
+        <input id="t2" type="range" min="1" max="254" value="170">
+      </div>
+
+      <div class="field">
+        <span class="lab"><label for="tones">Tones</label></span>
+        <select id="tones">
+          <option value="pure">Pure (black, gray, white)</option>
+          <option value="soft">Soft (painter's grays)</option>
+          <option value="warm">Warm paper</option>
+        </select>
+      </div>
+
+      <label class="check" for="gridOn"><input id="gridOn" type="checkbox"> Grid overlay</label>
+      <div id="gridOpts" hidden style="display:flex;flex-direction:column;gap:16px">
+        <div class="field">
+          <span class="lab"><label for="gridN">Columns</label><output id="gridNO">8</output></span>
+          <input id="gridN" type="range" min="2" max="24" value="8">
+        </div>
+        <div class="field">
+          <span class="lab"><label for="gridColor">Line color</label></span>
+          <select id="gridColor">
+            <option value="red">Red</option>
+            <option value="cyan">Cyan</option>
+            <option value="white">White</option>
+            <option value="black">Black</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="lab">Brightness histogram</span>
+        <div class="hist-wrap"><canvas id="hist" class="hist" width="512" height="84"></canvas></div>
+        <div class="areas" id="areas" aria-hidden="true"></div>
+        <div class="area-text" id="areaText"></div>
+      </div>
+    </section>
+
+    <section class="results" aria-label="Results">
+      <figure>
+        <figcaption><span id="studyCap">Value study</span><span class="sample-tag" id="sampleTag"></span></figcaption>
+        <div class="gw"><canvas id="study" aria-label="Value study result"></canvas></div>
+      </figure>
+      <div class="savebox">
+        <div class="actions"><button class="btn ghost" id="saveBtn" type="button">Save the study</button></div>
+        <div id="saveOut" hidden>
+          <p>Press and hold the image (or right-click it) and choose Save image.</p>
+          <img id="saveImg" class="saved" alt="Value study ready to save" style="width:100%;height:auto;border-radius:6px;border:1px solid var(--line)">
+        </div>
+      </div>
+      <div class="pair">
+        <figure>
+          <figcaption><span>Original</span></figcaption>
+          <div class="gw"><canvas id="orig" aria-label="Original image"></canvas></div>
+        </figure>
+        <figure>
+          <figcaption><span>Grayscale, adjusted</span></figcaption>
+          <div class="gw"><canvas id="gray" aria-label="Adjusted grayscale image"></canvas></div>
+        </figure>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  var MAXDIM = 900;
+  var $ = function (id) { return document.getElementById(id); };
+  var els = {
+    file: $('file'), sampleBtn: $('sampleBtn'), drop: $('drop'), auto: $('auto'),
+    smooth: $('smooth'), smoothO: $('smoothO'), mode: $('mode'), tones: $('tones'),
+    t1: $('t1'), t2: $('t2'), t1O: $('t1O'), t2O: $('t2O'), t2Field: $('t2Field'),
+    hist: $('hist'), areas: $('areas'), areaText: $('areaText'),
+    study: $('study'), orig: $('orig'), gray: $('gray'),
+    saveBtn: $('saveBtn'), saveOut: $('saveOut'), saveImg: $('saveImg'),
+    sampleTag: $('sampleTag'),
+    gridOn: $('gridOn'), gridN: $('gridN'), gridNO: $('gridNO'), gridColor: $('gridColor'), gridOpts: $('gridOpts'),
+    wrap: document.querySelector('.wrap')
+  };
+  var GRID_COLORS = { red: 'rgba(220,40,40,0.85)', cyan: 'rgba(0,200,220,0.85)', white: 'rgba(255,255,255,0.85)', black: 'rgba(0,0,0,0.85)' };
+  var TONES = {
+    pure: { 2: ['#000000', '#ffffff'], 3: ['#000000', '#808080', '#ffffff'] },
+    soft: { 2: ['#1e1e1e', '#e8e8e8'], 3: ['#202020', '#808080', '#e4e4e4'] },
+    warm: { 2: ['#2a2420', '#efe6d6'], 3: ['#2a2420', '#9a8d7c', '#efe6d6'] }
+  };
+  var state = { w: 0, h: 0, raw: null, isSample: false };
+
+  function nv() { return +document.querySelector('input[name="nv"]:checked').value; }
+  function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function hexToRgb(h) { var n = parseInt(h.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+
+  /* ---------- loading ---------- */
+  function setSource(img, w0, h0, isSample) {
+    var s = Math.min(1, MAXDIM / Math.max(w0, h0));
+    var w = Math.max(1, Math.round(w0 * s)), h = Math.max(1, Math.round(h0 * s));
+    els.orig.width = w; els.orig.height = h;
+    var c = els.orig.getContext('2d');
+    c.fillStyle = '#fff'; c.fillRect(0, 0, w, h);
+    c.drawImage(img, 0, 0, w, h);
+    var d = c.getImageData(0, 0, w, h).data;
+    var raw = new Uint8ClampedArray(w * h);
+    for (var i = 0, j = 0; i < raw.length; i++, j += 4) {
+      raw[i] = 0.299 * d[j] + 0.587 * d[j + 1] + 0.114 * d[j + 2];
+    }
+    state.w = w; state.h = h; state.raw = raw; state.isSample = !!isSample;
+    els.sampleTag.textContent = isSample ? 'sample image' : '';
+    els.saveOut.hidden = true;
+    if (els.mode.value === 'manual') els.mode.value = 'otsu';
+    process(true);
+  }
+  function loadFile(f) {
+    if (!f || f.type.indexOf('image/') !== 0) return;
+    var url = URL.createObjectURL(f), img = new Image();
+    img.onload = function () { setSource(img, img.naturalWidth, img.naturalHeight, false); URL.revokeObjectURL(url); };
+    img.onerror = function () { URL.revokeObjectURL(url); };
+    img.src = url;
+  }
+  function makeSample() {
+    var W = 800, H = 560, c = document.createElement('canvas'); c.width = W; c.height = H;
+    var g = c.getContext('2d'), gr;
+    gr = g.createLinearGradient(0, 0, 0, H * 0.62); gr.addColorStop(0, '#d9d4c8'); gr.addColorStop(1, '#a9a597');
+    g.fillStyle = gr; g.fillRect(0, 0, W, H);
+    gr = g.createLinearGradient(0, H * 0.62, 0, H); gr.addColorStop(0, '#6d675c'); gr.addColorStop(1, '#3b3730');
+    g.fillStyle = gr; g.fillRect(0, H * 0.62, W, H);
+    g.fillStyle = 'rgba(15,12,8,0.55)'; g.beginPath(); g.ellipse(500, 415, 190, 38, 0, 0, 7); g.fill();
+    g.fillStyle = 'rgba(15,12,8,0.5)'; g.beginPath(); g.ellipse(660, 460, 110, 22, 0, 0, 7); g.fill();
+    gr = g.createLinearGradient(610, 0, 710, 0); gr.addColorStop(0, '#8d8a80'); gr.addColorStop(0.35, '#bdb9ac'); gr.addColorStop(1, '#4f4b43');
+    g.fillStyle = gr; g.fillRect(610, 330, 100, 130);
+    g.fillStyle = '#d3cfc2'; g.beginPath(); g.ellipse(660, 330, 50, 14, 0, 0, 7); g.fill();
+    g.fillStyle = '#3f3c35'; g.beginPath(); g.ellipse(660, 460, 50, 14, 0, 0, Math.PI); g.fill();
+    gr = g.createRadialGradient(340, 230, 15, 380, 300, 190);
+    gr.addColorStop(0, '#f4f0e4'); gr.addColorStop(0.35, '#b7b2a3'); gr.addColorStop(0.8, '#4a463e'); gr.addColorStop(1, '#2a2722');
+    g.fillStyle = gr; g.beginPath(); g.arc(380, 300, 170, 0, 7); g.fill();
+    return c;
+  }
+
+  /* ---------- processing ---------- */
+  function boxPass(src, dst, w, h, r) {
+    var n = 2 * r + 1, x, y, i, sum;
+    for (y = 0; y < h; y++) {
+      var b = y * w; sum = 0;
+      for (i = -r; i <= r; i++) sum += src[b + Math.min(Math.max(i, 0), w - 1)];
+      for (x = 0; x < w; x++) {
+        dst[b + x] = sum / n;
+        sum += src[b + Math.min(x + r + 1, w - 1)] - src[b + Math.max(x - r, 0)];
+      }
+    }
+  }
+  function boxPassV(src, dst, w, h, r) {
+    var n = 2 * r + 1, x, y, i, sum;
+    for (x = 0; x < w; x++) {
+      sum = 0;
+      for (i = -r; i <= r; i++) sum += src[Math.min(Math.max(i, 0), h - 1) * w + x];
+      for (y = 0; y < h; y++) {
+        dst[y * w + x] = sum / n;
+        sum += src[Math.min(y + r + 1, h - 1) * w + x] - src[Math.max(y - r, 0) * w + x];
+      }
+    }
+  }
+  function blur(arr, w, h, r) {
+    var a = Float32Array.from(arr), t = new Float32Array(a.length);
+    if (r < 1) return a;
+    for (var k = 0; k < 3; k++) { boxPass(a, t, w, h, r); boxPassV(t, a, w, h, r); }
+    return a;
+  }
+  function histOf(u8) {
+    var H = new Uint32Array(256);
+    for (var i = 0; i < u8.length; i++) H[u8[i]]++;
+    return H;
+  }
+  function percentile(H, total, p) {
+    var acc = 0, target = total * p;
+    for (var i = 0; i < 256; i++) { acc += H[i]; if (acc >= target) return i; }
+    return 255;
+  }
+  function autoThresholds(H, total, n, mode) {
+    if (mode === 'equal') {
+      if (n === 2) return [percentile(H, total, 0.5)];
+      var a = percentile(H, total, 1 / 3), b = percentile(H, total, 2 / 3);
+      if (b <= a) b = Math.min(254, a + 1);
+      return [a, b];
+    }
+    var P = new Float64Array(257), S = new Float64Array(257), i;
+    for (i = 0; i < 256; i++) { P[i + 1] = P[i] + H[i]; S[i + 1] = S[i] + H[i] * i; }
+    function cls(lo, hi) { var w = P[hi] - P[lo]; if (w <= 0) return 0; var s = S[hi] - S[lo]; return s * s / w; }
+    var best = -1, bt = [128], t1, t2, v;
+    if (n === 2) {
+      for (t1 = 1; t1 < 255; t1++) { v = cls(0, t1) + cls(t1, 256); if (v > best) { best = v; bt = [t1]; } }
+    } else {
+      bt = [85, 170];
+      for (t1 = 1; t1 < 254; t1++) for (t2 = t1 + 1; t2 < 255; t2++) {
+        v = cls(0, t1) + cls(t1, t2) + cls(t2, 256);
+        if (v > best) { best = v; bt = [t1, t2]; }
+      }
+    }
+    return bt;
+  }
+
+  var pending = false;
+  function schedule() { if (pending) return; pending = true; requestAnimationFrame(function () { pending = false; process(false); }); }
+
+  function process(resetThresholds) {
+    if (!state.raw) return;
+    var w = state.w, h = state.h, n = nv(), raw = state.raw, i;
+    els.smoothO.textContent = els.smooth.value;
+    els.t2Field.hidden = n === 2;
+    updateGrid();
+    $('t1').previousElementSibling.firstChild.textContent = n === 2 ? 'Dark / light split' : 'Dark / mid split';
+
+    // 1. contrast stretch
+    var adj = new Float32Array(raw.length);
+    if (els.auto.checked) {
+      var H0 = histOf(raw), lo = percentile(H0, raw.length, 0.01), hi = percentile(H0, raw.length, 0.99);
+      if (hi - lo < 8) { lo = Math.max(0, lo - 4); hi = Math.min(255, hi + 4); }
+      var span = Math.max(1, hi - lo);
+      for (i = 0; i < raw.length; i++) adj[i] = Math.min(255, Math.max(0, (raw[i] - lo) * 255 / span));
+    } else {
+      for (i = 0; i < raw.length; i++) adj[i] = raw[i];
+    }
+    // 2. smoothing, scaled to image size so the setting feels the same for any resolution
+    var r = Math.round(+els.smooth.value * Math.max(w, h) / MAXDIM);
+    var sm = blur(adj, w, h, r);
+    var g8 = new Uint8ClampedArray(sm.length);
+    for (i = 0; i < sm.length; i++) g8[i] = sm[i] + 0.5;
+
+    // 3. thresholds
+    var Hs = histOf(g8), mode = els.mode.value, t;
+    if (mode !== 'manual') {
+      t = autoThresholds(Hs, g8.length, n, mode);
+      els.t1.value = t[0]; if (n === 3) els.t2.value = t[1];
+    } else {
+      t = [+els.t1.value, +els.t2.value];
+      if (n === 3 && t[1] <= t[0]) { t[1] = Math.min(254, t[0] + 1); els.t2.value = t[1]; }
+    }
+    els.t1O.textContent = els.t1.value; els.t2O.textContent = els.t2.value;
+    var t1 = +els.t1.value, t2 = +els.t2.value;
+    if (n === 3 && t2 <= t1) { t2 = Math.min(255, t1 + 1); }
+
+    // 4. render gray + study
+    var tones = TONES[els.tones.value][n].map(hexToRgb);
+    els.gray.width = w; els.gray.height = h; els.study.width = w; els.study.height = h;
+    var gc = els.gray.getContext('2d'), sc = els.study.getContext('2d');
+    var gi = gc.createImageData(w, h), si = sc.createImageData(w, h), counts = [0, 0, 0], j, v, k, tn;
+    for (i = 0, j = 0; i < g8.length; i++, j += 4) {
+      v = g8[i];
+      gi.data[j] = gi.data[j + 1] = gi.data[j + 2] = v; gi.data[j + 3] = 255;
+      k = v < t1 ? 0 : (n === 2 || v >= t2 ? n - 1 : 1);
+      counts[k]++;
+      tn = tones[k];
+      si.data[j] = tn[0]; si.data[j + 1] = tn[1]; si.data[j + 2] = tn[2]; si.data[j + 3] = 255;
+    }
+    gc.putImageData(gi, 0, 0); sc.putImageData(si, 0, 0);
+    els.studyCap.textContent = n + '-value study';
+
+    drawHist(Hs, n, t1, t2);
+    drawAreas(counts, g8.length, n, TONES[els.tones.value][n]);
+    els.saveOut.hidden = true;
+  }
+
+  function drawHist(H, n, t1, t2) {
+    var c = els.hist, g = c.getContext('2d'), W = c.width, Hh = c.height, max = 1, i;
+    for (i = 0; i < 256; i++) if (H[i] > max) max = H[i];
+    g.clearRect(0, 0, W, Hh);
+    g.fillStyle = cssVar('--muted');
+    for (i = 0; i < 256; i++) {
+      var bh = Math.sqrt(H[i] / max) * (Hh - 6);
+      g.fillRect(i * W / 256, Hh - bh, Math.ceil(W / 256), bh);
+    }
+    g.fillStyle = cssVar('--accent');
+    [t1].concat(n === 3 ? [t2] : []).forEach(function (t) { g.fillRect(t * W / 256 - 1, 0, 3, Hh); });
+  }
+  function drawAreas(counts, total, n, hexes) {
+    var out = '', txt = '', k, p;
+    for (k = 0; k < n; k++) {
+      p = counts[k] / total * 100;
+      out += '<span style="width:' + p + '%;background:' + hexes[k] + '"></span>';
+      txt += '<span>' + p.toFixed(0) + '%</span>';
+    }
+    els.areas.innerHTML = out; els.areaText.innerHTML = txt;
+  }
+  els.studyCap = $('studyCap');
+
+  /* ---------- events ---------- */
+  ['change', 'input'].forEach(function (ev) {
+    els.smooth.addEventListener(ev, schedule);
+  });
+  function updateGrid() {
+    var on = els.gridOn.checked, N = +els.gridN.value;
+    els.gridNO.textContent = N;
+    els.gridOpts.hidden = !on;
+    els.gridOpts.style.display = on ? 'flex' : 'none';
+    els.wrap.classList.toggle('grid-on', on);
+    if (!state.w) return;
+    els.wrap.style.setProperty('--gc', GRID_COLORS[els.gridColor.value]);
+    els.wrap.style.setProperty('--gx', (100 / N) + '%');
+    els.wrap.style.setProperty('--gy', (100 / N * state.w / state.h) + '%');
+  }
+  ['gridOn', 'gridN', 'gridColor'].forEach(function (id) {
+    els[id].addEventListener('input', updateGrid); els[id].addEventListener('change', updateGrid);
+  });
+  els.auto.addEventListener('change', schedule);
+  els.mode.addEventListener('change', schedule);
+  els.tones.addEventListener('change', schedule);
+  document.querySelectorAll('input[name="nv"]').forEach(function (r) { r.addEventListener('change', schedule); });
+  ['t1', 't2'].forEach(function (id) {
+    els[id].addEventListener('input', function () { els.mode.value = 'manual'; schedule(); });
+  });
+  els.file.addEventListener('change', function () { loadFile(els.file.files[0]); });
+  els.sampleBtn.addEventListener('click', function () { var c = makeSample(); setSource(c, c.width, c.height, true); });
+  els.saveBtn.addEventListener('click', function () {
+    var src = els.study;
+    if (els.gridOn.checked) {
+      var c = document.createElement('canvas'); c.width = src.width; c.height = src.height;
+      var g = c.getContext('2d'), N = +els.gridN.value, cell = c.width / N, i;
+      g.drawImage(src, 0, 0);
+      g.strokeStyle = GRID_COLORS[els.gridColor.value]; g.lineWidth = Math.max(1, c.width / 700);
+      g.beginPath();
+      for (i = 0; i <= N; i++) { g.moveTo(i * cell, 0); g.lineTo(i * cell, c.height); }
+      for (i = 0; i * cell <= c.height; i++) { g.moveTo(0, i * cell); g.lineTo(c.width, i * cell); }
+      g.stroke(); src = c;
+    }
+    els.saveImg.src = src.toDataURL('image/png'); els.saveOut.hidden = false;
+  });
+  ['dragenter', 'dragover'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) { e.preventDefault(); els.drop.classList.add('over'); });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) { e.preventDefault(); els.drop.classList.remove('over'); });
+  });
+  document.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]); });
+  document.addEventListener('paste', function (e) {
+    var items = (e.clipboardData && e.clipboardData.items) || [];
+    for (var i = 0; i < items.length; i++) if (items[i].type.indexOf('image/') === 0) { loadFile(items[i].getAsFile()); break; }
+  });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', schedule);
+
+  var s = makeSample(); setSource(s, s.width, s.height, true);
+})();
+</script>
+</body>
+</html>
