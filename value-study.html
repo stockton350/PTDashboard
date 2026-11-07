@@ -78,6 +78,13 @@ figcaption { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-tra
 figure canvas, figure img.saved { width: 100%; height: auto; display: block; background: var(--well); border-radius: 6px; border: 1px solid var(--line); }
 .drop { border: 2px dashed var(--line); border-radius: 8px; padding: 10px 14px; color: var(--muted); font-size: 13px; text-align: center; }
 .drop.over { border-color: var(--accent); color: var(--fg); }
+.urlrow { display: flex; gap: 8px; }
+.urlrow input { flex: 1; min-width: 0; font: inherit; padding: 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.check.small { font-size: 13px; color: var(--muted); align-items: flex-start; }
+.check.small input { width: 16px; height: 16px; margin-top: 2px; flex: none; }
+.msg { font-size: 14px; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); }
+.msg.err { border-color: #c0392b; }
 .savebox { display: flex; flex-direction: column; gap: 8px; }
 .savebox p { margin: 0; color: var(--muted); font-size: 13px; }
 .gw { position: relative; }
@@ -99,7 +106,15 @@ figure canvas, figure img.saved { width: 100%; height: auto; display: block; bac
     </div>
   </header>
 
-  <div class="drop" id="drop">Drop an image here, or paste one with Ctrl/Cmd+V.</div>
+  <div class="drop" id="drop">Drop an image here, or paste an image or an image address with Ctrl/Cmd+V.</div>
+
+  <form id="urlForm" class="urlrow" autocomplete="off">
+    <label for="urlIn" class="sr">Image address</label>
+    <input id="urlIn" type="url" inputmode="url" placeholder="Paste an image address (https://...)">
+    <button class="btn" type="submit">Load</button>
+  </form>
+  <label class="check small" for="proxyOk"><input id="proxyOk" type="checkbox" checked> If a site blocks it, retry through a free image proxy (images.weserv.nl, which sees the address)</label>
+  <div id="msg" class="msg" role="status" hidden></div>
 
   <div class="main">
     <section class="panel" aria-label="Controls">
@@ -242,12 +257,52 @@ figure canvas, figure img.saved { width: 100%; height: auto; display: block; bac
     if (els.mode.value === 'manual') els.mode.value = 'otsu';
     process(true);
   }
+  function showMsg(text, isError) {
+    var m = $('msg');
+    m.textContent = text || '';
+    m.hidden = !text;
+    m.className = 'msg' + (isError ? ' err' : '');
+  }
   function loadFile(f) {
-    if (!f || f.type.indexOf('image/') !== 0) return;
+    if (!f) return;
+    showMsg('');
     var url = URL.createObjectURL(f), img = new Image();
-    img.onload = function () { setSource(img, img.naturalWidth, img.naturalHeight, false); URL.revokeObjectURL(url); };
-    img.onerror = function () { URL.revokeObjectURL(url); };
+    img.onload = function () {
+      URL.revokeObjectURL(url);
+      try { setSource(img, img.naturalWidth, img.naturalHeight, false); }
+      catch (e) { showMsg('Could not process that image.', true); }
+    };
+    img.onerror = function () {
+      URL.revokeObjectURL(url);
+      showMsg('Could not read that file as an image. Try a JPEG or PNG.', true);
+    };
     img.src = url;
+  }
+  function tryImageUrl(src, done) {
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function () {
+      try { setSource(img, img.naturalWidth, img.naturalHeight, false); done(true); }
+      catch (e) { done(false); }
+    };
+    img.onerror = function () { done(false); };
+    img.src = src;
+  }
+  function loadUrl(raw) {
+    var u = (raw || '').trim();
+    if (!/^https?:\/\//i.test(u)) { showMsg('Paste a full image address starting with http:// or https://', true); return; }
+    showMsg('Loading image...');
+    tryImageUrl(u, function (ok) {
+      if (ok) { showMsg(''); return; }
+      if (!$('proxyOk').checked) {
+        showMsg('That site does not allow its images to be used here. Save the image to your device and use Choose image, or turn on the proxy option.', true);
+        return;
+      }
+      showMsg('Blocked by that site. Retrying through the image proxy...');
+      tryImageUrl('https://images.weserv.nl/?url=' + encodeURIComponent(u), function (ok2) {
+        showMsg(ok2 ? '' : 'Could not load that address as an image. Check that it points straight to an image file, or save it and use Choose image.', !ok2);
+      });
+    });
   }
   function makeSample() {
     var W = 800, H = 560, c = document.createElement('canvas'); c.width = W; c.height = H;
@@ -439,7 +494,8 @@ figure canvas, figure img.saved { width: 100%; height: auto; display: block; bac
   ['t1', 't2'].forEach(function (id) {
     els[id].addEventListener('input', function () { els.mode.value = 'manual'; schedule(); });
   });
-  els.file.addEventListener('change', function () { loadFile(els.file.files[0]); });
+  els.file.addEventListener('change', function () { loadFile(els.file.files[0]); els.file.value = ''; });
+  $('urlForm').addEventListener('submit', function (e) { e.preventDefault(); loadUrl($('urlIn').value); });
   els.sampleBtn.addEventListener('click', function () { var c = makeSample(); setSource(c, c.width, c.height, true); });
   els.saveBtn.addEventListener('click', function () {
     var src = els.study;
@@ -464,7 +520,10 @@ figure canvas, figure img.saved { width: 100%; height: auto; display: block; bac
   document.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]); });
   document.addEventListener('paste', function (e) {
     var items = (e.clipboardData && e.clipboardData.items) || [];
-    for (var i = 0; i < items.length; i++) if (items[i].type.indexOf('image/') === 0) { loadFile(items[i].getAsFile()); break; }
+    for (var i = 0; i < items.length; i++) if (items[i].type.indexOf('image/') === 0) { loadFile(items[i].getAsFile()); return; }
+    if (document.activeElement === $('urlIn')) return;
+    var text = e.clipboardData && e.clipboardData.getData('text');
+    if (text && /^https?:\/\/\S+$/i.test(text.trim())) { $('urlIn').value = text.trim(); loadUrl(text); }
   });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', schedule);
 
